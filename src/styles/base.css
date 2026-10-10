@@ -1,0 +1,43 @@
+/* No box-sizing/margin/padding resets — Tailwind Preflight handles them.
+   No `scroll-behavior: smooth` on html — it fights Lenis (03-CSS_TOKENS). */
+
+html { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); }
+body { min-height: 100svh; }
+::selection { background: var(--color-primary); color: var(--color-on-primary); }
+button, [role="button"], [type="button"], [type="submit"], [type="reset"] { cursor: pointer; }
+input, textarea, select { font-size: 1rem; } /* iOS zoom prevention */
+dialog::backdrop { background: var(--color-backdrop); }
+
+.z-drawer-backdrop { z-index: var(--z-drawer-backdrop); }
+.z-drawer          { z-index: var(--z-drawer); }
+.z-dropdown        { z-index: var(--z-dropdown); }
+.z-modal           { z-index: var(--z-modal); }
+.z-picker          { z-index: var(--z-picker); }
+.z-overlay         { z-index: var(--z-overlay); }
+.z-toast           { z-index: var(--z-toast); }
+.z-nav             { z-index: var(--z-nav); }
+.z-loader          { z-index: var(--z-loader); }
+
+.text-display    { font-size: var(--text-display); font-weight: var(--font-weight-black);    line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
+.text-title      { font-size: var(--text-4xl);     font-weight: var(--font-weight-bold);     line-height: var(--leading-tight); }
+.text-heading    { font-size: var(--text-2xl);     font-weight: var(--font-weight-bold);     line-height: var(--leading-snug); }
+.text-subheading { font-size: var(--text-xl);      font-weight: var(--font-weight-semibold); line-height: var(--leading-snug); }
+.text-body       { font-size: var(--text-base);    font-weight: var(--font-weight-regular);  line-height: var(--leading-normal); color: var(--color-text); }
+.text-body-sm    { font-size: var(--text-sm);      font-weight: var(--font-weight-regular);  line-height: var(--leading-normal); color: var(--color-text-muted); }
+.text-button     { font-size: var(--text-base);    font-weight: var(--font-weight-semibold); line-height: var(--leading-tight); }
+.text-label      { font-size: var(--text-sm);      font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; }
+
+/* PageLoading (14-PERFORMANCE): nothing for 1s, then the mark fades in and swells */
+.page-loading-mark {
+  opacity: 0;
+  animation: page-loading-in 700ms var(--ease-out) 1000ms forwards,
+             page-loading-swell 2.4s ease-in-out 1700ms infinite;
+}
+@keyframes page-loading-in { from { opacity: 0; scale: 0.94; } to { opacity: 1; scale: 1; } }
+@keyframes page-loading-swell { 0%, 100% { scale: 1; } 50% { scale: 1.04; } }
+
+/* Layout offsets for the fixed navbar / bottom tabs — named, never var() in JSX */
+@utility pt-navbar { padding-top: var(--navbar-height); }
+@utility h-navbar { height: var(--navbar-height); }
+@utility pb-bottom-nav { padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }
+@utility h-bottom-nav { height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }

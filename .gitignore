@@ -1,8 +1,17 @@
 node_modules
 dist
+dev-dist
+*.log
+*.local
 .env
 .env.local
 .env.*.local
 supabase/functions/.env
 supabase/.temp
+supabase/.branches
+test-results
+playwright-report
 .DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea

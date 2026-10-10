@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Sign in",
+    "description": "Sign in to Qué cenamos hoy."
+  },
+  "hero": {
+    "title": "Sign in"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "required": "Required",
+    "invalidEmail": "Enter a valid email",
+    "failed": "Wrong email or password",
+    "success": "Signed in"
+  }
+}

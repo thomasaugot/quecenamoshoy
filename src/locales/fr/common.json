@@ -1,0 +1,37 @@
+{
+  "app": {
+    "name": "Qué cenamos hoy",
+    "shortName": "Qué cenamos"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "loading": "Chargement",
+    "pageReady": "Page prête",
+    "mainNav": "Navigation principale",
+    "language": "Langue",
+    "notifications": "Notifications"
+  },
+  "nav": {
+    "home": "Ce soir",
+    "favourites": "Favoris",
+    "history": "Historique",
+    "signOut": "Se déconnecter"
+  },
+  "actions": {
+    "retry": "Réessayer",
+    "goHome": "Retour à l'accueil",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "reload": "Recharger"
+  },
+  "errors": {
+    "generic": "Une erreur est survenue. Réessaie.",
+    "offline": "Hors ligne"
+  },
+  "languages": {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français"
+  }
+}

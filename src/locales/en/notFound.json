@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "Page not found",
+    "description": "This page does not exist."
+  },
+  "hero": {
+    "title": "This page doesn't exist",
+    "body": "The link may be broken or the page may have moved."
+  }
+}

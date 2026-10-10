@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Connexion",
+    "description": "Connecte-toi à Qué cenamos hoy."
+  },
+  "hero": {
+    "title": "Connexion"
+  },
+  "form": {
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "required": "Champ obligatoire",
+    "invalidEmail": "Saisis un e-mail valide",
+    "failed": "E-mail ou mot de passe incorrect",
+    "success": "Connecté"
+  }
+}

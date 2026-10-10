@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Entrar",
+    "description": "Accede a Qué cenamos hoy."
+  },
+  "hero": {
+    "title": "Entrar"
+  },
+  "form": {
+    "email": "Email",
+    "password": "Contraseña",
+    "submit": "Entrar",
+    "required": "Campo obligatorio",
+    "invalidEmail": "Introduce un email válido",
+    "failed": "Email o contraseña incorrectos",
+    "success": "Sesión iniciada"
+  }
+}

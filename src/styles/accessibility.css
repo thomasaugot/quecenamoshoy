@@ -1,0 +1,23 @@
+html, * { -webkit-tap-highlight-color: transparent; }
+
+.keyboard-focus-ring:focus { outline: none; }
+.keyboard-focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Touch targets follow the input, not the width (08-ACCESSIBILITY) */
+@media (pointer: coarse) {
+  button, [role="button"], a,
+  input[type="checkbox"], input[type="radio"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* WCAG 2.2 — 2.4.11 Focus Not Obscured: never under the sticky navbar */
+html { scroll-padding-top: var(--navbar-height); }
+
+/* Never on body: kills pull-to-refresh. Only panels that scroll above the page. */
+dialog, [data-scroll-panel] { overscroll-behavior: contain; }
