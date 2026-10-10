@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Resumen del mes",
+    "description": "El mes en la cocina."
+  },
+  "hero": {
+    "previous": "Mes anterior",
+    "next": "Mes siguiente",
+    "dinners": "{count, plural, =0 {cenas apuntadas} one {cena} other {cenas}}",
+    "dishes": "{count, plural, one {# plato distinto} other {# platos distintos}}"
+  },
+  "podium": {
+    "title": "Los más cenados",
+    "empty": "Aún nada apuntado este mes.",
+    "times": "{count, plural, one {# vez} other {# veces}}"
+  },
+  "notes": {
+    "newTitle": "{count, plural, =0 {Ningún plato nuevo} one {# plato nuevo} other {# platos nuevos}}",
+    "bestTitle": "La mejor cena",
+    "rating": "{rating} de 5",
+    "average": "Media del mes: {rating} / 5",
+    "plateTitle": "Qué hubo en el plato",
+    "unknown": "Sin clasificar"
+  }
+}

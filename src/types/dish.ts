@@ -10,6 +10,7 @@ export type Dish = {
   imageUrl: string | null    // short-lived signed URL (private bucket)
   lovedBy: string[]          // person ids
   equipment: string[]        // catalogue keys it needs (brief §3.6)
+  notes: string | null       // my standing note on the dish, read before cooking
 }
 
 export type DishInput = {

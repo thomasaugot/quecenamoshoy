@@ -1,9 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- App icon source: the closed cloche on the app's cream ground (colours from src/styles/theme.css).
-       Regular icons: cloche fills the square. -->
-  <rect width="512" height="512" rx="112" fill="#faf6ee"/>
-  <g transform="translate(256 286) scale(3.7) translate(-60 -56)">
-    <ellipse cx="60" cy="74" rx="46" ry="9" fill="#2a2620"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 140 92">
+  <!-- App icon source: the cloche lifted on a yellow burger (colours from src/styles/theme.css),
+     same drawing as src/components/ui/Cloche.tsx. Full-bleed square: the OS rounds the corners.
+     PNGs: rendered in Chrome, trimmed, art at 86% of the width. -->
+  <rect x="-20" width="140" height="92" fill="#faf6ee"/>
+  <ellipse cx="60" cy="74" rx="46" ry="9" fill="#2a2620"/>
+  <ellipse cx="60" cy="74" rx="38" ry="6.5" fill="#f3ecdd"/>
+  <ellipse cx="60" cy="77" rx="15" ry="2.6" fill="#ddd3c2"/>
+  <g transform="translate(38 38.5) scale(0.171875)" fill="#d9a43a"><path d="M35.58,98.06a16,16,0,0,1-3.23-13.44C39.78,49.5,80,24,128,24s88.22,25.5,95.65,60.62A16,16,0,0,1,207.93,104H48.07A16,16,0,0,1,35.58,98.06Zm193.68,54.42-41.13,15L151,152.570a8,8,0,0,0-5.94,0l-37,14.81L71,152.57a8,8,0,0,0-5.7-.09l-44,16a8,8,0,0,0,5.47,15L40,178.69V184a40,40,0,0,0,40,40h96a40,40,0,0,0,40-40v-9.67l18.73-6.810a8,8,0,1,0-5.47-15ZM24,136H232a8,8,0,0,0,0-16H24a8,8,0,0,0,0,16Z"/></g>
+  <path d="M14 74 A46 9 0 0 0 106 74 L98 74 A38 6.5 0 0 1 22 74 Z" fill="#2a2620"/>
+  <g transform="translate(22 64) rotate(-42) translate(-22 -74)">
     <path d="M22 74 A38 36 0 0 1 98 74 A38 6.5 0 0 1 22 74 Z" fill="#d2552f"/>
     <path d="M32 65 A30 28 0 0 1 48 45" fill="none" stroke="#fffcf6" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
     <rect x="57" y="33" width="6" height="6" rx="1" fill="#2a2620"/>

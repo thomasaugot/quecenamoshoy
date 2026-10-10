@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Shopping list",
+    "description": "What to buy."
+  },
+  "hero": {
+    "title": "The shopping <em>list</em>",
+    "left": "{count, plural, =0 {nothing to buy} one {# thing left} other {# things left}}",
+    "clearChecked": "Remove ticked",
+    "clearAll": "Clear the list"
+  },
+  "list": {
+    "title": "The list",
+    "empty": "Empty list. Add a recipe's ingredients, or anything you need."
+  },
+  "add": {
+    "title": "Add",
+    "item": "What",
+    "itemPlaceholder": "e.g. toilet paper",
+    "quantity": "How much (optional)",
+    "quantityPlaceholder": "e.g. 2 L",
+    "submit": "Add",
+    "required": "Type what",
+    "tooLong": "60 characters at most"
+  },
+  "toasts": {
+    "added": "Added to the list",
+    "cleared": "List updated",
+    "failed": "Couldn't save. Try again."
+  }
+}

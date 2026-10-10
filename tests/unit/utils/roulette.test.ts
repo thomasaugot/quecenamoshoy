@@ -4,7 +4,7 @@ import type { Person } from "@/types/person"
 import { buildWheel, eligibleDishes, pickWeighted, weighDish, wordMatches, type RouletteContext } from "@/utils/roulette"
 
 const dish = (id: string, patch: Partial<Dish> = {}): Dish => ({
-  id, name: id, description: null, protein: null, traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], ...patch,
+  id, name: id, description: null, protein: null, traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], notes: null, ...patch,
 })
 const me: Person = { id: "me", name: "Tom", isMe: true, restrictions: [], goals: [] }
 const ctx = (patch: Partial<RouletteContext> = {}): RouletteContext => ({

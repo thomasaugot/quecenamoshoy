@@ -6,7 +6,8 @@
   "hero": {
     "title": "What we <em>ate</em>",
     "note": "every night, with whom and how it was",
-    "log": "Log a dinner"
+    "log": "Log a dinner",
+    "recap": "Monthly recap"
   },
   "list": {
     "title": "Dinners",
@@ -52,6 +53,7 @@
     "logged": "Dinner logged",
     "updated": "Dinner saved",
     "deleted": "Dinner deleted",
-    "failed": "Couldn't save. Try again."
+    "failed": "Couldn't save. Try again.",
+    "rated": "Thanks! Saved."
   }
 }

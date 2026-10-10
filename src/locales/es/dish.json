@@ -11,7 +11,7 @@
     "tags": "Cómo es",
     "lovedBy": "les encanta a {names}",
     "nobody": "aún no es favorito de nadie",
-    "lastEaten": "lo cenasteis {when}",
+    "lastEaten": "lo cenaron {when}",
     "neverEaten": "aún sin apuntar"
   },
   "photo": {
@@ -49,7 +49,11 @@
     "stepsEdit": "Pasos — uno por línea",
     "save": "Guardar",
     "cancel": "Cancelar",
-    "adaptedFrom": "según {site}"
+    "adaptedFrom": "según {site}",
+    "cook": "Modo cocina",
+    "otherLanguage": "Esta receta está en otro idioma.",
+    "translate": "Traducir al español",
+    "toShopping": "Añadir a la lista de la compra"
   },
   "toasts": {
     "generated": "Receta lista",
@@ -60,6 +64,33 @@
     "unreachable": "No he podido abrir ese enlace.",
     "failed": "No se ha podido. Inténtalo de nuevo.",
     "photo": "Foto guardada",
-    "photoFailed": "No se ha podido subir la foto."
+    "photoFailed": "No se ha podido subir la foto.",
+    "translated": "Receta traducida"
+  },
+  "cooking": {
+    "step": "Paso {current} de {total}",
+    "ingredients": "Ingredientes",
+    "hideIngredients": "Ocultar ingredientes",
+    "startTimer": "Temporizador {count} min",
+    "stopTimer": "Parar el temporizador",
+    "timerDone": "¡Tiempo!",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "done": "¡Listo!"
+  },
+  "notes": {
+    "title": "La última vez…",
+    "earlier": "Antes",
+    "rating": "{rating} de 5"
+  },
+  "myNotes": {
+    "title": "Mis notas",
+    "empty": "Apunta lo que quieras recordar para la próxima vez: menos sal, doble de salsa…",
+    "add": "Añadir una nota",
+    "edit": "Editar la nota",
+    "label": "Nota sobre el plato",
+    "placeholder": "menos sal, con arroz, doble de salsa…",
+    "save": "Guardar",
+    "cancel": "Cancelar"
   }
 }

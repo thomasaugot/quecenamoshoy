@@ -9,7 +9,7 @@
   "entries": {
     "ask": {
       "title": "Ask me",
-      "note": "four questions, three ideas"
+      "note": "a few questions, three ideas"
     },
     "roulette": {
       "title": "Roulette",
@@ -26,7 +26,15 @@
     "more": "See favourites"
   },
   "log": {
-    "question": "Already had dinner?",
-    "cta": "Log it"
+    "question": "Had dinner without asking me?",
+    "cta": "Log the dinner"
+  },
+  "rate": {
+    "question": "{day}'s {dish}, how was it?",
+    "note": "A note (optional)",
+    "notePlaceholder": "more salt, make again…",
+    "save": "Save",
+    "stars": "{count, plural, one {# star} other {# stars}}",
+    "label": "Rating"
   }
 }

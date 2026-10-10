@@ -17,7 +17,8 @@
     "history": "Historique",
     "kitchen": "Cuisine",
     "settings": "Réglages",
-    "signOut": "Se déconnecter"
+    "signOut": "Se déconnecter",
+    "shoppingCount": "{count, plural, =0 {Liste de courses} one {Liste de courses : # chose} other {Liste de courses : # choses}}"
   },
   "actions": {
     "retry": "Réessayer",
@@ -198,5 +199,14 @@
         "confirm": "Touche « Ajouter ». C'est fait !"
       }
     }
+  },
+  "loader": {
+    "slip": "Commande",
+    "table": "Table",
+    "tableValue": "à la maison",
+    "guests": "Pour",
+    "guestsValue": "nous",
+    "dish": "Plat",
+    "status": "Ça arrive"
   }
 }

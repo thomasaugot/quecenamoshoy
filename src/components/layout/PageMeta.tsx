@@ -1,6 +1,6 @@
 import { useTranslations } from "use-intl"
 
-type MetaPage = "home" | "favourites" | "history" | "dish" | "login" | "notFound" | "wizard" | "roulette" | "settings" | "kitchen"
+type MetaPage = "home" | "favourites" | "history" | "dish" | "login" | "notFound" | "wizard" | "roulette" | "settings" | "kitchen" | "shopping" | "recap"
 
 // React 19 hoists these into <head>. The title also feeds the route announcer (08).
 export const PageMeta = ({ page }: { page: MetaPage }) => {

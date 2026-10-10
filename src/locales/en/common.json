@@ -17,7 +17,8 @@
     "history": "History",
     "kitchen": "Kitchen",
     "settings": "Settings",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "shoppingCount": "{count, plural, =0 {Shopping list} one {Shopping list: # thing} other {Shopping list: # things}}"
   },
   "actions": {
     "retry": "Try again",
@@ -198,5 +199,14 @@
         "confirm": "Tap \"Add\". Done!"
       }
     }
+  },
+  "loader": {
+    "slip": "Order",
+    "table": "Table",
+    "tableValue": "at home",
+    "guests": "For",
+    "guestsValue": "us",
+    "dish": "Dish",
+    "status": "Coming right up"
   }
 }

@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import type { Suggestion, SuggestStatus, WizardAnswers, WizardStep } from "@/types/suggestion"
 
-const EMPTY: WizardAnswers = { location: null, temp: null, leftovers: null, diners: [], guests: 0, guestRestrictions: [] }
+const EMPTY: WizardAnswers = { location: null, temp: null, leftovers: null, diners: [], guests: 0, guestRestrictions: [], note: "", ingredients: [] }
 
 // The wizard's UI state. Suggestions are the result of a one-off mutation, not cached server
 // data, so they live here with the names already shown (sent as `exclude` on Regenerate).

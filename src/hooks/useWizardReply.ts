@@ -14,6 +14,7 @@ export const useWizardReply = () => {
     if (q === "location") return t(`location.${answers.location ?? "home"}`)
     if (q === "temp") return t(`temp.${answers.temp ?? "any"}`)
     if (q === "leftovers") return t(answers.leftovers ? "leftovers.yes" : "leftovers.no")
+    if (q === "fridge") return answers.ingredients.length ? answers.ingredients.join(", ") : t("fridge.nothing")
     const names = people.filter((p) => answers.diners.includes(p.id)).map((p) => p.name)
     return [names.join(", "), answers.guests ? t("diners.plusGuests", { count: answers.guests }) : ""].filter(Boolean).join(" ")
   }

@@ -37,3 +37,10 @@ export const readDismissedAt = (): number | null => {
 export const writeDismissedAt = (at: number) => {
   try { localStorage.setItem(INSTALL_DISMISSED_KEY, String(at)) } catch { /* private mode: asked again next time */ }
 }
+
+// Dev only: ?install=prompt or ?install=ios forces the offer open, to look at it on localhost
+// (Chrome only offers installing once the service worker runs, which is off in dev)
+export const forcedInstallPlatform = (search: string): InstallPlatform => {
+  const value = new URLSearchParams(search).get("install")
+  return value === "prompt" || value === "ios" ? value : null
+}

@@ -1,6 +1,6 @@
 import { PageMeta } from "@/components/layout/PageMeta"
+import { HistorySkeleton } from "@/components/pages/history/HistorySkeleton"
 import { HistoryBody } from "@/components/pages/history/HistoryBody"
-import { PageLoading } from "@/components/ui/PageLoading"
 import { useMealHistory } from "@/hooks/useMeals"
 import { usePeople } from "@/hooks/usePeople"
 
@@ -12,7 +12,7 @@ export const HistoryPage = () => {
   return (
     <>
       <PageMeta page="history" />
-      {meals.isPending || people.isPending ? <PageLoading /> : <HistoryBody />}
+      {meals.isPending || people.isPending ? <HistorySkeleton /> : <HistoryBody />}
     </>
   )
 }

@@ -34,6 +34,8 @@ const localeBranch = (locale: Locale): RouteObject => ({
             { path: routeTranslations.roulette[locale], handle: { routeKey: "roulette" }, lazy: page(routeModules.roulette, "RoulettePage") },
             { path: routeTranslations.settings[locale], handle: { routeKey: "settings" }, lazy: page(routeModules.settings, "SettingsPage") },
             { path: routeTranslations.kitchen[locale], handle: { routeKey: "kitchen" }, lazy: page(routeModules.kitchen, "KitchenPage") },
+            { path: routeTranslations.shopping[locale], handle: { routeKey: "shopping" }, lazy: page(routeModules.shopping, "ShoppingPage") },
+            { path: routeTranslations.recap[locale], handle: { routeKey: "recap" }, lazy: page(routeModules.recap, "RecapPage") },
           ],
         },
         { path: "*", lazy: page(routeModules.notFound, "NotFoundPage") },

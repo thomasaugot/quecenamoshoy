@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "use-intl"
 import { queryKeys } from "@/constants/query-keys"
-import { generateRecipe, getRecipe, importRecipe, saveRecipe } from "@/services/recipes"
+import { generateRecipe, getRecipe, importRecipe, saveRecipe, translateRecipe } from "@/services/recipes"
 import { uploadDishPhoto } from "@/services/storage"
 import { showToast } from "@/stores/toast-store"
 import { RateLimitedError, RecipeImportError } from "@/utils/errors"
@@ -10,7 +10,7 @@ import { logger } from "@/utils/logger"
 export const useRecipe = (dishId: string) =>
   useQuery({ queryKey: queryKeys.recipes.byDish(dishId), queryFn: () => getRecipe(dishId), staleTime: 30 * 60_000, meta: { persist: true } })
 
-const useRecipeWrite = <V, R>(write: (vars: V) => Promise<R>, ok: "generated" | "imported" | "saved") => {
+const useRecipeWrite = <V, R>(write: (vars: V) => Promise<R>, ok: "generated" | "imported" | "saved" | "translated") => {
   const t = useTranslations("dish.toasts")
   const queryClient = useQueryClient()
   return useMutation({
@@ -33,6 +33,7 @@ const useRecipeWrite = <V, R>(write: (vars: V) => Promise<R>, ok: "generated" | 
 export const useGenerateRecipe = () => useRecipeWrite(generateRecipe, "generated")
 export const useImportRecipe = () => useRecipeWrite(importRecipe, "imported")
 export const useSaveRecipe = () => useRecipeWrite(saveRecipe, "saved")
+export const useTranslateRecipe = () => useRecipeWrite(translateRecipe, "translated")
 
 export const useUploadDishPhoto = () => {
   const t = useTranslations("dish.toasts")

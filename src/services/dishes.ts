@@ -10,7 +10,7 @@ const FOREIGN_KEY_VIOLATION = "23503"
 export const listDishes = async (): Promise<Dish[]> => {
   const { data, error } = await supabase
     .from("dishes")
-    .select("id, name, description, protein, traits, temp, equipment, image_path, dish_favourites(person_id)")
+    .select("id, name, description, protein, traits, temp, equipment, notes, image_path, dish_favourites(person_id)")
     .order("name")
   if (error) throw new Error(`dishes query failed: ${error.code}`)
   const urls = await signedImageUrls(data.flatMap((d) => (d.image_path ? [d.image_path] : [])))
@@ -24,6 +24,7 @@ export const listDishes = async (): Promise<Dish[]> => {
     imageUrl: d.image_path ? urls.get(d.image_path) ?? null : null,
     lovedBy: d.dish_favourites.map((f) => f.person_id),
     equipment: d.equipment,
+    notes: d.notes,
   }))
 }
 
@@ -53,6 +54,12 @@ export const updateDish = async ({ id, input }: { id: string; input: DishInput }
   const { error } = await supabase.from("dishes").update(columns(input)).eq("id", id)
   if (error) throw new Error(`update dish failed: ${error.code}`)
   await writeLovedBy(id, input.lovedBy)
+}
+
+// Empty text clears the note.
+export const setDishNotes = async ({ dishId, notes }: { dishId: string; notes: string }): Promise<void> => {
+  const { error } = await supabase.from("dishes").update({ notes: notes.trim() || null }).eq("id", dishId)
+  if (error) throw new Error(`dish notes write failed: ${error.code}`)
 }
 
 export const deleteDish = async (id: string): Promise<void> => {

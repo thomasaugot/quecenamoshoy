@@ -1,6 +1,6 @@
 import { PageMeta } from "@/components/layout/PageMeta"
+import { SettingsSkeleton } from "@/components/pages/settings/SettingsSkeleton"
 import { SettingsBody } from "@/components/pages/settings/SettingsBody"
-import { PageLoading } from "@/components/ui/PageLoading"
 import { usePeople } from "@/hooks/usePeople"
 import { useSettings } from "@/hooks/useSettings"
 
@@ -14,7 +14,7 @@ export const SettingsPage = () => {
   return (
     <>
       <PageMeta page="settings" />
-      {people.isPending || settings.isPending ? <PageLoading /> : <SettingsBody />}
+      {people.isPending || settings.isPending ? <SettingsSkeleton /> : <SettingsBody />}
     </>
   )
 }

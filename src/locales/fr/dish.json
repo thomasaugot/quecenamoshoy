@@ -49,7 +49,11 @@
     "stepsEdit": "Étapes — une par ligne",
     "save": "Enregistrer",
     "cancel": "Annuler",
-    "adaptedFrom": "d'après {site}"
+    "adaptedFrom": "d'après {site}",
+    "cook": "Mode cuisine",
+    "otherLanguage": "Cette recette est dans une autre langue.",
+    "translate": "Traduire en français",
+    "toShopping": "Ajouter à la liste de courses"
   },
   "toasts": {
     "generated": "Recette prête",
@@ -60,6 +64,33 @@
     "unreachable": "Je n'ai pas pu ouvrir ce lien.",
     "failed": "Ça n'a pas marché. Réessaie.",
     "photo": "Photo enregistrée",
-    "photoFailed": "Impossible d'envoyer la photo."
+    "photoFailed": "Impossible d'envoyer la photo.",
+    "translated": "Recette traduite"
+  },
+  "cooking": {
+    "step": "Étape {current} sur {total}",
+    "ingredients": "Ingrédients",
+    "hideIngredients": "Masquer les ingrédients",
+    "startTimer": "Minuteur {count} min",
+    "stopTimer": "Arrêter le minuteur",
+    "timerDone": "C'est l'heure !",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "done": "Terminé !"
+  },
+  "notes": {
+    "title": "La dernière fois…",
+    "earlier": "Avant",
+    "rating": "{rating} sur 5"
+  },
+  "myNotes": {
+    "title": "Mes notes",
+    "empty": "Note ce qu'il faut retenir pour la prochaine fois : moins de sel, double sauce…",
+    "add": "Ajouter une note",
+    "edit": "Modifier la note",
+    "label": "Note sur le plat",
+    "placeholder": "moins de sel, avec du riz, double sauce…",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
   }
 }

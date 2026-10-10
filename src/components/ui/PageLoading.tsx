@@ -1,16 +1,14 @@
-import { useLayoutEffect } from "react"
 import { createPortal } from "react-dom"
 import { useTranslations } from "use-intl"
 import { Cloche } from "@/components/ui/Cloche"
-import { PAGE_LOADED_EVENT } from "@/constants/events"
+import { usePageLoadedHandoff } from "@/hooks/usePageLoadedHandoff"
 
 // Nothing for the first second, then the mark fades in (14-PERFORMANCE). Portalled to body:
 // inside <main> the fixed mark would follow main's entrance transform.
 export const PageLoading = () => {
   const t = useTranslations()
 
-  // Cleanup runs in the commit that swaps in the real page: PageShell replays its entrance.
-  useLayoutEffect(() => () => { window.dispatchEvent(new Event(PAGE_LOADED_EVENT)) }, [])
+  usePageLoadedHandoff()
 
   return (
     <>

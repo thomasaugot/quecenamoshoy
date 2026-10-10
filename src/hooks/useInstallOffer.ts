@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { appConfig } from "@/config/app.config"
 import { INSTALL_OFFER_DELAY_MS } from "@/constants/install"
 import { useLoaderGone } from "@/hooks/useAppReady"
 import { useAuth } from "@/hooks/useAuth"
 import { useInstallPrompt } from "@/hooks/useInstallPrompt"
 import { useInstallStore } from "@/stores/install-store"
-import { dismissedRecently, readDismissedAt, writeDismissedAt } from "@/utils/install"
+import { dismissedRecently, forcedInstallPlatform, readDismissedAt, writeDismissedAt } from "@/utils/install"
 
 // When to OFFER the install: signed in, the loader gone, a few seconds in (never on page
 // load), once a session, and not within two weeks of "más tarde" (build-progressive-web-app §6).
@@ -23,6 +24,12 @@ export const useInstallOffer = () => {
     return () => clearTimeout(timer)
   }, [eligible, markOffered])
 
-  const later = () => { writeDismissedAt(Date.now()); setOpen(false) }
-  return { open: open && platform !== null, platform, close: () => setOpen(false), later }
+  // dev preview: ?install=prompt | ios opens it at once, whatever the rules say
+  const forced = appConfig.isDev ? forcedInstallPlatform(window.location.search) : null
+  const [forcedOpen, setForcedOpen] = useState(forced !== null)
+
+  const later = () => { writeDismissedAt(Date.now()); setOpen(false); setForcedOpen(false) }
+  const close = () => { setOpen(false); setForcedOpen(false) }
+  if (forced && forcedOpen) return { open: loaderGone, platform: forced, close, later: close }
+  return { open: open && platform !== null, platform, close, later }
 }

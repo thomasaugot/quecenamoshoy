@@ -7,11 +7,18 @@ import { useScroll } from "@/hooks/useScroll"
 // Native <dialog> + showModal(): focus trap, Escape, focus return, inert page and the top
 // layer come from the browser (07-UI_PRIMITIVES). <dialog> does not lock page scroll, so
 // Lenis and the document are locked while it is open.
-export const Modal = ({ isOpen, onClose, title, children }: {
+const SIZE = {
+  md: { dialog: "m-auto max-h-[92svh] w-[min(40rem,calc(100vw-2rem))] rounded-xl shadow-xl", body: "max-h-[92svh] p-6 lg:p-8" },
+  // the whole screen: cooking mode, read from across the kitchen
+  full: { dialog: "m-0 h-svh max-h-none w-screen max-w-none rounded-none", body: "h-svh p-5 lg:p-10" },
+} as const
+
+export const Modal = ({ isOpen, onClose, title, children, size = "md" }: {
   isOpen: boolean
   onClose: () => void
   title: string
   children: ReactNode
+  size?: keyof typeof SIZE
 }) => {
   const t = useTranslations()
   const ref = useRef<HTMLDialogElement>(null)
@@ -33,10 +40,10 @@ export const Modal = ({ isOpen, onClose, title, children }: {
       aria-labelledby={titleId}
       onCancel={(event) => { event.preventDefault(); onClose() }}
       onClick={(event) => { if (event.target === ref.current) onClose() }}
-      className="m-auto max-h-[92svh] w-[min(40rem,calc(100vw-2rem))] rounded-xl bg-bg p-0 text-text shadow-xl"
+      className={`bg-bg p-0 text-text ${SIZE[size].dialog}`}
     >
       {isOpen && (
-        <div data-lenis-prevent className="flex max-h-[92svh] flex-col overflow-y-auto p-6 lg:p-8">
+        <div data-lenis-prevent className={`flex flex-col overflow-y-auto ${SIZE[size].body}`}>
           <header className="mb-6 flex items-start justify-between gap-4">
             <h2 id={titleId} className="text-heading">{title}</h2>
             <Button variant="ghost" size="icon" aria-label={t("actions.close")} onClick={onClose}

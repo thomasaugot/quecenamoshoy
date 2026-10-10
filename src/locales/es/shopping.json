@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Lista de la compra",
+    "description": "Lo que hay que comprar."
+  },
+  "hero": {
+    "title": "La lista de la <em>compra</em>",
+    "left": "{count, plural, =0 {nada que comprar} one {queda # cosa} other {quedan # cosas}}",
+    "clearChecked": "Quitar lo tachado",
+    "clearAll": "Vaciar la lista"
+  },
+  "list": {
+    "title": "La lista",
+    "empty": "Lista vacía. Añade los ingredientes de una receta, o lo que te falte."
+  },
+  "add": {
+    "title": "Añadir",
+    "item": "Qué",
+    "itemPlaceholder": "ej. papel higiénico",
+    "quantity": "Cuánto (opcional)",
+    "quantityPlaceholder": "ej. 2 L",
+    "submit": "Añadir",
+    "required": "Escribe qué",
+    "tooLong": "Máximo 60 caracteres"
+  },
+  "toasts": {
+    "added": "Añadido a la lista",
+    "cleared": "Lista actualizada",
+    "failed": "No se ha podido guardar. Inténtalo de nuevo."
+  }
+}

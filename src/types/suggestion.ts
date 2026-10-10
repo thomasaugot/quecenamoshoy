@@ -2,7 +2,7 @@ import type { KitchenLocation } from "@/types/database"
 
 export type TempWish = "hot" | "cold" | "any"
 export type SuggestStatus = "idle" | "loading" | "error" | "done"
-export type WizardStep = "location" | "temp" | "leftovers" | "diners" | "results"
+export type WizardStep = "location" | "temp" | "leftovers" | "fridge" | "diners" | "results"
 
 // What the wizard asked, and what I answered
 export type WizardAnswers = {
@@ -12,6 +12,8 @@ export type WizardAnswers = {
   diners: string[]
   guests: number
   guestRestrictions: string[]    // allergen / diet catalogue keys, tonight only
+  note: string                   // free words for tonight ("il reste des courgettes"), may be empty
+  ingredients: string[]          // things in the fridge to use up, may be empty
 }
 
 // One idea from the suggest Edge Function (brief §4.3)

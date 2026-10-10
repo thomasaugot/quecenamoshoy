@@ -5,7 +5,7 @@
   },
   "hero": {
     "title": "On mange quoi <em>ce soir ?</em>",
-    "note": "quatre questions et je te propose trois idées"
+    "note": "quelques questions et je te propose trois idées"
   },
   "thread": "Ce que tu m'as dit",
   "change": "Modifier : {answer}",
@@ -47,7 +47,9 @@
     "go": "Voir les idées",
     "nobody": "Coche au moins quelqu'un.",
     "short": "Qui",
-    "needsConnection": "Les idées ont besoin d'une connexion."
+    "needsConnection": "Les idées ont besoin d'une connexion.",
+    "note": "Un mot pour la cuisine (facultatif)",
+    "notePlaceholder": "quelque chose de rapide, il reste des courgettes, on a eu du poulet à midi…"
   },
   "results": {
     "title": "Trois idées pour ce soir",
@@ -80,5 +82,16 @@
     "title": "La commande",
     "pending": "…",
     "now": "maintenant"
+  },
+  "fridge": {
+    "question": "Des choses à utiliser dans le frigo ?",
+    "short": "Frigo",
+    "add": "Ingrédient",
+    "placeholder": "courgettes, crème, restes de poulet…",
+    "addButton": "Ajouter",
+    "remove": "Retirer {item}",
+    "nothing": "Rien de spécial",
+    "next": "Continuer",
+    "tooMany": "10 ingrédients maximum"
   }
 }

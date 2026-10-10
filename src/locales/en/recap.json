@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Monthly recap",
+    "description": "The month in the kitchen."
+  },
+  "hero": {
+    "previous": "Previous month",
+    "next": "Next month",
+    "dinners": "{count, plural, =0 {dinners logged} one {dinner} other {dinners}}",
+    "dishes": "{count, plural, one {# different dish} other {# different dishes}}"
+  },
+  "podium": {
+    "title": "Most eaten",
+    "empty": "Nothing logged this month yet.",
+    "times": "{count, plural, one {# time} other {# times}}"
+  },
+  "notes": {
+    "newTitle": "{count, plural, =0 {No new dishes} one {# new dish} other {# new dishes}}",
+    "bestTitle": "Best dinner",
+    "rating": "{rating} out of 5",
+    "average": "Month's average: {rating} / 5",
+    "plateTitle": "What was on the plate",
+    "unknown": "Not sorted"
+  }
+}

@@ -56,3 +56,17 @@ Read this BEFORE any design work. Append after every attempt, accepted or not.
 - Lid covered too much plate → lid narrowed to the well (rx 38), rim visible around it.
 - 2026-10-10: cloche placed in navbar (h-10), PageLoader, PageLoading, login intro; favicon = closed cloche.
 - APPROVED ("perfect"). zzcloche preview deleted.
+
+## 2026-10-10 — PageLoader "wow" pass (pending)
+- Thomas: "make the loading much more wow". Old: small cloche + name + progress bar, centred.
+- Now the screen IS the cloche: giant terracotta dome drops onto a full-width plate with a clink,
+  the name lands letter by letter (random tilt, back.out), dish icons spin in a slot like the
+  roulette; exit = slot lands, lid peeks on its left hinge, flies off the top, ground fades.
+- Content anchored lower-left inside the dome (not a centred mark). No progress bar.
+- REJECTED ("its a joke right?", "wtf is that"): screen-sized dome = flat orange blob, shine ran into
+  the text, egg-shaped on mobile. Lesson: never blow the logo up into a billboard.
+
+## 2026-10-10 — PageLoader, attempt 2 — la comanda (pending)
+- Order slip (paper, like WizardTicket) slides in over yesterday's slip, tack drops and pins it,
+  lines write by hand (clip reveal), dish icon spins like the roulette; exit = slip torn off, flies away.
+- Checked with screenshots at 390 and 1440 before showing.

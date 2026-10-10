@@ -1,6 +1,6 @@
 import { PageMeta } from "@/components/layout/PageMeta"
+import { KitchenSkeleton } from "@/components/pages/kitchen/KitchenSkeleton"
 import { KitchenBody } from "@/components/pages/kitchen/KitchenBody"
-import { PageLoading } from "@/components/ui/PageLoading"
 import { useKitchen } from "@/hooks/useKitchen"
 import { useKitchenStore } from "@/stores/kitchen-store"
 
@@ -11,7 +11,7 @@ export const KitchenPage = () => {
   return (
     <>
       <PageMeta page="kitchen" />
-      {kitchen.isPending ? <PageLoading /> : <KitchenBody />}
+      {kitchen.isPending ? <KitchenSkeleton /> : <KitchenBody />}
     </>
   )
 }

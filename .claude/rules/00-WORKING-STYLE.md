@@ -72,6 +72,10 @@ so it can be looked at, like `/zzloader` for the page loader):
 - Never ever use accent lines. Anywhere in the design I hate them. They are a lazy, cheap, and ugly way to separate content. Use space, color, or
   typography instead.
 - Avoid horizontal row layouts as the default structure.
+- Never a box or outline ring around a focused input, textarea or select. I hate it everywhere.
+  A focused field shows focus with its OWN edge: the line or border turns the primary colour
+  and gets slightly thicker, and its label takes the colour too. The stack's
+  08-ACCESSIBILITY.md has the CSS.
 - Watch for the convergent defaults: centred mark, dark blurred ground, cyan glow, three equal
   cards, one giant word. Vary composition, ground, light, motion.
 

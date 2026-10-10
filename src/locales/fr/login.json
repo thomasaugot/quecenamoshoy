@@ -20,6 +20,11 @@
     "required": "Champ obligatoire",
     "invalidEmail": "Saisis un e-mail valide",
     "failed": "E-mail ou mot de passe incorrect",
-    "success": "Connecté"
+    "success": "Connecté",
+    "magicExplain": "Je t'envoie un lien par e-mail : un geste et tu es dedans, sans mot de passe.",
+    "magicSubmit": "M'envoyer le lien",
+    "magicSentTo": "Lien envoyé à {email}. Regarde tes e-mails (et les spams).",
+    "usePassword": "ou avec mon mot de passe",
+    "magicTooMany": "Trop de liens d'affilée. Attends quelques minutes, ou connecte-toi avec ton mot de passe."
   }
 }

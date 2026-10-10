@@ -6,6 +6,7 @@ import { missingEnv } from "../_shared/env.ts"
 import { EQUIPMENT } from "../_shared/equipment.ts"
 import { gemini, LIMITS, MAX_OUTPUT_TOKENS, TEXT_MODEL, THINKING } from "../_shared/gemini.ts"
 import { takeAiCall } from "../_shared/rate-limit.ts"
+import { LANGUAGES } from "../_shared/languages.ts"
 
 // Sorts my dishes once (brief §3.3 "AI enriches each dish"): what each one IS — protein,
 // traits, hot/cold, equipment, a short description — so goals, the roulette and the
@@ -13,7 +14,6 @@ import { takeAiCall } from "../_shared/rate-limit.ts"
 // One Gemini call for the whole batch.
 
 const BATCH = 80
-const LANGUAGES = { es: "Spanish", en: "English", fr: "French" } as const
 const ALL_EQUIPMENT = Object.values(EQUIPMENT).flat() as string[]
 
 type DishRow = {

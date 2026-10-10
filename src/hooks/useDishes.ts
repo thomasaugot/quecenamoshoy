@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "use-intl"
 import { queryKeys } from "@/constants/query-keys"
-import { createDish, deleteDish, enrichDishes, listDishes, setFavourite, updateDish } from "@/services/dishes"
+import { createDish, deleteDish, enrichDishes, listDishes, setDishNotes, setFavourite, updateDish } from "@/services/dishes"
 import { showToast } from "@/stores/toast-store"
 import type { Dish } from "@/types/dish"
 import { DishInUseError, RateLimitedError } from "@/utils/errors"
@@ -54,6 +54,10 @@ export const useSetFavourite = () =>
       ...d,
       lovedBy: on ? [...d.lovedBy, personId] : d.lovedBy.filter((id) => id !== personId),
     }))
+
+export const useSetDishNotes = () =>
+  useDishWrite(setDishNotes, "saved", (dishes, { dishId, notes }) =>
+    dishes.map((d) => d.id !== dishId ? d : { ...d, notes: notes.trim() || null }))
 
 export const useEnrichDishes = () => {
   const t = useTranslations("favourites.toasts")

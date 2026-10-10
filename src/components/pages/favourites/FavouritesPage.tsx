@@ -1,6 +1,6 @@
 import { PageMeta } from "@/components/layout/PageMeta"
+import { FavouritesSkeleton } from "@/components/pages/favourites/FavouritesSkeleton"
 import { FavouritesBody } from "@/components/pages/favourites/FavouritesBody"
-import { PageLoading } from "@/components/ui/PageLoading"
 import { useDishes } from "@/hooks/useDishes"
 import { usePeople } from "@/hooks/usePeople"
 
@@ -14,7 +14,7 @@ export const FavouritesPage = () => {
   return (
     <>
       <PageMeta page="favourites" />
-      {dishes.isPending || people.isPending ? <PageLoading /> : <FavouritesBody />}
+      {dishes.isPending || people.isPending ? <FavouritesSkeleton /> : <FavouritesBody />}
     </>
   )
 }

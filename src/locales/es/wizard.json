@@ -5,7 +5,7 @@
   },
   "hero": {
     "title": "¿Qué cenamos <em>hoy?</em>",
-    "note": "cuatro preguntas y te propongo tres ideas"
+    "note": "unas preguntas y te propongo tres ideas"
   },
   "thread": "Lo que me has dicho",
   "change": "Cambiar: {answer}",
@@ -47,7 +47,9 @@
     "go": "Ver ideas",
     "nobody": "Marca al menos a alguien.",
     "short": "Quién",
-    "needsConnection": "Las ideas necesitan conexión."
+    "needsConnection": "Las ideas necesitan conexión.",
+    "note": "Una nota para la cocina (opcional)",
+    "notePlaceholder": "algo rápido, quedan calabacines, hemos comido pollo a mediodía…"
   },
   "results": {
     "title": "Tres ideas para esta noche",
@@ -80,5 +82,16 @@
     "title": "La comanda",
     "pending": "…",
     "now": "ahora"
+  },
+  "fridge": {
+    "question": "¿Hay algo en la nevera que quieras usar?",
+    "short": "Nevera",
+    "add": "Ingrediente",
+    "placeholder": "calabacín, nata, restos de pollo…",
+    "addButton": "Añadir",
+    "remove": "Quitar {item}",
+    "nothing": "Nada en especial",
+    "next": "Seguir",
+    "tooMany": "Máximo 10 ingredientes"
   }
 }

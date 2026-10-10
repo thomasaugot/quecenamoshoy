@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import type { Person } from "@/types/person"
 import type { Suggestion } from "@/types/suggestion"
-import { answeredQuestions, portionsFor, suggestionAllergens } from "@/utils/suggestions"
+import { addIngredient, answeredQuestions, portionsFor, suggestionAllergens } from "@/utils/suggestions"
 
 const idea = (patch: Partial<Suggestion>): Suggestion => ({
   dishId: null, name: "Pasta", description: "", temp: "hot", prepMinutes: 20, goodForLeftovers: false,
@@ -29,10 +29,18 @@ describe("wizard helpers", () => {
 })
 
 describe("answeredQuestions", () => {
-  const qs = ["location", "temp", "leftovers", "diners"] as const
+  const qs = ["location", "temp", "leftovers", "fridge", "diners"] as const
   it("lists the questions before the current step", () => {
     expect(answeredQuestions(qs, "location")).toEqual([])
-    expect(answeredQuestions(qs, "leftovers")).toEqual(["location", "temp"])
+    expect(answeredQuestions(qs, "fridge")).toEqual(["location", "temp", "leftovers"])
     expect(answeredQuestions(qs, "results")).toEqual([...qs])
+  })
+})
+
+describe("addIngredient", () => {
+  it("adds once, trimmed, accents and case ignored", () => {
+    expect(addIngredient([], "  courgettes ")).toEqual(["courgettes"])
+    expect(addIngredient(["Crème"], "creme")).toEqual(["Crème"])
+    expect(addIngredient(["ail"], "   ")).toEqual(["ail"])
   })
 })

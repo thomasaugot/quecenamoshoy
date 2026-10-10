@@ -20,6 +20,11 @@
     "required": "Required",
     "invalidEmail": "Enter a valid email",
     "failed": "Wrong email or password",
-    "success": "Signed in"
+    "success": "Signed in",
+    "magicExplain": "I'll email you a link: one tap and you're in, no password.",
+    "magicSubmit": "Send me the link",
+    "magicSentTo": "Link sent to {email}. Check your inbox (and spam).",
+    "usePassword": "or with my password",
+    "magicTooMany": "Too many links in a row. Wait a few minutes, or sign in with your password."
   }
 }

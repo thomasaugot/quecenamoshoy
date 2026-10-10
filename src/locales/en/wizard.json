@@ -5,7 +5,7 @@
   },
   "hero": {
     "title": "What's for dinner <em>tonight?</em>",
-    "note": "four questions and I'll suggest three ideas"
+    "note": "a few questions and I'll suggest three ideas"
   },
   "thread": "What you told me",
   "change": "Change: {answer}",
@@ -47,7 +47,9 @@
     "go": "Show ideas",
     "nobody": "Tick at least someone.",
     "short": "Who",
-    "needsConnection": "Ideas need a connection."
+    "needsConnection": "Ideas need a connection.",
+    "note": "A note for the kitchen (optional)",
+    "notePlaceholder": "something quick, courgettes to use up, we had chicken for lunch…"
   },
   "results": {
     "title": "Three ideas for tonight",
@@ -80,5 +82,16 @@
     "title": "The order",
     "pending": "…",
     "now": "now"
+  },
+  "fridge": {
+    "question": "Anything in the fridge to use up?",
+    "short": "Fridge",
+    "add": "Ingredient",
+    "placeholder": "courgette, cream, leftover chicken…",
+    "addButton": "Add",
+    "remove": "Remove {item}",
+    "nothing": "Nothing in particular",
+    "next": "Next",
+    "tooMany": "10 ingredients at most"
   }
 }

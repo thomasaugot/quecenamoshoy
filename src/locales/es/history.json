@@ -6,7 +6,8 @@
   "hero": {
     "title": "Lo que hemos <em>cenado</em>",
     "note": "cada noche, con quién y qué tal",
-    "log": "Apuntar una cena"
+    "log": "Apuntar una cena",
+    "recap": "Resumen del mes"
   },
   "list": {
     "title": "Cenas",
@@ -52,6 +53,7 @@
     "logged": "Cena apuntada",
     "updated": "Cena guardada",
     "deleted": "Cena borrada",
-    "failed": "No se ha podido guardar. Inténtalo de nuevo."
+    "failed": "No se ha podido guardar. Inténtalo de nuevo.",
+    "rated": "¡Gracias! Apuntado."
   }
 }

@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { WizardChoice } from "@/components/pages/wizard/WizardChoice"
 import { WizardDiners } from "@/components/pages/wizard/WizardDiners"
+import { WizardFridge } from "@/components/pages/wizard/WizardFridge"
 import { WizardResults } from "@/components/pages/wizard/WizardResults"
 import { useRiseIn } from "@/hooks/useRiseIn"
 import { useWizardStore } from "@/stores/wizard-store"
@@ -27,8 +28,9 @@ export const WizardStep = () => {
         {step === "leftovers" && (
           <WizardChoice step="leftovers"
             value={answers.leftovers === null ? null : answers.leftovers ? "yes" : "no"}
-            onPick={(v) => answer({ leftovers: v === "yes" }, "diners")} />
+            onPick={(v) => answer({ leftovers: v === "yes" }, "fridge")} />
         )}
+        {step === "fridge" && <WizardFridge />}
         {step === "diners" && <WizardDiners />}
         {step === "results" && <WizardResults />}
       </div>

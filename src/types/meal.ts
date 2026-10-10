@@ -40,4 +40,33 @@ export type MealInput = {
   withLeftovers: boolean
 }
 
+// What I wrote about a dish the times we ate it (dish page)
+export type DishNote = { id: string; eatenOn: string; rating: number | null; note: string | null }
+
+// The last dinner still waiting for its stars (home page)
+export type UnratedMeal = { id: string; eatenOn: string; dishName: string; imageUrl: string | null }
+
+// A dinner as the monthly recap needs it
+export type RecapMeal = {
+  dishId: string
+  dishName: string
+  imageUrl: string | null
+  eatenOn: string
+  rating: number | null
+  protein: string | null
+  isNew: boolean            // first time this dish was ever logged
+}
+
+export type RecapDish = { dishId: string; name: string; imageUrl: string | null; count: number }
+
+export type MonthRecap = {
+  dinners: number
+  dishes: number
+  newDishes: string[]
+  top: RecapDish[]
+  best: RecapMeal | null
+  proteins: { key: string; count: number }[]
+  averageRating: number | null
+}
+
 export type MealMonth = { month: string; meals: Meal[] }   // month = YYYY-MM

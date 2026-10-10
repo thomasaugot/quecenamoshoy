@@ -11,6 +11,8 @@ type Messages = typeof import("@/locales/es/common.json") & {
   roulette: typeof import("@/locales/es/roulette.json")
   settings: typeof import("@/locales/es/settings.json")
   kitchen: typeof import("@/locales/es/kitchen.json")
+  shopping: typeof import("@/locales/es/shopping.json")
+  recap: typeof import("@/locales/es/recap.json")
   login: typeof import("@/locales/es/login.json")
   notFound: typeof import("@/locales/es/notFound.json")
   routeError: typeof import("@/locales/es/routeError.json")

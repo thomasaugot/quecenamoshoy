@@ -296,4 +296,36 @@ alter table public.recipes add column if not exists source text not null default
 alter table public.recipes add column if not exists source_url text
   check (source_url is null or (char_length(source_url) <= 500 and source_url ~ '^https://'));
 
+
+-- ── MIGRATION 2026-10-10 — recipes: the language they are written in (null = unknown/old) ──
+alter table public.recipes add column if not exists language text
+  check (language is null or language in ('es', 'en', 'fr'));
+
+
+-- ── MIGRATION 2026-10-10 — shopping list (shared between my devices) ──────────────
+create table if not exists public.shopping_items (
+  id         uuid primary key default gen_random_uuid(),
+  user_id    uuid not null default auth.uid() references auth.users on delete cascade,
+  item       text not null check (char_length(item) between 1 and 120),
+  quantity   text not null default '' check (char_length(quantity) <= 60),
+  dish_id    uuid references public.dishes on delete set null,   -- which recipe it came from
+  checked    boolean not null default false,
+  created_at timestamptz not null default now()
+);
+create index if not exists shopping_items_user_idx on public.shopping_items (user_id, created_at);
+
+alter table public.shopping_items enable row level security;
+drop policy if exists "shopping_items: owner all" on public.shopping_items;
+create policy "shopping_items: owner all" on public.shopping_items for all to authenticated
+  using (user_id = (select auth.uid()))
+  with check (user_id = (select auth.uid())
+    and (dish_id is null or exists (select 1 from public.dishes d where d.id = dish_id and d.user_id = (select auth.uid()))));
+
+notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-10 — dishes: my standing note on the dish ("menos sal", "con arroz") ──
+alter table public.dishes add column if not exists notes text
+  check (notes is null or char_length(notes) <= 1000);
+
 notify pgrst, 'reload schema';

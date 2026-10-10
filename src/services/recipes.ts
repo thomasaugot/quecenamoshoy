@@ -7,7 +7,7 @@ import { parseIngredients, parseSteps } from "@/utils/recipes"
 
 export const getRecipe = async (dishId: string): Promise<Recipe | null> => {
   const { data, error } = await supabase.from("recipes")
-    .select("servings, prep_minutes, good_for_leftovers, equipment, ingredients, steps, source, source_url")
+    .select("servings, prep_minutes, good_for_leftovers, equipment, ingredients, steps, source, source_url, language")
     .eq("dish_id", dishId).maybeSingle()
   if (error) throw new Error(`recipe query failed: ${error.code}`)
   if (!data) return null
@@ -20,6 +20,7 @@ export const getRecipe = async (dishId: string): Promise<Recipe | null> => {
     steps: parseSteps(data.steps),
     source: data.source,
     sourceUrl: data.source_url,
+    language: data.language,
   }
 }
 
@@ -28,6 +29,13 @@ export const generateRecipe = async (input: { dishId: string; servings: number; 
   const { error } = await supabase.functions.invoke("recipe", { body: input })
   if (error instanceof FunctionsHttpError && error.context.status === 429) throw new RateLimitedError("recipe")
   if (error) throw new Error(`recipe failed: ${await functionErrorCode(error)}`)
+}
+
+// The saved recipe translated into the app's language (Edge Function recipe, translate mode)
+export const translateRecipe = async (input: { dishId: string; language: Locale }): Promise<void> => {
+  const { error } = await supabase.functions.invoke("recipe", { body: { ...input, translate: true } })
+  if (error instanceof FunctionsHttpError && error.context.status === 429) throw new RateLimitedError("recipe")
+  if (error) throw new Error(`translate failed: ${await functionErrorCode(error)}`)
 }
 
 // Read from a recipe page I paste the link of (Edge Function import-recipe). With a dishId the

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button"
 import { Cloche } from "@/components/ui/Cloche"
 import { IconSignOut } from "@/components/ui/Icons"
 import { NavIcon } from "@/components/ui/NavIcon"
+import { ShoppingBasket } from "@/components/layout/ShoppingBasket"
 import { TransitionLink } from "@/components/ui/TransitionLink"
 import { NAV_ITEMS } from "@/constants/nav"
 import { useAuth } from "@/hooks/useAuth"
@@ -44,6 +45,7 @@ export const Navbar = () => {
             </ul>
         </nav>
         <div className="flex items-center gap-2">
+          <ShoppingBasket />
           <Button
             variant="ghost"
             size="icon"

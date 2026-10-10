@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Ajustes",
-    "description": "Quién come, qué no puede comer y hacia dónde queréis ir."
+    "description": "Quién come, qué no puede comer y hacia dónde quieren ir."
   },
   "hero": {
     "title": "Ajustes de la <em>casa</em>",
-    "note": "para que la cocina os conozca"
+    "note": "para que la cocina los conozca"
   },
   "people": {
     "title": "En la mesa",
@@ -62,7 +62,7 @@
     "avoid": {
       "label": "No repetir lo cenado en los últimos",
       "unit": "días",
-      "hint": "Las sugerencias evitan lo que ya cenasteis.",
+      "hint": "Las sugerencias evitan lo que ya cenaron.",
       "decrease": "Un día menos",
       "increase": "Un día más"
     },

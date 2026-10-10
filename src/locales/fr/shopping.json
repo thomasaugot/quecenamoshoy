@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Liste de courses",
+    "description": "Ce qu'il faut acheter."
+  },
+  "hero": {
+    "title": "La liste de <em>courses</em>",
+    "left": "{count, plural, =0 {rien à acheter} one {reste # chose} other {restent # choses}}",
+    "clearChecked": "Retirer les cochés",
+    "clearAll": "Vider la liste"
+  },
+  "list": {
+    "title": "La liste",
+    "empty": "Liste vide. Ajoute les ingrédients d'une recette, ou ce qui te manque."
+  },
+  "add": {
+    "title": "Ajouter",
+    "item": "Quoi",
+    "itemPlaceholder": "ex. papier toilette",
+    "quantity": "Combien (facultatif)",
+    "quantityPlaceholder": "ex. 2 L",
+    "submit": "Ajouter",
+    "required": "Écris quoi",
+    "tooLong": "60 caractères maximum"
+  },
+  "toasts": {
+    "added": "Ajouté à la liste",
+    "cleared": "Liste mise à jour",
+    "failed": "Impossible d'enregistrer. Réessaie."
+  }
+}

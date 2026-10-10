@@ -27,12 +27,14 @@ export type Database = {
           equipment: string[]
           protein: DishProtein | null
           traits: string[]
+          notes: string | null
           created_at: string
         }
         Insert: {
           id?: string
           user_id?: string
           name: string
+          notes?: string | null
           image_credit?: string | null
           equipment?: string[]
           protein?: DishProtein | null
@@ -60,6 +62,7 @@ export type Database = {
           equipment: string[]
           source: RecipeSource
           source_url: string | null
+          language: string | null
           updated_at: string
         }
         Insert: {
@@ -73,6 +76,7 @@ export type Database = {
           equipment?: string[]
           source?: RecipeSource
           source_url?: string | null
+          language?: string | null
           updated_at?: string
         }
         Update: Partial<Database["public"]["Tables"]["recipes"]["Insert"]>
@@ -157,6 +161,14 @@ export type Database = {
         Insert: { id?: string; user_id?: string; location?: KitchenLocation; key: string; category: "appliance" | "cookware" | "tool"; source?: DishSource; label?: string | null; created_at?: string }
         Update: Partial<Database["public"]["Tables"]["kitchen_items"]["Insert"]>
         Relationships: []
+      }
+      shopping_items: {
+        Row: { id: string; user_id: string; item: string; quantity: string; dish_id: string | null; checked: boolean; created_at: string }
+        Insert: { id?: string; user_id?: string; item: string; quantity?: string; dish_id?: string | null; checked?: boolean; created_at?: string }
+        Update: Partial<Database["public"]["Tables"]["shopping_items"]["Insert"]>
+        Relationships: [
+          { foreignKeyName: "shopping_items_dish_id_fkey"; columns: ["dish_id"]; isOneToOne: false; referencedRelation: "dishes"; referencedColumns: ["id"] },
+        ]
       }
       settings: {
         Row: { user_id: string; avoid_days: number; default_diners: string[] }

@@ -9,7 +9,7 @@
   "entries": {
     "ask": {
       "title": "Demande-moi",
-      "note": "quatre questions, trois idées"
+      "note": "quelques questions, trois idées"
     },
     "roulette": {
       "title": "Roulette",
@@ -26,7 +26,15 @@
     "more": "Voir les favoris"
   },
   "log": {
-    "question": "Déjà mangé ?",
-    "cta": "Note-le"
+    "question": "Vous avez dîné sans passer par ici ?",
+    "cta": "Noter le dîner"
+  },
+  "rate": {
+    "question": "{dish} de {day}, c'était comment ?",
+    "note": "Une note (facultatif)",
+    "notePlaceholder": "plus de sel, à refaire…",
+    "save": "Enregistrer",
+    "stars": "{count, plural, one {# étoile} other {# étoiles}}",
+    "label": "Note"
   }
 }

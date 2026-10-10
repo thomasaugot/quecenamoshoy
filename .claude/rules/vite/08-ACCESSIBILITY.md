@@ -43,6 +43,26 @@ before any JS runs) and it costs nothing.
 
 **`className="keyboard-focus-ring"` is mandatory on every interactive element.**
 
+### Fields are the exception — focus is the field's own edge, never a ring
+
+Inputs, textareas and selects (and Dropdown/CalendarPicker triggers styled as fields) do NOT
+show the outline ring. A ring around a field reads as a box drawn around a box. Focus is shown
+by the field's own edge instead — still a clear keyboard indicator (≥ 2px, primary ≥ 3:1):
+
+```css
+/* styles/accessibility.css — a field drawn as a line (or a bordered box: same idea, its border) */
+.field-line:focus-within {
+  border-bottom-color: var(--color-primary);
+  box-shadow: 0 1px 0 0 var(--color-primary);      /* thicker without moving the layout */
+}
+.field-line:focus-within > label { color: var(--color-primary); }
+.field-line .keyboard-focus-ring:focus-visible { outline: none; }
+```
+
+Keep `keyboard-focus-ring` on the field itself (one class everywhere), and let the wrapper
+override it. Buttons, links, chips and cards keep the ring.
+
+
 ---
 
 ## Forms — Full Accessible Contract

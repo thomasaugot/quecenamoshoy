@@ -11,6 +11,7 @@ export type Recipe = {
   steps: string[]
   source: RecipeSource
   sourceUrl: string | null
+  language: string | null      // null = unknown (older or imported without one)
 }
 
 // Editing by hand: one ingredient per line ("200 g — harina"), one step per line

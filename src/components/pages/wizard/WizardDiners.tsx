@@ -1,3 +1,4 @@
+import { useId } from "react"
 import { useLocale, useTranslations } from "use-intl"
 import { Button } from "@/components/ui/Button"
 import { Chip } from "@/components/ui/Chip"
@@ -5,7 +6,7 @@ import { Stepper } from "@/components/ui/Stepper"
 import { ALLERGENS } from "@/constants/allergens"
 import { DIETS } from "@/constants/diets"
 import { GUESTS_MAX } from "@/constants/meal"
-import { WIZARD_QUESTIONS } from "@/constants/wizard"
+import { WIZARD_NOTE_MAX, WIZARD_QUESTIONS } from "@/constants/wizard"
 import { useCatalogueLabel } from "@/hooks/useCatalogueLabel"
 import { useNow } from "@/hooks/useNow"
 import { useOnline } from "@/hooks/useOnline"
@@ -28,6 +29,7 @@ export const WizardDiners = () => {
   const { answers, answer, shown } = useWizardStore()
   const suggest = useSuggest()
   const online = useOnline()
+  const noteId = useId()
   const set = (patch: Partial<WizardAnswers>) => answer(patch, "diners")
   const nobody = answers.diners.length === 0 && answers.guests === 0
 
@@ -75,6 +77,13 @@ export const WizardDiners = () => {
           </div>
         </div>
       )}
+
+      <div className="field-line flex flex-col gap-0.5">
+        <label htmlFor={noteId} className="text-label">{t("note")}</label>
+        <textarea id={noteId} name="wizard-note" rows={2} maxLength={WIZARD_NOTE_MAX} value={answers.note}
+          placeholder={t("notePlaceholder")} onChange={(e) => set({ note: e.target.value })}
+          className="keyboard-focus-ring text-body w-full resize-none bg-transparent py-2 placeholder:text-text-muted" />
+      </div>
 
       <Button size="lg" disabled={nobody || !online} onClick={go} className="self-start">{t("go")}</Button>
       {nobody && <p className="text-body-sm">{t("nobody")}</p>}

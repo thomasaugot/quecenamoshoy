@@ -1,5 +1,6 @@
 import type { Session } from "@supabase/supabase-js"
 import { supabase } from "@/lib/supabase"
+import { RateLimitedError } from "@/utils/errors"
 
 export const getSession = async (): Promise<Session | null> => {
   const { data, error } = await supabase.auth.getSession()
@@ -19,11 +20,13 @@ export const signInWithPassword = async (email: string, password: string): Promi
 }
 
 // Magic link for the EXISTING account only: shouldCreateUser false, sign-ups stay closed.
+// 429 = Supabase's email limit (built-in mailer: a few emails an hour, one per address a minute).
 export const sendMagicLink = async (email: string, redirectTo: string): Promise<void> => {
   const { error } = await supabase.auth.signInWithOtp({
     email,
     options: { shouldCreateUser: false, emailRedirectTo: redirectTo },
   })
+  if (error?.status === 429) throw new RateLimitedError("magic-link")
   if (error) throw new Error(`magic link failed: ${error.status ?? "unknown"}`)
 }
 

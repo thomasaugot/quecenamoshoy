@@ -1,7 +1,7 @@
 import type { IconBaseProps } from "react-icons"
 import {
   FiAlertCircle, FiArrowRight, FiCheck, FiClock, FiEdit2, FiGlobe, FiHeart, FiInfo, FiLogOut, FiMinus, FiPlus,
-  FiPlusSquare, FiSettings, FiShare, FiStar, FiSun, FiTrash2, FiX,
+  FiPlusSquare, FiSettings, FiShare, FiShoppingBag, FiStar, FiSun, FiTrash2, FiX,
 } from "react-icons/fi"
 import {
   PiBowlFoodDuotone, PiBowlFoodFill, PiCookingPot, PiCookingPotFill, PiFireDuotone, PiFishFill, PiHamburgerFill,
@@ -29,6 +29,7 @@ export const IconEdit = (p: IconProps) => <FiEdit2 aria-hidden="true" {...p} />
 export const IconStar = (p: IconProps) => <FiStar aria-hidden="true" {...p} />
 export const IconKitchen = (p: IconProps) => <PiCookingPot aria-hidden="true" {...p} />
 export const IconShare = (p: IconProps) => <FiShare aria-hidden="true" {...p} />
+export const IconBasket = (p: IconProps) => <FiShoppingBag aria-hidden="true" {...p} />
 export const IconAddToHome = (p: IconProps) => <FiPlusSquare aria-hidden="true" {...p} />
 
 // Dishes revealed by the Cloche logo — one family (Phosphor Fill) so they read as one mark

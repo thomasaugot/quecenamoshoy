@@ -3,7 +3,7 @@ import type { Dish } from "@/types/dish"
 import { dishNameError, filterDishes, sortByLove } from "@/utils/dishes"
 
 const dish = (name: string, lovedBy: string[] = [], description: string | null = null): Dish => ({
-  id: name, name, description, protein: null, traits: [], temp: null, imageUrl: null, lovedBy, equipment: [],
+  id: name, name, description, protein: null, traits: [], temp: null, imageUrl: null, lovedBy, equipment: [], notes: null,
 })
 const names = (d: Dish[]) => d.map((x) => x.name)
 

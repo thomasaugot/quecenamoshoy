@@ -1,5 +1,6 @@
 import { useFormatter, useLocale, useTranslations } from "use-intl"
 import { Polaroid } from "@/components/ui/Polaroid"
+import { PolaroidSkeletons } from "@/components/ui/PolaroidSkeletons"
 import { TransitionLink } from "@/components/ui/TransitionLink"
 import { FORGOTTEN_AFTER_DAYS, FORGOTTEN_SHOWN, LAST_EATEN_LOOKBACK_DAYS } from "@/constants/home"
 import { useDishes } from "@/hooks/useDishes"
@@ -31,12 +32,13 @@ export const HomeForgotten = () => {
           {t("more")}
         </TransitionLink>
       </div>
+      {!lastEaten && <PolaroidSkeletons count={4} />}
       {shown.length > 0 && (
-        <ul className="-mx-6 flex gap-5 overflow-x-auto px-6 pt-1 pb-3 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:px-0">
+        <ul className="-mx-6 scrollbar-none flex gap-5 overflow-x-auto px-6 pt-1 pb-3 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible lg:px-0">
           {shown.map((dish, i) => {
             const last = lastEaten?.[dish.id]
             return (
-              <li key={dish.id} className="flex min-w-0">
+              <li key={dish.id} className="flex min-w-0 shrink-0 lg:shrink">
                 <Polaroid imageUrl={dish.imageUrl} title={dish.name} index={i + 1} href={localizedPath("dish", locale, { dishId: dish.id })}
                   caption={last ? format.relativeTime(dateFromIso(last), now) : t("never")} />
               </li>

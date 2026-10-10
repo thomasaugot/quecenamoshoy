@@ -1,8 +1,8 @@
 import { useParams } from "react-router"
 import { PageMeta } from "@/components/layout/PageMeta"
+import { DishSkeleton } from "@/components/pages/dish/DishSkeleton"
 import { DishBody } from "@/components/pages/dish/DishBody"
 import { DishMissing } from "@/components/pages/dish/DishMissing"
-import { PageLoading } from "@/components/ui/PageLoading"
 import { useDishes } from "@/hooks/useDishes"
 import { usePeople } from "@/hooks/usePeople"
 import { useRecipe } from "@/hooks/useRecipe"
@@ -20,7 +20,7 @@ export const DishPage = () => {
   return (
     <>
       <PageMeta page="dish" />
-      {pending ? <PageLoading /> : dish ? <DishBody dish={dish} /> : <DishMissing />}
+      {pending ? <DishSkeleton /> : dish ? <DishBody dish={dish} /> : <DishMissing />}
     </>
   )
 }

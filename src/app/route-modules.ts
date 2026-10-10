@@ -15,6 +15,8 @@ export const routeModules = {
   roulette: () => import("@/components/pages/roulette/RoulettePage"),
   settings: () => import("@/components/pages/settings/SettingsPage"),
   kitchen: () => import("@/components/pages/kitchen/KitchenPage"),
+  shopping: () => import("@/components/pages/shopping/ShoppingPage"),
+  recap: () => import("@/components/pages/recap/RecapPage"),
   login: () => import("@/components/pages/login/LoginPage"),
   notFound: () => import("@/components/pages/not-found/NotFoundPage"),
 } as const

@@ -6,7 +6,8 @@
   "hero": {
     "title": "Ce qu'on a <em>mangé</em>",
     "note": "chaque soir, avec qui et comment c'était",
-    "log": "Noter un dîner"
+    "log": "Noter un dîner",
+    "recap": "Bilan du mois"
   },
   "list": {
     "title": "Dîners",
@@ -52,6 +53,7 @@
     "logged": "Dîner noté",
     "updated": "Dîner enregistré",
     "deleted": "Dîner supprimé",
-    "failed": "Impossible d'enregistrer. Réessaie."
+    "failed": "Impossible d'enregistrer. Réessaie.",
+    "rated": "Merci ! C'est noté."
   }
 }

@@ -42,3 +42,23 @@ export const isRecipeUrl = (text: string) => {
 export const hostOf = (url: string) => {
   try { return new URL(url).hostname.replace(/^www\./, "") } catch { return url }
 }
+
+// A time written in a step ("cuire 20 min", "bake for 1 h 15", "15 minutes") → minutes, for a
+// one-tap timer. The first time in the step; null when there is none or it's absurd.
+export const stepMinutes = (step: string): number | null => {
+  const text = step.toLowerCase()
+  const hours = text.match(/(\d+)\s*(?:h|hr|hrs|heures?|horas?|hours?)\b\s*(\d+)?/)
+  if (hours) {
+    const total = Number(hours[1]) * 60 + Number(hours[2] ?? 0)
+    return total > 0 && total <= 720 ? total : null
+  }
+  const minutes = text.match(/(\d+)\s*(?:min|mins|minutes?|minutos?|mn)\b/)
+  const total = minutes ? Number(minutes[1]) : 0
+  return total > 0 && total <= 720 ? total : null
+}
+
+export const formatCountdown = (seconds: number) => {
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+  return `${m}:${String(s).padStart(2, "0")}`
+}

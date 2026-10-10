@@ -14,6 +14,7 @@ export const TEMPS = ["hot", "cold"] as const satisfies readonly DishTemp[]
 // Mirrors the CHECKs on public.dishes
 export const DISH_NAME_MAX = 120
 export const DISH_DESCRIPTION_MAX = 2000
+export const DISH_NOTES_MAX = 1000
 
 export const RECIPE_SERVINGS_MAX = 20
 // Longest side of my own dish photos once resized (WebP, a few hundred KB)

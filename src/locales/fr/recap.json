@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "Bilan du mois",
+    "description": "Le mois en cuisine."
+  },
+  "hero": {
+    "previous": "Mois précédent",
+    "next": "Mois suivant",
+    "dinners": "{count, plural, =0 {dîners notés} one {dîner} other {dîners}}",
+    "dishes": "{count, plural, one {# plat différent} other {# plats différents}}"
+  },
+  "podium": {
+    "title": "Les plus mangés",
+    "empty": "Rien de noté ce mois-ci.",
+    "times": "{count, plural, one {# fois} other {# fois}}"
+  },
+  "notes": {
+    "newTitle": "{count, plural, =0 {Aucun nouveau plat} one {# nouveau plat} other {# nouveaux plats}}",
+    "bestTitle": "Le meilleur dîner",
+    "rating": "{rating} sur 5",
+    "average": "Moyenne du mois : {rating} / 5",
+    "plateTitle": "Ce qu'il y avait dans l'assiette",
+    "unknown": "Non classé"
+  }
+}

@@ -20,3 +20,12 @@ export const portionsFor = (answers: Pick<WizardAnswers, "diners" | "guests" | "
 // The questions already answered, in order, given the current step
 export const answeredQuestions = <Q extends WizardStep>(questions: readonly Q[], step: WizardStep): Q[] =>
   step === "results" ? [...questions] : questions.slice(0, Math.max(0, questions.indexOf(step as Q)))
+
+// Adds a typed ingredient once (case and accents ignored), trimmed; empty text changes nothing
+export const addIngredient = (list: readonly string[], text: string): string[] => {
+  const item = text.trim().replace(/\s+/g, " ")
+  if (!item) return [...list]
+  const key = item.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+  const exists = list.some((i) => i.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "") === key)
+  return exists ? [...list] : [...list, item]
+}

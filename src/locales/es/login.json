@@ -20,6 +20,11 @@
     "required": "Campo obligatorio",
     "invalidEmail": "Introduce un email válido",
     "failed": "Email o contraseña incorrectos",
-    "success": "Sesión iniciada"
+    "success": "Sesión iniciada",
+    "magicExplain": "Te envío un enlace por email: un toque y estás dentro, sin contraseña.",
+    "magicSubmit": "Enviarme el enlace",
+    "magicSentTo": "Enlace enviado a {email}. Mira tu correo (y el spam).",
+    "usePassword": "o con mi contraseña",
+    "magicTooMany": "Demasiados enlaces seguidos. Espera unos minutos, o entra con tu contraseña."
   }
 }

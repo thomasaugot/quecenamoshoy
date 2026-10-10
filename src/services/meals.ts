@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase"
 import { signedImageUrls } from "@/services/storage"
-import type { CountedMeal, Meal, MealInput, RecentMeal } from "@/types/meal"
+import type { CountedMeal, DishNote, Meal, MealInput, RecapMeal, RecentMeal, UnratedMeal } from "@/types/meal"
 import { portions } from "@/utils/meals"
 
 export const MEALS_PAGE_SIZE = 30
@@ -125,4 +125,59 @@ export const listLastEaten = async (sinceIso: string): Promise<Record<string, st
   const last: Record<string, string> = {}
   for (const r of data) last[r.dish_id] ??= r.eaten_on
   return last
+}
+
+// The times we ate this dish and left a note or a rating, newest first
+export const listDishNotes = async (dishId: string, limit: number): Promise<DishNote[]> => {
+  const { data, error } = await supabase.from("meals").select("id, eaten_on, rating, note")
+    .eq("dish_id", dishId).or("note.not.is.null,rating.not.is.null")
+    .order("eaten_on", { ascending: false }).limit(limit)
+  if (error) throw new Error(`dish notes query failed: ${error.code}`)
+  return data.map((m) => ({ id: m.id, eatenOn: m.eaten_on, rating: m.rating, note: m.note }))
+}
+
+// The most recent dinner between `fromIso` and `toIso` that has no rating yet
+export const getUnratedMeal = async (fromIso: string, toIso: string): Promise<UnratedMeal | null> => {
+  const { data, error } = await supabase.from("meals").select("id, eaten_on, dishes ( name, image_path )")
+    .is("rating", null).gte("eaten_on", fromIso).lte("eaten_on", toIso)
+    .order("eaten_on", { ascending: false }).order("created_at", { ascending: false }).limit(1).maybeSingle()
+  if (error) throw new Error(`unrated meal query failed: ${error.code}`)
+  if (!data) return null
+  const path = data.dishes?.image_path
+  const urls = await signedImageUrls(path ? [path] : [])
+  return { id: data.id, eatenOn: data.eaten_on, dishName: data.dishes?.name ?? "", imageUrl: path ? urls.get(path) ?? null : null }
+}
+
+export const rateMeal = async ({ id, rating, note }: { id: string; rating: number; note: string | null }): Promise<void> => {
+  const { error } = await supabase.from("meals").update({ rating, ...(note ? { note } : {}) }).eq("id", id)
+  if (error) throw new Error(`rate meal failed: ${error.code}`)
+}
+
+// Every dinner of a month [fromIso, toIso], each flagged when it was the dish's first time ever
+export const listRecapMeals = async (fromIso: string, toIso: string): Promise<RecapMeal[]> => {
+  const { data, error } = await supabase.from("meals")
+    .select("dish_id, eaten_on, rating, dishes ( name, image_path, protein )")
+    .gte("eaten_on", fromIso).lte("eaten_on", toIso).order("eaten_on")
+  if (error) throw new Error(`recap query failed: ${error.code}`)
+  const dishIds = [...new Set(data.map((m) => m.dish_id))]
+  const before = dishIds.length
+    ? await supabase.from("meals").select("dish_id").lt("eaten_on", fromIso).in("dish_id", dishIds)
+    : { data: [], error: null }
+  if (before.error) throw new Error(`recap history query failed: ${before.error.code}`)
+  const eatenBefore = new Set(before.data.map((m) => m.dish_id))
+  const urls = await signedImageUrls([...new Set(data.flatMap((m) => (m.dishes?.image_path ? [m.dishes.image_path] : [])))])
+  const firstSeen = new Set<string>()
+  return data.map((m) => {
+    const isNew = !eatenBefore.has(m.dish_id) && !firstSeen.has(m.dish_id)
+    firstSeen.add(m.dish_id)
+    return {
+      dishId: m.dish_id,
+      dishName: m.dishes?.name ?? "",
+      imageUrl: m.dishes?.image_path ? urls.get(m.dishes.image_path) ?? null : null,
+      eatenOn: m.eaten_on,
+      rating: m.rating,
+      protein: m.dishes?.protein ?? null,
+      isNew,
+    }
+  })
 }

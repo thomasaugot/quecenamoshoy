@@ -49,7 +49,11 @@
     "stepsEdit": "Steps — one per line",
     "save": "Save",
     "cancel": "Cancel",
-    "adaptedFrom": "based on {site}"
+    "adaptedFrom": "based on {site}",
+    "cook": "Cooking mode",
+    "otherLanguage": "This recipe is in another language.",
+    "translate": "Translate into English",
+    "toShopping": "Add to the shopping list"
   },
   "toasts": {
     "generated": "Recipe ready",
@@ -60,6 +64,33 @@
     "unreachable": "I couldn't open that link.",
     "failed": "That didn't work. Try again.",
     "photo": "Photo saved",
-    "photoFailed": "Couldn't upload the photo."
+    "photoFailed": "Couldn't upload the photo.",
+    "translated": "Recipe translated"
+  },
+  "cooking": {
+    "step": "Step {current} of {total}",
+    "ingredients": "Ingredients",
+    "hideIngredients": "Hide ingredients",
+    "startTimer": "Timer {count} min",
+    "stopTimer": "Stop the timer",
+    "timerDone": "Time's up!",
+    "previous": "Previous",
+    "next": "Next",
+    "done": "Done!"
+  },
+  "notes": {
+    "title": "Last time…",
+    "earlier": "Before that",
+    "rating": "{rating} out of 5"
+  },
+  "myNotes": {
+    "title": "My notes",
+    "empty": "Jot down what to remember next time: less salt, double the sauce…",
+    "add": "Add a note",
+    "edit": "Edit the note",
+    "label": "Note on the dish",
+    "placeholder": "less salt, with rice, double the sauce…",
+    "save": "Save",
+    "cancel": "Cancel"
   }
 }

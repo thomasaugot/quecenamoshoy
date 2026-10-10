@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { dismissedRecently, installPlatform, isIosSafari } from "@/utils/install"
+import { dismissedRecently, forcedInstallPlatform, installPlatform, isIosSafari } from "@/utils/install"
 
 const IPHONE_SAFARI = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
 const IPHONE_CHROME = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/130.0 Mobile/15E148 Safari/604.1"
@@ -21,5 +21,14 @@ describe("install offer", () => {
     expect(dismissedRecently(null, now)).toBe(false)
     expect(dismissedRecently(now - 3 * 86_400_000, now)).toBe(true)
     expect(dismissedRecently(now - 15 * 86_400_000, now)).toBe(false)
+  })
+})
+
+describe("dev preview flag", () => {
+  it("reads ?install=prompt|ios and ignores anything else", () => {
+    expect(forcedInstallPlatform("?install=ios")).toBe("ios")
+    expect(forcedInstallPlatform("?install=prompt&x=1")).toBe("prompt")
+    expect(forcedInstallPlatform("?install=hack")).toBeNull()
+    expect(forcedInstallPlatform("")).toBeNull()
   })
 })

@@ -12,6 +12,8 @@ export const routeTranslations = {
   roulette:   { es: "ruleta",         en: "roulette",       fr: "roulette" },
   settings:   { es: "ajustes",        en: "settings",       fr: "reglages" },
   kitchen:    { es: "cocina",         en: "kitchen",        fr: "cuisine" },
+  shopping:   { es: "lista-compra",   en: "shopping-list",  fr: "liste-courses" },
+  recap:      { es: "resumen",        en: "recap",          fr: "bilan" },
   login:      { es: "entrar",         en: "login",          fr: "connexion" },
 } as const satisfies Record<string, Record<Locale, string>>
 

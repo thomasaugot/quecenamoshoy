@@ -114,6 +114,12 @@ const imageUrlOf = (v: Json): string | null => {
   return null
 }
 
+// The page's own language (<html lang="fr">), when it is one the app speaks
+const pageLanguage = (html: string) => {
+  const lang = html.match(/<html[^>]*\blang=["']?([a-z]{2})/i)?.[1]?.toLowerCase()
+  return lang === "es" || lang === "en" || lang === "fr" ? lang : null
+}
+
 const servingsOf = (v: Json) => {
   const first = asArray(v).map(String).find((s) => /\d/.test(s))
   const n = first ? Number(first.match(/\d+/)?.[0]) : NaN
@@ -192,6 +198,7 @@ Deno.serve(async (req) => {
       steps,
       source: "imported",
       source_url: page.finalUrl.slice(0, 500),
+      language: pageLanguage(page.html),
       updated_at: new Date().toISOString(),
     }, { onConflict: "dish_id" })
     if (saveError) return json(req, { error: "save" }, 500)

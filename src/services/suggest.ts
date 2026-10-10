@@ -1,6 +1,7 @@
 import { FunctionsHttpError } from "@supabase/supabase-js"
 import type { Locale } from "@/config/i18n.config"
 import { supabase } from "@/lib/supabase"
+import { FRIDGE_MAX_ITEMS, WIZARD_NOTE_MAX } from "@/constants/wizard"
 import { createMeal } from "@/services/meals"
 import type { Suggestion, WizardAnswers } from "@/types/suggestion"
 import { functionErrorCode, RateLimitedError } from "@/utils/errors"
@@ -17,6 +18,8 @@ export const getSuggestions = async ({ answers, exclude, language }: SuggestRequ
       guestRestrictions: answers.guestRestrictions,
       temp: answers.temp ?? "any",
       leftovers: answers.leftovers ?? false,
+      note: answers.note.trim().slice(0, WIZARD_NOTE_MAX),
+      ingredients: answers.ingredients.slice(0, FRIDGE_MAX_ITEMS),
       exclude,
       language,
     },

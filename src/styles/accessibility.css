@@ -21,3 +21,13 @@ html { scroll-padding-top: var(--navbar-height); }
 
 /* Never on body: kills pull-to-refresh. Only panels that scroll above the page. */
 dialog, [data-scroll-panel] { overscroll-behavior: contain; }
+
+/* Fields drawn as a line (field-line): focus is the LINE turning green and thicker, plus the
+   label — never a box around a line. Still a visible keyboard indicator (2.5px, primary on the
+   cream ground ≥ 3:1). Applies to every Input and textarea that sits in a field-line. */
+.field-line:focus-within {
+  border-bottom-color: var(--color-primary);
+  box-shadow: 0 1px 0 0 var(--color-primary);
+}
+.field-line:focus-within > label { color: var(--color-primary); }
+.field-line .keyboard-focus-ring:focus-visible { outline: none; }
