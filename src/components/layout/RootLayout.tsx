@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Outlet } from "react-router"
 import { IntlProvider } from "use-intl"
 import { BottomTabs } from "@/components/layout/BottomTabs"
+import { InstallOffer } from "@/components/layout/InstallOffer"
 import { Navbar } from "@/components/layout/Navbar"
 import { PageShell } from "@/components/layout/PageShell"
 import { Providers } from "@/components/layout/Providers"
@@ -34,6 +35,7 @@ export const RootLayout = () => {
           <Outlet />
         </PageShell>
         <BottomTabs />
+        <InstallOffer />
       </Providers>
     </IntlProvider>
   )

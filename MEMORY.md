@@ -102,6 +102,7 @@ Source: docs/design.html (13 screens, mobile 390 + desktop 1440). Values live in
 - 2026-10-10 — Roulette has no `roulette` Edge Function (brief §7 lists one) — why: it only filters and weights, no AI needed; running it in the app costs nothing and reads the same RLS-protected data.
 - 2026-10-10 — PWA offline scope: shell + read data (brief §8) — dishes, recipes, history, people, settings, kitchen readable offline; ideas/writes need a connection.
 - 2026-10-10 — Deploy builds ON Vercel (`vercel deploy --prod`), never `vercel pull` + local `vercel build` — why: the VITE_* vars are Sensitive; pull returns "[SENSITIVE]" and the app shipped "Invalid supabaseUrl". Live: https://quecenamoshoy.helloimtom.dev (DNS on Vercel).
+- 2026-10-10 — Install offer is a MODAL (the PWA skill says no modal) — why: Thomas asked for one. Kept the skill's intent: never on page load (4 s after a signed-in, loader-gone page), once a session, 14 days quiet after "Más tarde"; beforeinstallprompt captured at boot into a store.
 - 2026-10-10 — Host: Vercel, not Cloudflare Pages (brief §10) — why: Thomas.
 - 2026-10-10 — No `VITE_SITE_URL`: the site URL is `window.location.origin` — why: a SPA always knows its origin; one less env var to forget.
 

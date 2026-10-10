@@ -179,6 +179,24 @@
     "offline": "Sin conexión: puedes leer lo que ya has visto. Las ideas y guardar esperan a la conexión.",
     "install": "Instalar la app",
     "iosHint": "Para instalarla: Compartir → Añadir a pantalla de inicio.",
-    "installLabel": "La app"
+    "installLabel": "La app",
+    "offer": {
+      "title": "Tenla siempre a mano",
+      "note": "tu cocina, a un toque",
+      "perks": {
+        "standalone": "Se abre como una app, a pantalla completa, sin el navegador.",
+        "offline": "Tus favoritos, recetas e historial se leen incluso sin conexión.",
+        "oneTap": "Un toque desde la pantalla de inicio, a la hora de cenar."
+      },
+      "install": "Instalar la app",
+      "gotIt": "Entendido",
+      "later": "Más tarde",
+      "iosTitle": "Cómo instalarla en el iPhone",
+      "ios": {
+        "share": "Toca Compartir en la barra de Safari",
+        "add": "Elige «Añadir a pantalla de inicio»",
+        "confirm": "Toca «Añadir». ¡Listo!"
+      }
+    }
   }
 }

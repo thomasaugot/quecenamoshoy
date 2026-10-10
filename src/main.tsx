@@ -10,10 +10,12 @@ import { RouterProvider } from "react-router/dom"
 import { router } from "@/app/router"
 import { AppCrash } from "@/components/layout/AppCrash"
 import { initSentry, reactErrorHandler, SentryErrorBoundary } from "@/lib/sentry"
+import { listenForInstallPrompt } from "@/utils/install"
 import { reloadOnStaleChunk } from "@/utils/stale-chunk"
 
 initSentry()
 reloadOnStaleChunk()
+listenForInstallPrompt()
 
 const root = document.getElementById("root")
 if (!root) throw new Error("#root not found in index.html")

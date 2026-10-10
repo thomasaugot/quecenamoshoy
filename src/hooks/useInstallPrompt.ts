@@ -1,40 +1,28 @@
-import { useEffect, useState, useSyncExternalStore } from "react"
+import { useSyncExternalStore } from "react"
+import { useInstallStore } from "@/stores/install-store"
+import { installPlatform, isStandalone } from "@/utils/install"
 
-type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: "accepted" | "dismissed" }> }
-
-const STANDALONE = "(display-mode: standalone)"
 const subscribeStandalone = (onChange: () => void) => {
-  const media = window.matchMedia(STANDALONE)
+  const media = window.matchMedia("(display-mode: standalone)")
   media.addEventListener("change", onChange)
   return () => media.removeEventListener("change", onChange)
 }
 
-const isIosSafari = () =>
-  /iphone|ipad|ipod/i.test(navigator.userAgent) && /safari/i.test(navigator.userAgent) && !/crios|fxios/i.test(navigator.userAgent)
-
-// Install only when the browser offers it (Chrome/Android: beforeinstallprompt); on iOS
-// Safari, which never offers it, a one-line hint. Nothing once installed.
+// How this browser can install the app ("prompt" / "ios" / null once installed or impossible)
 export const useInstallPrompt = () => {
-  const installed = useSyncExternalStore(subscribeStandalone, () => window.matchMedia(STANDALONE).matches)
-  const [event, setEvent] = useState<InstallEvent | null>(null)
+  const standalone = useSyncExternalStore(subscribeStandalone, isStandalone)
+  const event = useInstallStore((s) => s.event)
+  const setEvent = useInstallStore((s) => s.setEvent)
+  const platform = installPlatform(!!event, standalone, navigator.userAgent)
 
-  useEffect(() => {
-    const capture = (e: Event) => { e.preventDefault(); setEvent(e as InstallEvent) }
-    const done = () => setEvent(null)
-    window.addEventListener("beforeinstallprompt", capture)
-    window.addEventListener("appinstalled", done)
-    return () => {
-      window.removeEventListener("beforeinstallprompt", capture)
-      window.removeEventListener("appinstalled", done)
-    }
-  }, [])
-
-  const install = async () => {
-    if (!event) return
+  // Resolves true when installed through the browser's own prompt
+  const install = async (): Promise<boolean> => {
+    if (!event) return false
     await event.prompt()
-    await event.userChoice
+    const { outcome } = await event.userChoice
     setEvent(null)
+    return outcome === "accepted"
   }
 
-  return { canInstall: !installed && !!event, showIosHint: !installed && !event && isIosSafari(), install }
+  return { platform, canInstall: platform === "prompt", showIosHint: platform === "ios", install }
 }

@@ -179,6 +179,24 @@
     "offline": "Hors connexion : tu peux lire ce que tu as déjà vu. Les idées et l'enregistrement attendent la connexion.",
     "install": "Installer l'app",
     "iosHint": "Pour l'installer : Partager → Sur l'écran d'accueil.",
-    "installLabel": "L'app"
+    "installLabel": "L'app",
+    "offer": {
+      "title": "Garde-la toujours sous la main",
+      "note": "ta cuisine, à un geste",
+      "perks": {
+        "standalone": "Elle s'ouvre comme une app, en plein écran, sans le navigateur.",
+        "offline": "Tes favoris, recettes et ton historique se lisent même hors connexion.",
+        "oneTap": "Un geste depuis l'écran d'accueil, à l'heure du dîner."
+      },
+      "install": "Installer l'app",
+      "gotIt": "Compris",
+      "later": "Plus tard",
+      "iosTitle": "Comment l'installer sur iPhone",
+      "ios": {
+        "share": "Touche Partager dans la barre de Safari",
+        "add": "Choisis « Sur l'écran d'accueil »",
+        "confirm": "Touche « Ajouter ». C'est fait !"
+      }
+    }
   }
 }
