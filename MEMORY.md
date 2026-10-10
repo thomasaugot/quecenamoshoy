@@ -101,6 +101,7 @@ Source: docs/design.html (13 screens, mobile 390 + desktop 1440). Values live in
 - 2026-10-10 — AI cost ceiling (supabase/functions/_shared/gemini.ts): thinking low, max output tokens, per-user caps suggest 6/h 20/day, scan 2/h 4/day ⇒ worst case ≈ $0.26/day — why: Thomas refuses any risk of dollars a day; it's a fun app.
 - 2026-10-10 — Roulette has no `roulette` Edge Function (brief §7 lists one) — why: it only filters and weights, no AI needed; running it in the app costs nothing and reads the same RLS-protected data.
 - 2026-10-10 — PWA offline scope: shell + read data (brief §8) — dishes, recipes, history, people, settings, kitchen readable offline; ideas/writes need a connection.
+- 2026-10-10 — Deploy builds ON Vercel (`vercel deploy --prod`), never `vercel pull` + local `vercel build` — why: the VITE_* vars are Sensitive; pull returns "[SENSITIVE]" and the app shipped "Invalid supabaseUrl". Live: https://quecenamoshoy.helloimtom.dev (DNS on Vercel).
 - 2026-10-10 — Host: Vercel, not Cloudflare Pages (brief §10) — why: Thomas.
 - 2026-10-10 — No `VITE_SITE_URL`: the site URL is `window.location.origin` — why: a SPA always knows its origin; one less env var to forget.
 
