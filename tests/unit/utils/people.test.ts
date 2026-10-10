@@ -3,7 +3,7 @@ import type { Person } from "@/types/person"
 import { clamp, customKey, existingDiners, findGoal, initialOf, restrictionKeys, toggleId } from "@/utils/people"
 
 const tom: Person = {
-  id: "a", name: "tom", isMe: true,
+  id: "a", name: "tom", isMe: true, avatarUrl: null,
   restrictions: [{ kind: "allergy", key: "nuts", label: null }, { kind: "dislike", key: "olives", label: null }],
   goals: [{ key: "try_vegan", perWeek: 1 }],
 }

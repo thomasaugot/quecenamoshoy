@@ -15,7 +15,10 @@
     "rename": "Renommer {name}",
     "remove": "Retirer de la table",
     "confirmRemove": "Oui, retirer {name}",
-    "keep": "Non, garder"
+    "keep": "Non, garder",
+    "summary": "{restrictions, plural, =0 {aucune restriction} one {# restriction} other {# restrictions}} · {goals, plural, =0 {aucun objectif} one {# objectif} other {# objectifs}}",
+    "photoUnreadable": "Je n'ai pas pu lire cette photo.",
+    "photoOf": "Photo de {name}"
   },
   "restrictions": {
     "allergy": {
@@ -83,6 +86,7 @@
     "renamed": "Prénom modifié",
     "removed": "Retiré de la table",
     "saved": "Enregistré",
-    "failed": "Impossible d'enregistrer. Réessaie."
+    "failed": "Impossible d'enregistrer. Réessaie.",
+    "photo": "Photo enregistrée"
   }
 }

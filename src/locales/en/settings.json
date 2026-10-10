@@ -15,7 +15,10 @@
     "rename": "Rename {name}",
     "remove": "Remove from the table",
     "confirmRemove": "Yes, remove {name}",
-    "keep": "No, keep them"
+    "keep": "No, keep them",
+    "summary": "{restrictions, plural, =0 {no restrictions} one {# restriction} other {# restrictions}} · {goals, plural, =0 {no goals} one {# goal} other {# goals}}",
+    "photoUnreadable": "I couldn't read that photo.",
+    "photoOf": "{name}'s photo"
   },
   "restrictions": {
     "allergy": {
@@ -83,6 +86,7 @@
     "renamed": "Name changed",
     "removed": "Removed from the table",
     "saved": "Saved",
-    "failed": "Couldn't save. Try again."
+    "failed": "Couldn't save. Try again.",
+    "photo": "Photo saved"
   }
 }

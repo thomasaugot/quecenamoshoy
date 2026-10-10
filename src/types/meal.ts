@@ -1,10 +1,12 @@
-import type { DishProtein, KitchenLocation } from "@/types/database"
+import type { DishProtein, KitchenLocation, MealOut } from "@/types/database"
 
 export type RecentMeal = {
   id: string
   eatenOn: string            // YYYY-MM-DD
-  dishId: string
-  dishName: string
+  dishId: string | null      // null: eaten out without naming a dish of mine
+  dishName: string           // the dish, else what we ate out, else "" (the UI names the outing)
+  eatenOut: MealOut | null   // null = cooked at home
+  place: string | null       // where, when eaten out
   imageUrl: string | null    // short-lived signed URL (private bucket)
 }
 
@@ -16,18 +18,20 @@ export type Meal = RecentMeal & {
   location: KitchenLocation
   withLeftovers: boolean
   diners: string[]           // person ids
+  dishLabel: string | null   // what we ate out, written freely
 }
 
 // What goals need to know about a dinner
 export type CountedMeal = {
-  dishId: string
+  dishId: string | null
   eatenOn: string
   protein: DishProtein | null
   traits: string[]
   diners: string[]
 }
 
-// dishId of an existing dish, or newDishName to create one on the fly
+// dishId of an existing dish, or newDishName to create one on the fly. Eaten out (eatenOut set),
+// the dish is optional and the place can be written down instead.
 export type MealInput = {
   dishId: string | null
   newDishName: string | null
@@ -38,17 +42,21 @@ export type MealInput = {
   rating: number | null
   note: string | null
   withLeftovers: boolean
+  eatenOut: MealOut | null
+  place: string | null
+  dishLabel: string | null     // eaten out: what we ate, written freely (no dish is created)
+  photo?: Blob | null          // a new photo of the dinner, picked in the form
 }
 
 // What I wrote about a dish the times we ate it (dish page)
 export type DishNote = { id: string; eatenOn: string; rating: number | null; note: string | null }
 
 // The last dinner still waiting for its stars (home page)
-export type UnratedMeal = { id: string; eatenOn: string; dishName: string; imageUrl: string | null }
+export type UnratedMeal = { id: string; eatenOn: string; dishName: string; imageUrl: string | null; eatenOut: MealOut | null }
 
 // A dinner as the monthly recap needs it
 export type RecapMeal = {
-  dishId: string
+  dishId: string | null
   dishName: string
   imageUrl: string | null
   eatenOn: string

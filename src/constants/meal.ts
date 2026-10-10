@@ -7,3 +7,7 @@ export const DISH_NOTES_SHOWN = 3
 
 // Home asks for stars on dinners from the last two days (not today: it may not be eaten yet)
 export const RATE_ASK_DAYS = 2
+
+// Who cooked: null = we did (home cooking); the rest are dinners out (2026-10-10)
+export const MEAL_OUT = ["restaurant", "takeaway", "friends"] as const
+export const MEAL_PLACE_MAX = 120

@@ -201,12 +201,6 @@
     }
   },
   "loader": {
-    "slip": "Commande",
-    "table": "Table",
-    "tableValue": "à la maison",
-    "guests": "Pour",
-    "guestsValue": "nous",
-    "dish": "Plat",
-    "status": "Ça arrive"
+    "thinking": "On réfléchit au dîner…"
   }
 }

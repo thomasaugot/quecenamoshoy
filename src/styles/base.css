@@ -100,3 +100,20 @@ dialog::backdrop { background: var(--color-backdrop); }
   scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
 }
+
+/* SVG gradient stops read the palette (the cloche's metal shine) */
+@utility stop-paper { stop-color: var(--color-paper); }
+@utility stop-text { stop-color: var(--color-text); }
+@utility stop-text-soft { stop-color: var(--color-text-soft); }
+@utility stop-text-muted { stop-color: var(--color-text-muted); }
+@utility stop-accent { stop-color: var(--color-accent); }
+@utility stop-accent-strong { stop-color: var(--color-accent-strong); }
+/* SVG mask paint: luminance masks need true black/white, not palette colours (ink lets ~15% through) */
+@utility mask-hide { fill: black; }
+@utility mask-show { fill: white; }
+@utility animate-sheet {
+  animation: sheet-up 0.38s var(--ease-out);
+  &::backdrop { animation: backdrop-in 0.3s ease-out; }
+}
+/* the screen under the navbar: for pages that centre one composition vertically on desktop */
+@utility min-h-below-nav { min-height: calc(100svh - var(--navbar-height)); }

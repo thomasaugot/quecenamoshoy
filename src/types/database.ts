@@ -5,6 +5,7 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export type DishTemp = "hot" | "cold"
 export type DishSource = "mine" | "ai"
 export type KitchenLocation = "home" | "travel"
+export type MealOut = "restaurant" | "takeaway" | "friends"
 export type RecipeSource = "mine" | "ai" | "imported"
 export type RestrictionKind = "allergy" | "dislike" | "diet"
 export type DishProtein = "red_meat" | "pork" | "poultry" | "fish" | "seafood" | "eggs" | "vegetarian" | "vegan"
@@ -88,9 +89,13 @@ export type Database = {
         Row: {
           id: string
           user_id: string
-          dish_id: string
+          dish_id: string | null
           eaten_on: string
           people: number
+          eaten_out: MealOut | null
+          place: string | null
+          image_path: string | null
+          dish_label: string | null
           with_leftovers: boolean
           rating: number | null
           note: string | null
@@ -101,7 +106,11 @@ export type Database = {
         Insert: {
           id?: string
           user_id?: string
-          dish_id: string
+          dish_id?: string | null
+          eaten_out?: MealOut | null
+          place?: string | null
+          image_path?: string | null
+          dish_label?: string | null
           location?: KitchenLocation
           guests?: number
           eaten_on?: string
@@ -117,8 +126,8 @@ export type Database = {
         ]
       }
       people: {
-        Row: { id: string; user_id: string; name: string; is_me: boolean; created_at: string }
-        Insert: { id?: string; user_id?: string; name: string; is_me?: boolean; created_at?: string }
+        Row: { id: string; user_id: string; name: string; is_me: boolean; avatar_path: string | null; created_at: string }
+        Insert: { id?: string; user_id?: string; name: string; is_me?: boolean; avatar_path?: string | null; created_at?: string }
         Update: Partial<Database["public"]["Tables"]["people"]["Insert"]>
         Relationships: []
       }

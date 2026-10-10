@@ -11,6 +11,11 @@ const SIZE = {
   md: { dialog: "m-auto max-h-[92svh] w-[min(40rem,calc(100vw-2rem))] rounded-xl shadow-xl", body: "max-h-[92svh] p-6 lg:p-8" },
   // the whole screen: cooking mode, read from across the kitchen
   full: { dialog: "m-0 h-svh max-h-none w-screen max-w-none rounded-none", body: "h-svh p-5 lg:p-10" },
+  // a sheet rising from the bottom edge, the page dimmed behind: results that must not be missed
+  sheet: {
+    dialog: "animate-sheet mx-auto mt-auto mb-0 max-h-[85svh] w-full max-w-md rounded-t-2xl shadow-xl",
+    body: "max-h-[85svh] px-6 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+  },
 } as const
 
 export const Modal = ({ isOpen, onClose, title, children, size = "md" }: {

@@ -14,6 +14,7 @@ import { initialOf } from "@/utils/people"
 // It arrives after the page entrance, so it rises in on its own (useRiseIn).
 export const HomeRate = () => {
   const t = useTranslations("home.rate")
+  const tOut = useTranslations("history.meal.out")
   const format = useFormatter()
   const now = useNow()
   const noteId = useId()
@@ -34,11 +35,11 @@ export const HomeRate = () => {
         <img src={meal.imageUrl} alt="" width={128} height={128} decoding="async" className="photo-frame-sm aspect-square w-16 shrink-0 -rotate-3" />
       ) : (
         <div aria-hidden="true" className="flex aspect-square w-16 shrink-0 -rotate-3 items-center justify-center rounded-xs border-3 border-surface bg-surface-2 shadow-sm">
-          <span className="text-voice text-accent">{initialOf(meal.dishName)}</span>
+          <span className="text-voice text-accent">{initialOf(meal.dishName || (meal.eatenOut ? tOut(meal.eatenOut) : ""))}</span>
         </div>
       )}
       <div className="flex min-w-0 grow flex-col gap-2">
-        <h2 id="home-rate" className="text-note">{t("question", { dish: meal.dishName, day })}</h2>
+        <h2 id="home-rate" className="text-note">{t("question", { dish: meal.dishName || (meal.eatenOut ? tOut(meal.eatenOut) : ""), day })}</h2>
         <RatingInput value={rating} onChange={setRating} label={t("label")} starLabel={(n) => t("stars", { count: n })} />
         {rating !== null && (
           <div className="flex flex-col gap-2">

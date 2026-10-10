@@ -112,7 +112,7 @@ export const weighDish = (d: Dish, ctx: RouletteContext): WheelSlot => {
       if (g.kind === "limit" && g.count >= g.target) weight *= GOAL_OVER_DAMP
     }
   }
-  return { dish: d, weight, matches: wants }
+  return { dish: d, weight, matches: wants, avoided: avoids }
 }
 
 // `random` in [0, 1): Math.random in the app, fixed values in tests
@@ -130,17 +130,24 @@ const draw = (pool: WheelSlot[], count: number, random: () => number): WheelSlot
   return out
 }
 
-// The wheel: with a preference, the matching dishes first (up to WHEEL_MAX), others only to
-// reach WHEEL_MIN; without one, WHEEL_MAX drawn by weight. Each draw favours heavier dishes.
-// Shuffled so the matches are not bunched together.
+// The wheel. A preference DECIDES: what I said I don't want is off the wheel, and when something
+// matches what I want, only matches go on it — repeated to fill the wheel if there are few, so
+// "pescado" with one fish dish lands on that fish, every time. Nothing matching: every eligible
+// dish (the spin says so). No preference: WHEEL_MAX drawn by weight. Shuffled.
 export const buildWheel = (ctx: RouletteContext, random: () => number): WheelSlot[] => {
   const slots = eligibleDishes(ctx).map((d) => weighDish(d, ctx))
-  const matching = slots.filter((s) => s.matches)
-  const others = slots.filter((s) => !s.matches)
-  const wheel = matching.length
-    ? [...draw(matching, WHEEL_MAX, random), ...draw(others, Math.max(0, WHEEL_MIN - matching.length), random)]
-    : draw(slots, WHEEL_MAX, random)
+  const allowed = slots.filter((s) => !s.avoided)
+  const pool = allowed.length ? allowed : slots
+  const matching = pool.filter((s) => s.matches)
+  const wheel = matching.length ? fillWheel(draw(matching, WHEEL_MAX, random)) : draw(pool, WHEEL_MAX, random)
   return shuffle(wheel, random)
+}
+
+// Few matches still make a full wheel: the same dishes again, in turn, up to WHEEL_MIN slices
+const fillWheel = (slots: WheelSlot[]): WheelSlot[] => {
+  const out = [...slots]
+  for (let i = 0; out.length < WHEEL_MIN && slots.length; i++) out.push(slots[i % slots.length] as WheelSlot)
+  return out
 }
 
 const shuffle = <T,>(items: readonly T[], random: () => number): T[] => {
@@ -152,4 +159,6 @@ const shuffle = <T,>(items: readonly T[], random: () => number): T[] => {
   return out
 }
 
-export const hasPreference = (p: RoulettePreference) => p.chips.length > 0 || words(p.text).length > 0
+// Something I WANT tonight (not only something I don't): what "nothing matches" is about
+export const wantsSomething = (p: RoulettePreference) =>
+  words(p.text).length > 0 || PREFERENCE_CHIPS.some((c) => !("avoid" in c) && p.chips.includes(c.key))

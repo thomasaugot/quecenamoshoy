@@ -20,10 +20,17 @@ export const photoForUpload = async (file: File, maxSide: number): Promise<ScanP
   return { mimeType: "image/jpeg", data: dataUrl.slice(dataUrl.indexOf(",") + 1) }
 }
 
-// A dish photo for Storage: resized, WebP (the bucket path is {user}/{dish}.webp)
+const encode = (canvas: HTMLCanvasElement, type: string, quality: number) =>
+  new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, quality))
+
+// A photo for Storage: resized, WebP where the browser can encode it. Safari (iPhone included)
+// cannot: it silently hands back a PNG, which stored as "image/webp" fails to load — so then JPEG,
+// and the upload sends the blob's real type.
 export const photoForStorage = async (file: File, maxSide: number): Promise<Blob> => {
   const canvas = await drawResized(file, maxSide)
-  const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/webp", 0.85))
-  if (!blob) throw new Error("webp encoding failed")
-  return blob
+  const webp = await encode(canvas, "image/webp", 0.85)
+  if (webp?.type === "image/webp") return webp
+  const jpeg = await encode(canvas, "image/jpeg", 0.85)
+  if (!jpeg) throw new Error("photo encoding failed")
+  return jpeg
 }

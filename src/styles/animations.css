@@ -5,3 +5,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Bottom sheet (Modal size="sheet"): rises from the bottom edge, its backdrop fades in */
+@keyframes sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }

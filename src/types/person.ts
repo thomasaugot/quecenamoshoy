@@ -11,6 +11,7 @@ export type Person = {
   id: string
   name: string
   isMe: boolean
+  avatarUrl: string | null   // short-lived signed URL of their photo (private bucket)
   restrictions: Restriction[]
   goals: Goal[]
 }

@@ -7,7 +7,7 @@ const idea = (patch: Partial<Suggestion>): Suggestion => ({
   dishId: null, name: "Pasta", description: "", temp: "hot", prepMinutes: 20, goodForLeftovers: false,
   tags: [], equipment: [], isFavourite: false, reason: "", ...patch,
 })
-const alex: Person = { id: "a", name: "Alex", isMe: false, goals: [], restrictions: [{ kind: "allergy", key: "nuts", label: null }] }
+const alex: Person = { id: "a", name: "Alex", isMe: false, avatarUrl: null, goals: [], restrictions: [{ kind: "allergy", key: "nuts", label: null }] }
 
 describe("suggestionAllergens", () => {
   it("catches a diner's allergen in the name or description", () => {

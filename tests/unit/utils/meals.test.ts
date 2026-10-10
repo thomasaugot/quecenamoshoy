@@ -4,7 +4,7 @@ import { groupByMonth, portions } from "@/utils/meals"
 
 const meal = (id: string, eatenOn: string): Meal => ({
   id, eatenOn, dishId: "d", dishName: "x", imageUrl: null, rating: null, note: null,
-  guests: 0, location: "home", withLeftovers: false, diners: [],
+  guests: 0, location: "home", withLeftovers: false, diners: [], eatenOut: null, place: null, dishLabel: null,
 })
 
 describe("groupByMonth", () => {

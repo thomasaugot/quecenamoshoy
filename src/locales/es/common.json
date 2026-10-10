@@ -201,12 +201,6 @@
     }
   },
   "loader": {
-    "slip": "Comanda",
-    "table": "Mesa",
-    "tableValue": "en casa",
-    "guests": "Para",
-    "guestsValue": "nosotros",
-    "dish": "Plato",
-    "status": "Marchando"
+    "thinking": "Pensando qué cenamos…"
   }
 }

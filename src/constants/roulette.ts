@@ -1,7 +1,7 @@
 import type { DishProtein } from "@/types/database"
 
-// Quick preference chips (brief §3.7). A preference is a WEIGHT, never a filter: matching
-// dishes are likelier to make the wheel and to win; `avoid` chips make matches less likely.
+// Quick preference chips (brief §3.7). A preference DECIDES the wheel (utils/roulette buildWheel):
+// with a match, only matches go on it; `avoid` chips take their matches off it.
 // words: matched in the dish name/description (es/en/fr, accents ignored). Labels: locales.
 export type PreferenceChip = {
   key: string
@@ -32,8 +32,7 @@ export const PREFERENCE_STOPWORDS = [
   "avec", "sans", "des", "les", "une", "quelque", "chose", "plus", "pour", "soir", "envie",
 ]
 
-// With a preference, the wheel is filled with dishes that match it; the others only top it up
-// to WHEEL_MIN (the rest "stays possible", brief §3.7, but rarely wins).
+// Thomas, 2026-10-10: "i selected fish and ended up with a quiche" — matches only, no top-up.
 
 // Weights
 export const PREFERENCE_BOOST = 6          // matches what I feel like tonight

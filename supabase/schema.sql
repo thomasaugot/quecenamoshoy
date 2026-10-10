@@ -329,3 +329,49 @@ alter table public.dishes add column if not exists notes text
   check (notes is null or char_length(notes) <= 1000);
 
 notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-10 — meals eaten out: restaurant, takeaway, at friends' ──────────────
+-- A dinner out may name no dish of mine: dish_id becomes optional for those, and the place is
+-- kept instead. A dinner at home still needs its dish.
+do $$ begin create type public.meal_out as enum ('restaurant', 'takeaway', 'friends');
+exception when duplicate_object then null; end $$;
+alter table public.meals add column if not exists eaten_out public.meal_out;
+alter table public.meals add column if not exists place text check (place is null or char_length(place) <= 120);
+alter table public.meals alter column dish_id drop not null;
+alter table public.meals drop constraint if exists meals_dish_or_out;
+alter table public.meals add constraint meals_dish_or_out check (dish_id is not null or eaten_out is not null);
+
+drop policy if exists "meals: owner inserts" on public.meals;
+drop policy if exists "meals: owner updates" on public.meals;
+create policy "meals: owner inserts" on public.meals for insert to authenticated
+  with check (user_id = (select auth.uid())
+    and (dish_id is null or exists (select 1 from public.dishes d where d.id = dish_id and d.user_id = (select auth.uid()))));
+create policy "meals: owner updates" on public.meals for update to authenticated
+  using (user_id = (select auth.uid()))
+  with check (user_id = (select auth.uid())
+    and (dish_id is null or exists (select 1 from public.dishes d where d.id = dish_id and d.user_id = (select auth.uid()))));
+
+notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-10 — a photo of the dinner itself (a restaurant has no dish of mine) ──
+-- Stored in the private dish-images bucket at {user_id}/meals/{meal_id}.webp: the existing
+-- storage policies check the first folder (the user), so they already cover it.
+alter table public.meals add column if not exists image_path text check (image_path is null or char_length(image_path) <= 200);
+
+notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-10 — what we ate when out ("Ramen"), written freely: no dish created ──
+alter table public.meals add column if not exists dish_label text check (dish_label is null or char_length(dish_label) <= 120);
+
+notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-10 — a profile photo per person at the table ──────────────────────
+-- Stored in the private dish-images bucket at {user_id}/people/{person_id}.webp (the existing
+-- storage policies check the user folder, so they cover it).
+alter table public.people add column if not exists avatar_path text check (avatar_path is null or char_length(avatar_path) <= 200);
+
+notify pgrst, 'reload schema';

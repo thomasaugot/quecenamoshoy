@@ -3,7 +3,7 @@ import type { CountedMeal } from "@/types/meal"
 import type { Person } from "@/types/person"
 import { goalProgress } from "@/utils/goals"
 
-const me: Person = { id: "me", name: "Tom", isMe: true, restrictions: [], goals: [] }
+const me: Person = { id: "me", name: "Tom", isMe: true, avatarUrl: null, restrictions: [], goals: [] }
 const meal = (eatenOn: string, patch: Partial<CountedMeal> = {}): CountedMeal =>
   ({ dishId: "d", eatenOn, protein: null, traits: [], diners: [], ...patch })
 

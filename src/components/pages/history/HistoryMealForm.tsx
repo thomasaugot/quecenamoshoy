@@ -2,13 +2,15 @@ import { useId, useState, type FormEvent } from "react"
 import { useTranslations } from "use-intl"
 import { HistoryDayPicker } from "@/components/pages/history/HistoryDayPicker"
 import { HistoryDishPicker } from "@/components/pages/history/HistoryDishPicker"
+import { HistoryMealPhoto } from "@/components/pages/history/HistoryMealPhoto"
 import { Button } from "@/components/ui/Button"
 import { Checkbox } from "@/components/ui/Checkbox"
+import { Input } from "@/components/ui/Input"
 import { Chip } from "@/components/ui/Chip"
 import { IconTrash } from "@/components/ui/Icons"
 import { RatingInput } from "@/components/ui/RatingInput"
 import { Stepper } from "@/components/ui/Stepper"
-import { GUESTS_MAX, MEAL_NOTE_MAX } from "@/constants/meal"
+import { GUESTS_MAX, MEAL_NOTE_MAX, MEAL_OUT, MEAL_PLACE_MAX } from "@/constants/meal"
 import { useCreateMeal, useDeleteMeal, useUpdateMeal } from "@/hooks/useMeals"
 import { usePeople } from "@/hooks/usePeople"
 import type { MealInput } from "@/types/meal"
@@ -16,14 +18,17 @@ import { toggleId } from "@/utils/people"
 
 const LOCATIONS = ["home", "travel"] as const
 
-export const HistoryMealForm = ({ mealId, dishName, initial, onDone }: {
+export const HistoryMealForm = ({ mealId, dishName, photoUrl, initial, onDone }: {
   mealId: string | null
   dishName: string | null
+  photoUrl: string | null
   initial: MealInput
   onDone: () => void
 }) => {
   const t = useTranslations("history.editor")
   const noteId = useId()
+  const placeId = useId()
+  const labelId = useId()
   const { data: people = [] } = usePeople()
   const [form, setForm] = useState(initial)
   const [error, setError] = useState<string | null>(null)
@@ -35,21 +40,44 @@ export const HistoryMealForm = ({ mealId, dishName, initial, onDone }: {
 
   const submit = (event: FormEvent) => {
     event.preventDefault()
-    if (!form.dishId && !form.newDishName) return setError(t("dishRequired"))
-    const input = { ...form, note: form.note?.trim() || null }
+    // cooked at home it needs its dish; eaten out, the place can stand for it
+    if (!form.dishId && !form.newDishName && !form.eatenOut) return setError(t("dishRequired"))
+    // eaten out, the meal is written freely: never linked to (or creating) a dish of mine
+    const input = { ...form, note: form.note?.trim() || null, ...(form.eatenOut ? { dishId: null, newDishName: null } : {}) }
     if (mealId) update.mutate({ id: mealId, input }, { onSuccess: onDone })
     else create.mutate(input, { onSuccess: onDone })
   }
 
   return (
     <form onSubmit={submit} noValidate className="flex flex-col gap-7">
-      <HistoryDishPicker
-        dishId={form.dishId}
-        newDishName={form.newDishName}
-        currentName={dishName}
-        onPick={(pick) => { set(pick); setError(null) }}
-        error={error ?? undefined}
-      />
+      <fieldset className="flex flex-col gap-3">
+        <legend className="text-label mb-3">{t("kind")}</legend>
+        <div className="flex flex-wrap gap-2">
+          <Chip tone="diet" pressed={form.eatenOut === null} onClick={() => set({ eatenOut: null })}>{t("kindHome")}</Chip>
+          {MEAL_OUT.map((out) => (
+            <Chip key={out} tone="diet" pressed={form.eatenOut === out} onClick={() => { set({ eatenOut: out }); setError(null) }}>{t(out)}</Chip>
+          ))}
+        </div>
+        {form.eatenOut && (
+          <Input id={placeId} label={t("place")} name="place" autoComplete="off" maxLength={MEAL_PLACE_MAX}
+            placeholder={t("placePlaceholder")} value={form.place ?? ""} onChange={(event) => set({ place: event.target.value })} />
+        )}
+      </fieldset>
+
+      {form.eatenOut ? (
+        <Input id={labelId} label={t("dishLabel")} name="dish-label" autoComplete="off" maxLength={MEAL_PLACE_MAX}
+          placeholder={t("dishLabelPlaceholder")} value={form.dishLabel ?? ""} onChange={(event) => set({ dishLabel: event.target.value })} />
+      ) : (
+        <HistoryDishPicker
+          dishId={form.dishId}
+          newDishName={form.newDishName}
+          currentName={dishName}
+          onPick={(pick) => { set(pick); setError(null) }}
+          error={error ?? undefined}
+        />
+      )}
+
+      <HistoryMealPhoto currentUrl={photoUrl} onPick={(photo) => set({ photo })} />
 
       <HistoryDayPicker value={form.eatenOn} onChange={(eatenOn) => set({ eatenOn })} />
 
@@ -66,14 +94,17 @@ export const HistoryMealForm = ({ mealId, dishName, initial, onDone }: {
         </div>
       </fieldset>
 
-      <fieldset className="flex flex-col gap-3">
-        <legend className="text-label mb-3">{t("where")}</legend>
-        <div className="flex flex-wrap gap-2">
-          {LOCATIONS.map((loc) => (
-            <Chip key={loc} tone="diet" pressed={form.location === loc} onClick={() => set({ location: loc })}>{t(loc)}</Chip>
-          ))}
-        </div>
-      </fieldset>
+      {/* which kitchen we cooked in: meaningless once someone else cooked */}
+      {!form.eatenOut && (
+        <fieldset className="flex flex-col gap-3">
+          <legend className="text-label mb-3">{t("where")}</legend>
+          <div className="flex flex-wrap gap-2">
+            {LOCATIONS.map((loc) => (
+              <Chip key={loc} tone="diet" pressed={form.location === loc} onClick={() => set({ location: loc })}>{t(loc)}</Chip>
+            ))}
+          </div>
+        </fieldset>
+      )}
 
       <div className="flex flex-col gap-2">
         <p className="text-label">{t("rating")}</p>

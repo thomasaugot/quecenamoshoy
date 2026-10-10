@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useTranslations } from "use-intl"
 import { queryKeys } from "@/constants/query-keys"
 import { createPerson, deletePerson, listPeople, renamePerson, setGoal, setRestriction } from "@/services/people"
+import { uploadPersonPhoto } from "@/services/storage"
 import { showToast } from "@/stores/toast-store"
 import type { Person } from "@/types/person"
 import { logger } from "@/utils/logger"
@@ -9,7 +10,7 @@ import { logger } from "@/utils/logger"
 export const usePeople = () =>
   useQuery({ queryKey: queryKeys.people.list, queryFn: listPeople, staleTime: 5 * 60_000, meta: { persist: true } })
 
-type ToastKey = "added" | "renamed" | "removed" | "saved"
+type ToastKey = "added" | "renamed" | "removed" | "saved" | "photo"
 
 // Every write: toast, invalidate everything under ["people"] (me included). Chip and goal
 // toggles also patch the cache first (`optimistic`), so a tap answers at once and rolls back
@@ -47,6 +48,7 @@ const usePeopleWrite = <V,>(
 export const useCreatePerson = () => usePeopleWrite(createPerson, "added")
 export const useRenamePerson = () => usePeopleWrite(renamePerson, "renamed")
 export const useDeletePerson = () => usePeopleWrite(deletePerson, "removed")
+export const useUploadPersonPhoto = () => usePeopleWrite(uploadPersonPhoto, "photo")
 
 export const useSetRestriction = () =>
   usePeopleWrite(setRestriction, "saved", (people, { personId, kind, key, label = null, on }) =>

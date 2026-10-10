@@ -25,13 +25,15 @@ export const HistoryEditor = () => {
 
   const initial: MealInput = meal
     ? { dishId: meal.dishId, newDishName: null, eatenOn: meal.eatenOn, diners: meal.diners, guests: meal.guests,
-        location: meal.location, rating: meal.rating, note: meal.note, withLeftovers: meal.withLeftovers }
+        location: meal.location, rating: meal.rating, note: meal.note, withLeftovers: meal.withLeftovers,
+        eatenOut: meal.eatenOut, place: meal.place, dishLabel: meal.dishLabel ?? (meal.eatenOut && meal.dishId ? meal.dishName : null) }
     : { dishId: null, newDishName: null, eatenOn: isoDaysAgo(0, now), diners: usual.length ? usual : me ? [me.id] : [],
-        guests: 0, location: "home", rating: null, note: null, withLeftovers: false }
+        guests: 0, location: "home", rating: null, note: null, withLeftovers: false, eatenOut: null, place: null, dishLabel: null }
 
   return (
     <Modal isOpen={editing !== null} onClose={closeEditor} title={meal ? t("editTitle") : t("newTitle")}>
-      <HistoryMealForm key={editing ?? "closed"} mealId={meal?.id ?? null} dishName={meal?.dishName ?? null}
+      <HistoryMealForm key={editing ?? "closed"} mealId={meal?.id ?? null} dishName={meal?.dishId ? meal.dishName : null}
+        photoUrl={meal?.imageUrl ?? null}
         initial={initial} onDone={closeEditor} />
     </Modal>
   )

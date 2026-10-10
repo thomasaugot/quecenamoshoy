@@ -18,7 +18,12 @@
     "edit": "Modifier {name}",
     "travel": "en voyage",
     "rating": "{rating} sur 5",
-    "guests": "{count, plural, one {+ # invité} other {+ # invités}}"
+    "guests": "{count, plural, one {+ # invité} other {+ # invités}}",
+    "out": {
+      "restaurant": "Restaurant",
+      "takeaway": "À emporter",
+      "friends": "Chez des amis"
+    }
   },
   "editor": {
     "newTitle": "Noter un dîner",
@@ -47,7 +52,20 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "delete": "Supprimer le dîner",
-    "confirmDelete": "Oui, le supprimer"
+    "confirmDelete": "Oui, le supprimer",
+    "kind": "Qui a cuisiné",
+    "kindHome": "Nous",
+    "restaurant": "Restaurant",
+    "takeaway": "À emporter",
+    "friends": "Chez des amis",
+    "place": "L'endroit",
+    "placePlaceholder": "Chez Paul, chez Marta…",
+    "photo": "Photo du dîner",
+    "photoAdd": "Ajouter une photo",
+    "photoChange": "Changer la photo",
+    "photoUnreadable": "Je n'ai pas pu lire cette photo.",
+    "dishLabel": "Ce que vous avez mangé",
+    "dishLabelPlaceholder": "ramen, pizza margherita…"
   },
   "toasts": {
     "logged": "Dîner noté",

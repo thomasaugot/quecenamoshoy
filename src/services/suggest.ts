@@ -64,6 +64,6 @@ export const acceptSuggestion = async ({ suggestion, dishId, answers, todayIso }
     location: answers.location ?? "home",
     rating: null,
     note: null,
-    withLeftovers: answers.leftovers ?? false,
+    withLeftovers: answers.leftovers ?? false, eatenOut: null, place: null, dishLabel: null,
   })
 }

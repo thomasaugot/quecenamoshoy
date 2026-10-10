@@ -29,7 +29,9 @@ export const RouletteWheel = () => {
   const t = useTranslations("roulette.wheel")
   const rootRef = useRef<HTMLDivElement>(null)
   const ctx = useRouletteContext()
-  const { slots, rotation, spinning, load, endSpin } = useRouletteStore()
+  const { slots, rotation, spinning, winner, load, endSpin } = useRouletteStore()
+  // once it stops, the picked slice stays lit and the others step back
+  const dim = (i: number) => (winner !== null && !spinning && i !== winner ? "opacity-35" : "")
   const { preference } = useMotionPreference()
 
   // A first wheel to look at before any spin (no preference yet)
@@ -46,7 +48,7 @@ export const RouletteWheel = () => {
   const segments = wheelSegments(slots)
 
   return (
-    <div ref={rootRef} data-anim="pin" className="invisible w-full max-w-sm lg:w-[min(34rem,calc(100svh-23rem))] lg:max-w-none">
+    <div ref={rootRef} data-anim="pin" className="invisible w-full max-w-[min(22rem,46svh)] lg:w-[min(34rem,calc(100svh-23rem))] lg:max-w-none">
       <svg viewBox="0 0 240 240" role="img" aria-label={t("label", { count: slots.length })} className="block h-auto w-full overflow-visible">
         <circle cx={C} cy={C + 4} r={116} className="fill-border opacity-60" />
         <circle cx={C} cy={C} r={116} className="fill-text" />
@@ -56,7 +58,7 @@ export const RouletteWheel = () => {
             const tone = SLICES[i % SLICES.length] ?? SLICES[0]
             if (!segment) return null
             return (
-              <g key={slot.dish.id}>
+              <g key={`${slot.dish.id}-${i}`} className={`transition-opacity duration-500 ${dim(i)}`}>
                 <path d={arcPath(C, C, R, segment)} className={`${tone.fill} stroke-text`} strokeWidth="0.6" />
                 <text transform={labelTransform(C, C, R * 0.58, segment)} textAnchor="middle" dominantBaseline="middle"
                   fontSize="7" className={`font-sans ${tone.text}`}>

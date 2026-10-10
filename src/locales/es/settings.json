@@ -15,7 +15,10 @@
     "rename": "Cambiar el nombre de {name}",
     "remove": "Quitar de la mesa",
     "confirmRemove": "Sí, quitar a {name}",
-    "keep": "No, dejarlo"
+    "keep": "No, dejarlo",
+    "summary": "{restrictions, plural, =0 {sin restricciones} one {# restricción} other {# restricciones}} · {goals, plural, =0 {sin objetivos} one {# objetivo} other {# objetivos}}",
+    "photoUnreadable": "No he podido leer esa foto.",
+    "photoOf": "Foto de {name}"
   },
   "restrictions": {
     "allergy": {
@@ -83,6 +86,7 @@
     "renamed": "Nombre cambiado",
     "removed": "Quitado de la mesa",
     "saved": "Guardado",
-    "failed": "No se ha podido guardar. Inténtalo de nuevo."
+    "failed": "No se ha podido guardar. Inténtalo de nuevo.",
+    "photo": "Foto guardada"
   }
 }

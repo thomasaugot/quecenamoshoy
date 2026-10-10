@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase"
+import { signedImageUrls } from "@/services/storage"
 import type { RestrictionKind } from "@/types/database"
 import type { Me, Person } from "@/types/person"
 
@@ -13,14 +14,16 @@ export const getMe = async (): Promise<Me> => {
 export const listPeople = async (): Promise<Person[]> => {
   const { data, error } = await supabase
     .from("people")
-    .select("id, name, is_me, person_restrictions(kind, key, label), person_goals(key, per_week)")
+    .select("id, name, is_me, avatar_path, person_restrictions(kind, key, label), person_goals(key, per_week)")
     .order("is_me", { ascending: false })
     .order("created_at", { ascending: true })
   if (error) throw new Error(`people query failed: ${error.code}`)
+  const urls = await signedImageUrls(data.flatMap((p) => (p.avatar_path ? [p.avatar_path] : [])))
   return data.map((p) => ({
     id: p.id,
     name: p.name,
     isMe: p.is_me,
+    avatarUrl: p.avatar_path ? urls.get(p.avatar_path) ?? null : null,
     restrictions: p.person_restrictions,
     goals: p.person_goals.map((g) => ({ key: g.key, perWeek: g.per_week })),
   }))

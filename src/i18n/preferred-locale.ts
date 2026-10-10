@@ -27,7 +27,11 @@ const browserLocale = (): Locale | null =>
 export const preferredStartPath = (pathname: string): string | null => {
   const first = pathname.split("/").filter(Boolean)[0]
   if (isLocale(first) && first !== defaultLocale) return null
+  // a path that is no page of the app (a dev preview, a 404) stays as typed: there is no
+  // translated version of it to send it to
+  const routeKey = routeKeyFromPath(pathname)
+  if (!routeKey) return null
   const preferred = readPreferredLocale() ?? (pathname === "/" ? browserLocale() : null)
   if (!preferred || preferred === defaultLocale) return null
-  return switchLocalePath(pathname, routeKeyFromPath(pathname), preferred)
+  return switchLocalePath(pathname, routeKey, preferred)
 }

@@ -6,7 +6,7 @@ import { buildWheel, eligibleDishes, pickWeighted, weighDish, wordMatches, type 
 const dish = (id: string, patch: Partial<Dish> = {}): Dish => ({
   id, name: id, description: null, protein: null, traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], notes: null, ...patch,
 })
-const me: Person = { id: "me", name: "Tom", isMe: true, restrictions: [], goals: [] }
+const me: Person = { id: "me", name: "Tom", isMe: true, avatarUrl: null, restrictions: [], goals: [] }
 const ctx = (patch: Partial<RouletteContext> = {}): RouletteContext => ({
   dishes: [], diners: [me], guestRestrictions: [], recentMeals: [], avoidSinceIso: "2026-10-03", todayIso: "2026-10-10",
   kitchen: null, preference: { chips: [], text: "" }, ...patch,
@@ -71,13 +71,30 @@ describe("the preference decides — tolerant matching", () => {
     const c = ctx({ preference: { chips: ["comfort"], text: "" } })
     expect(weighDish(dish("Gratin dauphinois"), c).matches).toBe(true)
   })
-  it("fills the wheel with matches, others only up to six", () => {
+  it("puts only matches on the wheel, repeated to fill it", () => {
     const dishes = [
       ...["Pâtes pesto", "Lasagne", "Tagliatelles saumon"].map((n) => dish(n)),
       ...Array.from({ length: 10 }, (_, i) => dish(`Salade ${i}`)),
     ]
     const wheel = buildWheel(ctx({ dishes, preference: { chips: [], text: "des pâtes" } }), () => 0.3)
     expect(wheel).toHaveLength(6)
-    expect(wheel.filter((s) => s.matches)).toHaveLength(3)
+    expect(wheel.every((s) => s.matches)).toBe(true)
+  })
+  it("pescado with a single fish dish always lands on it — never a quiche", () => {
+    const dishes = [dish("Merluza a la plancha"), dish("Quiche lorraine"), dish("Lentejas"), dish("Tortilla")]
+    for (const r of [0, 0.3, 0.6, 0.99]) {
+      const wheel = buildWheel(ctx({ dishes, preference: { chips: ["fish"], text: "" } }), () => r)
+      expect(new Set(wheel.map((s) => s.dish.name))).toEqual(new Set(["Merluza a la plancha"]))
+    }
+  })
+  it("takes what I don't want off the wheel", () => {
+    const dishes = [dish("Pollo asado", { protein: "poultry" }), dish("Ensalada", { protein: null })]
+    const wheel = buildWheel(ctx({ dishes, preference: { chips: ["no_meat"], text: "" } }), () => 0.4)
+    expect(wheel.map((s) => s.dish.name)).toEqual(["Ensalada"])
+  })
+  it("spins everything when nothing matches what I want", () => {
+    const dishes = [dish("Quiche lorraine"), dish("Lentejas")]
+    const wheel = buildWheel(ctx({ dishes, preference: { chips: ["fish"], text: "" } }), () => 0.4)
+    expect(wheel).toHaveLength(2)
   })
 })

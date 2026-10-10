@@ -24,6 +24,7 @@ export const isMonth = (value: string | null): value is string => !!value && /^\
 export const monthRecap = (meals: readonly RecapMeal[]): MonthRecap => {
   const byDish = new Map<string, RecapDish & { stars: number[] }>()
   for (const m of meals) {
+    if (!m.dishId) continue   // a dinner out with no dish of mine: a dinner, not a dish
     const d = byDish.get(m.dishId) ?? { dishId: m.dishId, name: m.dishName, imageUrl: m.imageUrl, count: 0, stars: [] }
     d.count++
     if (m.rating !== null) d.stars.push(m.rating)

@@ -201,12 +201,6 @@
     }
   },
   "loader": {
-    "slip": "Order",
-    "table": "Table",
-    "tableValue": "at home",
-    "guests": "For",
-    "guestsValue": "us",
-    "dish": "Dish",
-    "status": "Coming right up"
+    "thinking": "Working out what's for dinner…"
   }
 }

@@ -1,6 +1,6 @@
 import type { IconBaseProps } from "react-icons"
 import {
-  FiAlertCircle, FiArrowRight, FiCheck, FiClock, FiEdit2, FiGlobe, FiHeart, FiInfo, FiLogOut, FiMinus, FiPlus,
+  FiAlertCircle, FiArrowLeft, FiChevronDown, FiArrowRight, FiCheck, FiClock, FiEdit2, FiGlobe, FiHeart, FiInfo, FiLogOut, FiMinus, FiPlus,
   FiPlusSquare, FiSettings, FiShare, FiShoppingBag, FiStar, FiSun, FiTrash2, FiX,
 } from "react-icons/fi"
 import {
@@ -17,6 +17,8 @@ export const IconHistory = (p: IconProps) => <FiClock aria-hidden="true" {...p} 
 export const IconGlobe = (p: IconProps) => <FiGlobe aria-hidden="true" {...p} />
 export const IconSignOut = (p: IconProps) => <FiLogOut aria-hidden="true" {...p} />
 export const IconArrow = (p: IconProps) => <FiArrowRight aria-hidden="true" {...p} />
+export const IconArrowLeft = (p: IconProps) => <FiArrowLeft aria-hidden="true" {...p} />
+export const IconChevronDown = (p: IconProps) => <FiChevronDown aria-hidden="true" {...p} />
 export const IconClose = (p: IconProps) => <FiX aria-hidden="true" {...p} />
 export const IconCheck = (p: IconProps) => <FiCheck aria-hidden="true" {...p} />
 export const IconAlert = (p: IconProps) => <FiAlertCircle aria-hidden="true" {...p} />

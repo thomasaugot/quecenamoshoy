@@ -70,3 +70,15 @@ Read this BEFORE any design work. Append after every attempt, accepted or not.
 - Order slip (paper, like WizardTicket) slides in over yesterday's slip, tack drops and pins it,
   lines write by hand (clip reveal), dish icon spins like the roulette; exit = slip torn off, flies away.
 - Checked with screenshots at 390 and 1440 before showing.
+
+## 2026-10-10 — Logo: lifted cloche + illustrated dishes — APPROVED ("i love it now", "awesome")
+- Dishes: four illustrations Thomas supplied (carbonara, burger, Caesar salad, sushi), cut out, on our
+  drawn dark plate. Hand-drawn food was rejected every time ("Paint-drawn", "a joke"): never draw food.
+- Lid: lacquered terracotta, window reflection, light edge, base ring, knob on a collar. Lifted like a
+  hand would (up + tilt), food masked by the lid's shell so it sits UNDER it at every height.
+- App icon + favicon: rendered from the live component (reduced-motion still life), carbonara.
+
+## 2026-10-10 — PageLoader, attempt 3 — the logo as loader (pending)
+- Order slip REJECTED ("doesn't look like a loading", didn't like the concept).
+- Now: the approved animated cloche, large, lifting on the carbonara; the name under it; a filling
+  progress bar and "Pensando qué cenamos…". Exit: bar completes, content rises away, ground fades.

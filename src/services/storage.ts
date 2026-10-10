@@ -25,9 +25,30 @@ export const signedImageUrls = async (paths: string[]): Promise<Map<string, stri
 // replacing any previous one, then pointed to from the dish
 export const uploadDishPhoto = async ({ userId, dishId, photo }: { userId: string; dishId: string; photo: Blob }): Promise<void> => {
   const path = `${userId}/${dishId}.webp`
-  const { error } = await supabase.storage.from(BUCKET).upload(path, photo, { contentType: "image/webp", upsert: true })
+  const { error } = await supabase.storage.from(BUCKET).upload(path, photo, { contentType: photo.type || "image/webp", upsert: true })
   signedCache.delete(path)   // same path, new photo: the old URL would show the old one
   if (error) throw new Error(`photo upload failed: ${error.name}`)
   const { error: updateError } = await supabase.from("dishes").update({ image_path: path, image_credit: null }).eq("id", dishId)
   if (updateError) throw new Error(`photo link failed: ${updateError.code}`)
+}
+
+// A photo of the dinner itself: {user}/meals/{meal}.webp (same bucket and policies), replacing any
+// previous one, then pointed to from the meal
+export const uploadMealPhoto = async ({ userId, mealId, photo }: { userId: string; mealId: string; photo: Blob }): Promise<void> => {
+  const path = `${userId}/meals/${mealId}.webp`
+  const { error } = await supabase.storage.from(BUCKET).upload(path, photo, { contentType: photo.type || "image/webp", upsert: true })
+  signedCache.delete(path)
+  if (error) throw new Error(`meal photo upload failed: ${error.name}`)
+  const { error: updateError } = await supabase.from("meals").update({ image_path: path }).eq("id", mealId)
+  if (updateError) throw new Error(`meal photo link failed: ${updateError.code}`)
+}
+
+// A profile photo: {user}/people/{person}.webp (same bucket and policies), then pointed to from them
+export const uploadPersonPhoto = async ({ userId, personId, photo }: { userId: string; personId: string; photo: Blob }): Promise<void> => {
+  const path = `${userId}/people/${personId}.webp`
+  const { error } = await supabase.storage.from(BUCKET).upload(path, photo, { contentType: photo.type || "image/webp", upsert: true })
+  signedCache.delete(path)
+  if (error) throw new Error(`person photo upload failed: ${error.name}`)
+  const { error: updateError } = await supabase.from("people").update({ avatar_path: path }).eq("id", personId)
+  if (updateError) throw new Error(`person photo link failed: ${updateError.code}`)
 }

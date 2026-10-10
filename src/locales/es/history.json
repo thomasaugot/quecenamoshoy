@@ -18,7 +18,12 @@
     "edit": "Editar {name}",
     "travel": "de viaje",
     "rating": "{rating} de 5",
-    "guests": "{count, plural, one {+ # invitado} other {+ # invitados}}"
+    "guests": "{count, plural, one {+ # invitado} other {+ # invitados}}",
+    "out": {
+      "restaurant": "Restaurante",
+      "takeaway": "Para llevar",
+      "friends": "En casa de amigos"
+    }
   },
   "editor": {
     "newTitle": "Apuntar una cena",
@@ -47,7 +52,20 @@
     "save": "Guardar",
     "cancel": "Cancelar",
     "delete": "Borrar cena",
-    "confirmDelete": "Sí, borrarla"
+    "confirmDelete": "Sí, borrarla",
+    "kind": "Quién cocinó",
+    "kindHome": "Nosotros",
+    "restaurant": "Restaurante",
+    "takeaway": "Para llevar",
+    "friends": "En casa de amigos",
+    "place": "El sitio",
+    "placePlaceholder": "La Tasca, casa de Marta…",
+    "photo": "Foto de la cena",
+    "photoAdd": "Añadir una foto",
+    "photoChange": "Cambiar la foto",
+    "photoUnreadable": "No he podido leer esa foto.",
+    "dishLabel": "Qué cenaron",
+    "dishLabelPlaceholder": "ramen, pizza margarita…"
   },
   "toasts": {
     "logged": "Cena apuntada",

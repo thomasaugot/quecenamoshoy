@@ -2,7 +2,7 @@ import { useTranslations } from "use-intl"
 import { useRouletteContext } from "@/hooks/useRouletteContext"
 import { useRouletteStore } from "@/stores/roulette-store"
 import { showToast } from "@/stores/toast-store"
-import { buildWheel, hasPreference, pickWeighted } from "@/utils/roulette"
+import { buildWheel, pickWeighted, wantsSomething } from "@/utils/roulette"
 import { landingRotation, wheelSegments } from "@/utils/wheel"
 
 const TURNS = 6
@@ -18,7 +18,7 @@ export const useSpin = () => {
     if (!ctx) return
     const slots = buildWheel(ctx, Math.random)
     if (!slots.length) return showToast(t("empty"), "warning")
-    if (hasPreference(ctx.preference) && !slots.some((s) => s.matches)) showToast(t("noMatch"), "info")
+    if (wantsSomething(ctx.preference) && !slots.some((s) => s.matches)) showToast(t("noMatch"), "info")
     const winner = pickWeighted(slots, Math.random)
     const segment = wheelSegments(slots)[winner]
     if (!segment) return
