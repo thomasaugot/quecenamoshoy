@@ -48,9 +48,14 @@ const parseInput = (body: unknown): Input | null => {
   if (!ingredients || ingredients.some((i) => i.length > 40)) return null
   return { location: b.location, diners, guests: b.guests, guestRestrictions, temp: b.temp as Input["temp"],
     leftovers: b.leftovers, exclude, language: b.language as Input["language"],
-    note: typeof b.note === "string" ? b.note.replace(/[\u0000-\u001f]/g, " ").trim() : "",
-    ingredients: ingredients.map((i) => i.replace(/[\u0000-\u001f]/g, " ").trim()).filter(Boolean) }
+    note: typeof b.note === "string" ? plainText(b.note) : "",
+    ingredients: ingredients.map((i) => plainText(i)).filter(Boolean) }
 }
+
+// Free text from the user goes into the prompt: control characters (newlines, escapes) become
+// spaces so a note cannot fake prompt structure. By char code — deno lint bans them in regexes.
+const plainText = (text: string) =>
+  [...text].map((c) => (c.charCodeAt(0) < 0x20 ? " " : c)).join("").trim()
 
 const buildPrompt = (input: Input, ctx: Context) => {
   const portions = Math.max(1, ctx.diners.length + input.guests) + (input.leftovers ? Math.max(1, ctx.diners.length) : 0)
