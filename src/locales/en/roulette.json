@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Roulette",
+    "description": "Let luck decide."
+  },
+  "hero": {
+    "title": "Let luck <em>decide</em>",
+    "note": "no questions: tell me what you fancy and we spin"
+  },
+  "tonight": {
+    "label": "Tonight",
+    "change": "change",
+    "where": "Where",
+    "who": "Who's eating",
+    "home": "At home",
+    "travel": "Travelling",
+    "guests": "Guests",
+    "guestsLess": "One guest less",
+    "guestsMore": "One guest more",
+    "done": "Done"
+  },
+  "preference": {
+    "question": "Any preference today?",
+    "chips": "Quick preferences",
+    "chip": {
+      "creamy": "something creamy",
+      "pasta": "more pasta",
+      "light": "light",
+      "comfort": "comfort food",
+      "fish": "fish",
+      "rice": "rice",
+      "no_meat": "no meat"
+    },
+    "textLabel": "Or type it",
+    "textPlaceholder": "e.g. something with curry",
+    "spin": "Spin",
+    "surprise": "Surprise me"
+  },
+  "wheel": {
+    "label": "{count, plural, one {Wheel with # dish} other {Wheel with # dishes}}"
+  },
+  "result": {
+    "tonight": "tonight it's…",
+    "eat": "Let's have this",
+    "again": "Spin again"
+  },
+  "toasts": {
+    "empty": "No dish fits every rule tonight. Add favourites or change who's eating.",
+    "noMatch": "No dish matches that: spinning with all of them."
+  }
+}

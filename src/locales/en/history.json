@@ -1,9 +1,57 @@
 {
   "meta": {
     "title": "History",
-    "description": "What you've had for dinner."
+    "description": "What we ate, when and with whom."
   },
   "hero": {
-    "title": "History"
+    "title": "What we <em>ate</em>",
+    "note": "every night, with whom and how it was",
+    "log": "Log a dinner"
+  },
+  "list": {
+    "title": "Dinners",
+    "empty": "No dinners logged yet.",
+    "more": "Show older dinners"
+  },
+  "meal": {
+    "edit": "Edit {name}",
+    "travel": "travelling",
+    "rating": "{rating} out of 5",
+    "guests": "{count, plural, one {+ # guest} other {+ # guests}}"
+  },
+  "editor": {
+    "newTitle": "Log a dinner",
+    "editTitle": "Edit dinner",
+    "dish": "What we ate",
+    "dishPlaceholder": "search a dish…",
+    "dishMatches": "Dishes",
+    "newDish": "New: {name}",
+    "dishRequired": "Pick a dish or type a new one",
+    "when": "When",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "diners": "Who ate",
+    "guests": "Guests",
+    "guestsLess": "One guest less",
+    "guestsMore": "One guest more",
+    "where": "Where",
+    "home": "At home",
+    "travel": "Travelling",
+    "rating": "How was it",
+    "stars": "{count, plural, one {# star} other {# stars}}",
+    "note": "Note",
+    "notePlaceholder": "too spicy, make again…",
+    "leftovers": "Leftovers for another day",
+    "log": "Log it",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete dinner",
+    "confirmDelete": "Yes, delete it"
+  },
+  "toasts": {
+    "logged": "Dinner logged",
+    "updated": "Dinner saved",
+    "deleted": "Dinner deleted",
+    "failed": "Couldn't save. Try again."
   }
 }

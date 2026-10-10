@@ -1,9 +1,57 @@
 {
   "meta": {
     "title": "Historial",
-    "description": "Lo que has cenado."
+    "description": "Lo que hemos cenado, cuándo y con quién."
   },
   "hero": {
-    "title": "Historial"
+    "title": "Lo que hemos <em>cenado</em>",
+    "note": "cada noche, con quién y qué tal",
+    "log": "Apuntar una cena"
+  },
+  "list": {
+    "title": "Cenas",
+    "empty": "Aún no has apuntado ninguna cena.",
+    "more": "Ver cenas anteriores"
+  },
+  "meal": {
+    "edit": "Editar {name}",
+    "travel": "de viaje",
+    "rating": "{rating} de 5",
+    "guests": "{count, plural, one {+ # invitado} other {+ # invitados}}"
+  },
+  "editor": {
+    "newTitle": "Apuntar una cena",
+    "editTitle": "Editar cena",
+    "dish": "Qué cenamos",
+    "dishPlaceholder": "busca un plato…",
+    "dishMatches": "Platos",
+    "newDish": "Nuevo: {name}",
+    "dishRequired": "Elige un plato o escribe uno nuevo",
+    "when": "Cuándo",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "diners": "Quién cenó",
+    "guests": "Invitados",
+    "guestsLess": "Un invitado menos",
+    "guestsMore": "Un invitado más",
+    "where": "Dónde",
+    "home": "En casa",
+    "travel": "De viaje",
+    "rating": "Qué tal",
+    "stars": "{count, plural, one {# estrella} other {# estrellas}}",
+    "note": "Nota",
+    "notePlaceholder": "demasiado picante, repetir…",
+    "leftovers": "Sobró para otro día",
+    "log": "Apuntar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Borrar cena",
+    "confirmDelete": "Sí, borrarla"
+  },
+  "toasts": {
+    "logged": "Cena apuntada",
+    "updated": "Cena guardada",
+    "deleted": "Cena borrada",
+    "failed": "No se ha podido guardar. Inténtalo de nuevo."
   }
 }

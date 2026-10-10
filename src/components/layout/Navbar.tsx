@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "use-intl"
 import { Button } from "@/components/ui/Button"
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher"
+import { Cloche } from "@/components/ui/Cloche"
 import { IconSignOut } from "@/components/ui/Icons"
 import { NavIcon } from "@/components/ui/NavIcon"
 import { TransitionLink } from "@/components/ui/TransitionLink"
@@ -18,15 +18,16 @@ export const Navbar = () => {
   const current = useCurrentRouteKey()
   const { session } = useAuth()
   const signOut = useSignOut()
+  if (!session) return null
 
   return (
     <header className="z-nav fixed inset-x-0 top-0 h-navbar border-b border-border bg-surface">
       <div className="mx-auto flex h-full max-w-5xl items-center justify-between gap-4 px-4">
-        <TransitionLink href={localizedPath("home", locale)} className="keyboard-focus-ring text-subheading rounded-md">
+        <TransitionLink href={localizedPath("home", locale)} className="keyboard-focus-ring text-subheading flex items-center gap-2 rounded-md">
+          <Cloche className="h-10" />
           {t("app.name")}
         </TransitionLink>
-        {session && (
-          <nav aria-label={t("a11y.mainNav")} className="hidden md:block">
+        <nav aria-label={t("a11y.mainNav")} className="hidden md:block">
             <ul className="flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
                 <li key={item.routeKey}>
@@ -41,20 +42,16 @@ export const Navbar = () => {
                 </li>
               ))}
             </ul>
-          </nav>
-        )}
+        </nav>
         <div className="flex items-center gap-2">
-          <LanguageSwitcher />
-          {session && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => void signOut()}
-              aria-label={t("nav.signOut")}
-              icon={<IconSignOut className="h-5 w-5 shrink-0" />}
-              className="text-text-muted"
-            />
-          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => void signOut()}
+            aria-label={t("nav.signOut")}
+            icon={<IconSignOut className="h-5 w-5 shrink-0" />}
+            className="text-text-muted"
+          />
         </div>
       </div>
     </header>

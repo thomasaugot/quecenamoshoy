@@ -3,7 +3,30 @@
     "title": "On mange quoi ce soir",
     "description": "Trois idées de dîner pour ce soir."
   },
-  "hero": {
-    "title": "On mange quoi ce soir ?"
+  "greeting": "Salut",
+  "greetingNamed": "Salut, <em>{name}</em>",
+  "question": "on mange quoi ce soir ?",
+  "entries": {
+    "ask": {
+      "title": "Demande-moi",
+      "note": "quatre questions, trois idées"
+    },
+    "roulette": {
+      "title": "Roulette",
+      "note": "laisse le hasard choisir"
+    }
+  },
+  "recent": {
+    "title": "Derniers dîners",
+    "empty": "Aucun dîner noté pour l'instant. Ils apparaîtront ici."
+  },
+  "forgotten": {
+    "title": "Ça fait longtemps…",
+    "never": "jamais noté",
+    "more": "Voir les favoris"
+  },
+  "log": {
+    "question": "Déjà mangé ?",
+    "cta": "Note-le"
   }
 }

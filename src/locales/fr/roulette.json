@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Roulette",
+    "description": "Laisse faire le hasard."
+  },
+  "hero": {
+    "title": "Laisse faire le <em>hasard</em>",
+    "note": "pas de questions : dis-moi ce qui te tente et on tourne"
+  },
+  "tonight": {
+    "label": "Ce soir",
+    "change": "modifier",
+    "where": "Où",
+    "who": "Qui mange",
+    "home": "À la maison",
+    "travel": "En voyage",
+    "guests": "Invités",
+    "guestsLess": "Un invité de moins",
+    "guestsMore": "Un invité de plus",
+    "done": "OK"
+  },
+  "preference": {
+    "question": "Une envie particulière ?",
+    "chips": "Envies rapides",
+    "chip": {
+      "creamy": "quelque chose de crémeux",
+      "pasta": "des pâtes",
+      "light": "léger",
+      "comfort": "réconfortant",
+      "fish": "poisson",
+      "rice": "riz",
+      "no_meat": "pas de viande"
+    },
+    "textLabel": "Ou écris-le",
+    "textPlaceholder": "ex. quelque chose au curry",
+    "spin": "Tourner",
+    "surprise": "Surprends-moi"
+  },
+  "wheel": {
+    "label": "{count, plural, one {Roulette avec # plat} other {Roulette avec # plats}}"
+  },
+  "result": {
+    "tonight": "ce soir, ce sera…",
+    "eat": "On mange ça",
+    "again": "Encore un tour"
+  },
+  "toasts": {
+    "empty": "Aucun plat ne respecte toutes les règles ce soir. Ajoute des favoris ou change qui mange.",
+    "noMatch": "Aucun plat ne correspond à ton envie : je tourne avec tout."
+  }
+}

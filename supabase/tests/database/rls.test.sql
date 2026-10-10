@@ -1,6 +1,5 @@
 -- RLS contract (11-SECURITY): anonymous and user B are refused, user A can do what the app needs.
--- LOCAL stack only: `supabase start && supabase db reset && supabase test db`.
--- NOT RUN YET — files only until Thomas starts the local stack (MEMORY.md → Decisions).
+-- LOCAL stack only: `supabase start`, apply supabase/schema.sql, then `supabase test db` (CI does this).
 begin;
 create extension if not exists pgtap with schema extensions;
 select plan(14);

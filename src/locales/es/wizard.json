@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Pregúntame",
+    "description": "Cuatro preguntas y tres ideas para cenar."
+  },
+  "hero": {
+    "title": "¿Qué cenamos <em>hoy?</em>",
+    "note": "cuatro preguntas y te propongo tres ideas"
+  },
+  "thread": "Lo que me has dicho",
+  "change": "Cambiar: {answer}",
+  "location": {
+    "question": "¿Dónde estás hoy?",
+    "home": "En casa",
+    "travel": "De viaje",
+    "homeNote": "tu cocina de siempre",
+    "travelNote": "cocina pequeña, lo justo",
+    "short": "Dónde"
+  },
+  "temp": {
+    "question": "¿Frío o caliente?",
+    "hot": "Caliente",
+    "cold": "Frío",
+    "any": "Me da igual",
+    "hotNote": "algo que reconforte",
+    "coldNote": "fresquito y ligero",
+    "anyNote": "sorpréndeme",
+    "short": "Frío o caliente"
+  },
+  "leftovers": {
+    "question": "¿Necesitas sobras para comer mañana?",
+    "yes": "Sí, que sobre",
+    "no": "No",
+    "yesNote": "y mañana, tupper",
+    "noNote": "solo esta noche",
+    "short": "Sobras"
+  },
+  "diners": {
+    "question": "¿Quién come hoy?",
+    "people": "En la mesa",
+    "guests": "Invitados",
+    "guestsLess": "Un invitado menos",
+    "guestsMore": "Un invitado más",
+    "plusGuests": "{count, plural, one {+ # invitado} other {+ # invitados}}",
+    "guestRestrictions": "Los invitados no pueden comer",
+    "tonightOnly": "solo esta noche",
+    "go": "Ver ideas",
+    "nobody": "Marca al menos a alguien.",
+    "short": "Quién",
+    "needsConnection": "Las ideas necesitan conexión."
+  },
+  "results": {
+    "title": "Tres ideas para esta noche",
+    "thinking": "pensando en algo rico…",
+    "none": "No he encontrado nada que cumpla todo. Prueba otra vez.",
+    "failed": "No he podido pensar ahora mismo.",
+    "again": "Otras tres ideas",
+    "retry": "Reintentar",
+    "restart": "Empezar de nuevo"
+  },
+  "suggestion": {
+    "favourite": "Favorito",
+    "newIdea": "Idea nueva",
+    "minutes": "{count} min",
+    "eat": "Cenamos esto",
+    "save": "Guardar en favoritos",
+    "saved": "Guardado",
+    "allergenWarning": "Ojo: puede llevar {allergens}. No te lo propongo para esta mesa.",
+    "recipe": "Ver receta"
+  },
+  "toasts": {
+    "failed": "No he podido pensar ideas. Inténtalo de nuevo.",
+    "rateLimited": "Has llegado al límite de ideas por hoy. Mañana más.",
+    "saved": "Guardado en favoritos",
+    "saveFailed": "No se ha podido guardar. Inténtalo de nuevo.",
+    "accepted": "¡Apuntado! Que aproveche."
+  },
+  "counter": "Pregunta {current} de {total}",
+  "ticket": {
+    "title": "La comanda",
+    "pending": "…",
+    "now": "ahora"
+  }
+}

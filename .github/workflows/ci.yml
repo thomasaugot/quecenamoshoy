@@ -19,16 +19,21 @@ jobs:
       - run: npm run lint
       - run: npx tsc -b
       - run: npm test
-      - run: npx vite build --mode test && node scripts/write-headers.ts
+      - run: npx vite build --mode test
       - run: npm run size
 
   backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with: { deno-version: v2.x }
+      # Edge Functions sit outside tsc -b: their own typecheck + lint (12-TESTING_CI)
+      - run: deno check */index.ts && deno lint
+        working-directory: supabase/functions
       - uses: supabase/setup-cli@v1
         with: { version: latest }
       # LOCAL stack inside the runner — migrations + RLS tests, never the cloud project
       - run: supabase start
-      - run: supabase db reset
+      - run: psql "postgresql://postgres:postgres@127.0.0.1:54322/postgres" -v ON_ERROR_STOP=1 -f supabase/schema.sql
       - run: supabase test db

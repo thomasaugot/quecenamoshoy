@@ -3,7 +3,30 @@
     "title": "What's for dinner tonight",
     "description": "Three dinner ideas for tonight."
   },
-  "hero": {
-    "title": "What's for dinner tonight?"
+  "greeting": "Hello",
+  "greetingNamed": "Hello, <em>{name}</em>",
+  "question": "what's for dinner tonight?",
+  "entries": {
+    "ask": {
+      "title": "Ask me",
+      "note": "four questions, three ideas"
+    },
+    "roulette": {
+      "title": "Roulette",
+      "note": "let luck decide"
+    }
+  },
+  "recent": {
+    "title": "Recent dinners",
+    "empty": "No dinners logged yet. They'll show up here."
+  },
+  "forgotten": {
+    "title": "It's been a while…",
+    "never": "not logged yet",
+    "more": "See favourites"
+  },
+  "log": {
+    "question": "Already had dinner?",
+    "cta": "Log it"
   }
 }

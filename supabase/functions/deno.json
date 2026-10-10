@@ -1,0 +1,8 @@
+{
+  "nodeModulesDir": "none",
+  "imports": {
+    "@google/genai": "npm:@google/genai@2.24.0",
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@2.117.3"
+  },
+  "compilerOptions": { "strict": true }
+}

@@ -4,12 +4,19 @@
     "description": "Accede a Qué cenamos hoy."
   },
   "hero": {
-    "title": "Entrar"
+    "title": "Entrar",
+    "headline": "¿Qué cenamos <em>hoy?</em>",
+    "tagline": "tu cocina, la de siempre",
+    "hello": "¡hola!"
   },
   "form": {
     "email": "Email",
     "password": "Contraseña",
+    "emailPlaceholder": "tu email",
     "submit": "Entrar",
+    "magicLink": "o envíame un enlace mágico",
+    "magicSent": "Te he enviado un enlace. Mira tu correo.",
+    "magicFailed": "No he podido enviar el enlace. Inténtalo de nuevo.",
     "required": "Campo obligatorio",
     "invalidEmail": "Introduce un email válido",
     "failed": "Email o contraseña incorrectos",

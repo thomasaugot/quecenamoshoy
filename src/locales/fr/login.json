@@ -4,12 +4,19 @@
     "description": "Connecte-toi à Qué cenamos hoy."
   },
   "hero": {
-    "title": "Connexion"
+    "title": "Connexion",
+    "headline": "On mange quoi <em>ce soir ?</em>",
+    "tagline": "ta cuisine, comme toujours",
+    "hello": "salut !"
   },
   "form": {
     "email": "E-mail",
     "password": "Mot de passe",
+    "emailPlaceholder": "ton e-mail",
     "submit": "Se connecter",
+    "magicLink": "ou envoie-moi un lien magique",
+    "magicSent": "Je t'ai envoyé un lien. Regarde tes e-mails.",
+    "magicFailed": "Impossible d'envoyer le lien. Réessaie.",
     "required": "Champ obligatoire",
     "invalidEmail": "Saisis un e-mail valide",
     "failed": "E-mail ou mot de passe incorrect",

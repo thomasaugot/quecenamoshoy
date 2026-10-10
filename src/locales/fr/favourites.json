@@ -1,9 +1,62 @@
 {
   "meta": {
     "title": "Favoris",
-    "description": "Tes plats préférés."
+    "description": "Les plats que vous adorez."
   },
   "hero": {
-    "title": "Favoris"
+    "title": "Ce qu'on <em>adore</em>",
+    "count": "{count, plural, =0 {encore aucun plat} one {# plat} other {# plats}}",
+    "add": "Ajouter un plat",
+    "sort": "{count, plural, one {Classer # plat} other {Classer # plats}}"
+  },
+  "toolbar": {
+    "search": "Chercher",
+    "placeholder": "quiche, paella…",
+    "whose": "Favoris de",
+    "all": "Tout le monde"
+  },
+  "grid": {
+    "label": "Plats",
+    "empty": "Pas encore de plats. Ajoute le premier.",
+    "noMatch": "Aucun plat ne correspond."
+  },
+  "card": {
+    "edit": "Modifier {name}",
+    "lovedBy": "Qui l'adore",
+    "love": "Favori de {name}"
+  },
+  "editor": {
+    "newTitle": "Nouveau plat",
+    "editTitle": "Modifier le plat",
+    "name": "Nom",
+    "description": "Description",
+    "protein": "Ce qu'il y a dedans",
+    "traits": "Comment il est",
+    "lovedBy": "Adoré par",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer le plat",
+    "confirmDelete": "Oui, le supprimer",
+    "required": "Écris le nom du plat",
+    "tooLong": "120 caractères maximum"
+  },
+  "toasts": {
+    "created": "Plat ajouté",
+    "updated": "Plat enregistré",
+    "deleted": "Plat supprimé",
+    "saved": "Enregistré",
+    "inUse": "Ce plat est dans ton historique : impossible de le supprimer.",
+    "failed": "Impossible d'enregistrer. Réessaie.",
+    "sorted": "{count, plural, =0 {Rien à classer} one {# plat classé} other {# plats classés}}",
+    "sortLimit": "Assez de classement pour aujourd'hui. Demain, la suite.",
+    "sortFailed": "Impossible de classer les plats. Réessaie."
+  },
+  "import": {
+    "importLink": "Importer depuis un lien",
+    "importTitle": "Importer une recette",
+    "importLabel": "Lien de la recette",
+    "importHint": "Marmiton, etc. Je crée le plat avec sa photo et sa recette, et je le mets dans tes favoris.",
+    "import": "Importer",
+    "badUrl": "Colle un lien qui commence par https://"
   }
 }

@@ -4,12 +4,19 @@
     "description": "Sign in to Qué cenamos hoy."
   },
   "hero": {
-    "title": "Sign in"
+    "title": "Sign in",
+    "headline": "What's for dinner <em>tonight?</em>",
+    "tagline": "your kitchen, as always",
+    "hello": "hello!"
   },
   "form": {
     "email": "Email",
     "password": "Password",
+    "emailPlaceholder": "your email",
     "submit": "Sign in",
+    "magicLink": "or email me a magic link",
+    "magicSent": "I've sent you a link. Check your inbox.",
+    "magicFailed": "I couldn't send the link. Please try again.",
     "required": "Required",
     "invalidEmail": "Enter a valid email",
     "failed": "Wrong email or password",

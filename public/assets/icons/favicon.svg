@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 6 96 96">
+  <!-- The closed cloche: plate rim + terracotta lid + ink knob (colours from src/styles/theme.css) -->
+  <ellipse cx="60" cy="74" rx="46" ry="9" fill="#2a2620"/>
+  <path d="M22 74 A38 36 0 0 1 98 74 A38 6.5 0 0 1 22 74 Z" fill="#d2552f"/>
+  <path d="M32 65 A30 28 0 0 1 48 45" fill="none" stroke="#fffcf6" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
+  <rect x="57" y="33" width="6" height="6" rx="1" fill="#2a2620"/>
+  <circle cx="60" cy="31" r="5.5" fill="#2a2620"/>
+</svg>

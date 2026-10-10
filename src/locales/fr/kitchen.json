@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Ma cuisine",
+    "description": "Les appareils et ustensiles que j'ai, pour ne rien proposer que je ne puisse cuisiner."
+  },
+  "hero": {
+    "title": "Ma <em>cuisine</em>",
+    "note": "je ne propose que ce que tu peux cuisiner",
+    "which": "Quelle cuisine",
+    "home": "À la maison",
+    "travel": "En voyage"
+  },
+  "scan": {
+    "title": "Scanner la cuisine",
+    "intro": "Prends jusqu'à {max} photos du plan de travail, des placards et des tiroirs. Je te dis ce que je vois et tu confirmes.",
+    "cta": "Prendre ou choisir des photos",
+    "looking": "je regarde ta cuisine…",
+    "found": "{count, plural, one {J'ai vu # nouvelle chose} other {J'ai vu # nouvelles choses}}",
+    "review": "Ce que j'ai vu",
+    "add": "{count, plural, =0 {Ajouter} one {Ajouter #} other {Ajouter #}}",
+    "discard": "Ignorer",
+    "nothingNew": "Je n'ai rien vu que tu n'aies déjà.",
+    "again": "Essayer d'autres photos",
+    "unreadable": "Je n'ai pas pu lire ces photos."
+  },
+  "checklist": {
+    "title": "Ce que j'ai",
+    "intro": "Touche pour marquer ce que tu as. Rien qui demande un élément non marqué ne sera proposé.",
+    "appliance": "Appareils",
+    "cookware": "Poêles, casseroles et moules",
+    "tool": "Ustensiles",
+    "addLabel": "Autre chose",
+    "add": "Ajouter",
+    "appliancePlaceholder": "Ex. déshydrateur…",
+    "cookwarePlaceholder": "Ex. tajine…",
+    "toolPlaceholder": "Ex. siphon…",
+    "required": "Écris quelque chose",
+    "tooLong": "60 caractères maximum"
+  },
+  "toasts": {
+    "added": "{count, plural, one {Ajouté à ta cuisine} other {# choses ajoutées à ta cuisine}}",
+    "removed": "Retiré de ta cuisine",
+    "failed": "Impossible d'enregistrer. Réessaie.",
+    "scanFailed": "Je n'ai pas pu regarder les photos. Réessaie.",
+    "rateLimited": "Tu as atteint la limite de scans pour aujourd'hui. Réessaie demain."
+  }
+}

@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react"
 import { useLocation, useNavigationType } from "react-router"
 import { PAGE_LOADED_EVENT } from "@/constants/events"
 import { usePageReady } from "@/hooks/usePageReady"
+import { useAuth } from "@/hooks/useAuth"
 import { useScroll } from "@/hooks/useScroll"
 import { readScrollMemory, useScrollMemory } from "@/hooks/useScrollMemory"
 import { useTransition } from "@/hooks/useTransition"
@@ -18,6 +19,7 @@ export const PageShell = ({ children }: { children: ReactNode }) => {
   const { pageRef, resetTransition } = useTransition()
   const { scrollToTop, scrollToY } = useScroll()
   const isFirstRender = useRef(true)
+  const { session } = useAuth()
 
   useLayoutEffect(() => {
     const el = pageRef.current
@@ -65,7 +67,7 @@ export const PageShell = ({ children }: { children: ReactNode }) => {
       id="main-content"
       ref={pageRef}
       tabIndex={-1}
-      className="min-h-svh outline-none pt-navbar pb-bottom-nav md:pb-0"
+      className={`min-h-svh outline-none ${session ? "pt-navbar pb-bottom-nav md:pb-0" : ""}`}
     >
       {children}
     </main>

@@ -3,7 +3,30 @@
     "title": "Qué cenamos hoy",
     "description": "Tres ideas para cenar esta noche."
   },
-  "hero": {
-    "title": "¿Qué cenamos hoy?"
+  "greeting": "Hola",
+  "greetingNamed": "Hola, <em>{name}</em>",
+  "question": "¿qué cenamos hoy?",
+  "entries": {
+    "ask": {
+      "title": "Pregúntame",
+      "note": "cuatro preguntas, tres ideas"
+    },
+    "roulette": {
+      "title": "Ruleta",
+      "note": "que decida la suerte"
+    }
+  },
+  "recent": {
+    "title": "Últimas cenas",
+    "empty": "Aún no has apuntado ninguna cena. Las verás aquí."
+  },
+  "forgotten": {
+    "title": "Hace tiempo que no…",
+    "never": "aún sin apuntar",
+    "more": "Ver favoritos"
+  },
+  "log": {
+    "question": "¿Ya habéis cenado?",
+    "cta": "Apúntalo"
   }
 }

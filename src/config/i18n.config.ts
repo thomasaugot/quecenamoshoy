@@ -8,6 +8,10 @@ export const routeTranslations = {
   favourites: { es: "favoritos",      en: "favourites",     fr: "favoris" },
   history:    { es: "historial",      en: "history",        fr: "historique" },
   dish:       { es: "plato/:dishId",  en: "dish/:dishId",   fr: "plat/:dishId" },
+  wizard:     { es: "preguntame",     en: "ask-me",         fr: "demande-moi" },
+  roulette:   { es: "ruleta",         en: "roulette",       fr: "roulette" },
+  settings:   { es: "ajustes",        en: "settings",       fr: "reglages" },
+  kitchen:    { es: "cocina",         en: "kitchen",        fr: "cuisine" },
   login:      { es: "entrar",         en: "login",          fr: "connexion" },
 } as const satisfies Record<string, Record<Locale, string>>
 

@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Ruleta",
+    "description": "Que decida la suerte."
+  },
+  "hero": {
+    "title": "Que decida la <em>suerte</em>",
+    "note": "sin preguntas: dime qué te apetece y giramos"
+  },
+  "tonight": {
+    "label": "Esta noche",
+    "change": "cambiar",
+    "where": "Dónde",
+    "who": "Quién come",
+    "home": "En casa",
+    "travel": "De viaje",
+    "guests": "Invitados",
+    "guestsLess": "Un invitado menos",
+    "guestsMore": "Un invitado más",
+    "done": "Listo"
+  },
+  "preference": {
+    "question": "¿Alguna preferencia hoy?",
+    "chips": "Preferencias rápidas",
+    "chip": {
+      "creamy": "algo cremoso",
+      "pasta": "más pasta",
+      "light": "ligero",
+      "comfort": "reconfortante",
+      "fish": "pescado",
+      "rice": "arroz",
+      "no_meat": "nada de carne"
+    },
+    "textLabel": "O escríbelo",
+    "textPlaceholder": "ej. algo con curry",
+    "spin": "Girar",
+    "surprise": "Sorpréndeme"
+  },
+  "wheel": {
+    "label": "{count, plural, one {Ruleta con # plato} other {Ruleta con # platos}}"
+  },
+  "result": {
+    "tonight": "esta noche toca…",
+    "eat": "Cenamos esto",
+    "again": "Otra vuelta"
+  },
+  "toasts": {
+    "empty": "No queda ningún plato que cumpla todo esta noche. Añade favoritos o cambia quién come.",
+    "noMatch": "Ningún plato encaja con eso: giro con todos."
+  }
+}

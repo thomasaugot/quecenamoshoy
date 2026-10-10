@@ -1,9 +1,65 @@
 {
   "meta": {
     "title": "Plat",
-    "description": "Recette et détails du plat."
+    "description": "La recette et tout sur le plat."
+  },
+  "missing": {
+    "title": "Ce plat n'existe pas",
+    "back": "Retour aux favoris"
   },
   "hero": {
-    "title": "Plat"
+    "tags": "Comment il est",
+    "lovedBy": "adoré par {names}",
+    "nobody": "le favori de personne pour l'instant",
+    "lastEaten": "mangé {when}",
+    "neverEaten": "jamais noté"
+  },
+  "photo": {
+    "cta": "Prendre ou choisir une photo",
+    "uploading": "envoi…",
+    "unreadable": "Je n'ai pas pu lire cette photo."
+  },
+  "recipe": {
+    "title": "La recette",
+    "none": "Pas encore de recette. Je peux l'écrire, ou colle le lien d'une recette que tu aimes.",
+    "generate": "Écrire la recette",
+    "rewrite": "La réécrire",
+    "writing": "j'écris…",
+    "servings": "Pour combien",
+    "fewer": "Une personne de moins",
+    "more": "Une personne de plus",
+    "people": "pers.",
+    "importLabel": "Ou importe une recette",
+    "importHint": "Colle le lien (Marmiton, etc.). Je lis la recette de cette page.",
+    "import": "Importer",
+    "badUrl": "Colle un lien qui commence par https://",
+    "for": "{count, plural, one {Pour # personne} other {Pour # personnes}}",
+    "minutes": "{count} min",
+    "from": "de {site}",
+    "source": {
+      "ai": "écrite pour ta cuisine",
+      "mine": "ta version",
+      "imported": "importée"
+    },
+    "allergenWarning": "Attention : contient {allergens}.",
+    "equipment": "Ce qu'il te faut",
+    "ingredients": "Ingrédients",
+    "edit": "Modifier",
+    "ingredientsEdit": "Ingrédients — un par ligne : « 200 g — farine »",
+    "stepsEdit": "Étapes — une par ligne",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "adaptedFrom": "d'après {site}"
+  },
+  "toasts": {
+    "generated": "Recette prête",
+    "imported": "Recette importée",
+    "saved": "Recette enregistrée",
+    "limit": "Tu as atteint la limite de recettes pour aujourd'hui. Demain, la suite.",
+    "noRecipe": "Je n'ai trouvé aucune recette sur cette page.",
+    "unreachable": "Je n'ai pas pu ouvrir ce lien.",
+    "failed": "Ça n'a pas marché. Réessaie.",
+    "photo": "Photo enregistrée",
+    "photoFailed": "Impossible d'envoyer la photo."
   }
 }

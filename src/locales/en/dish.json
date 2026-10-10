@@ -1,9 +1,65 @@
 {
   "meta": {
     "title": "Dish",
-    "description": "Recipe and details of the dish."
+    "description": "The recipe and everything about the dish."
+  },
+  "missing": {
+    "title": "This dish doesn't exist",
+    "back": "Back to favourites"
   },
   "hero": {
-    "title": "Dish"
+    "tags": "What it's like",
+    "lovedBy": "loved by {names}",
+    "nobody": "nobody's favourite yet",
+    "lastEaten": "you had it {when}",
+    "neverEaten": "not logged yet"
+  },
+  "photo": {
+    "cta": "Take or choose a photo",
+    "uploading": "uploading…",
+    "unreadable": "I couldn't read that photo."
+  },
+  "recipe": {
+    "title": "The recipe",
+    "none": "No recipe yet. I can write one, or paste the link of one you like.",
+    "generate": "Write the recipe",
+    "rewrite": "Rewrite it",
+    "writing": "writing…",
+    "servings": "How many",
+    "fewer": "One less",
+    "more": "One more",
+    "people": "ppl",
+    "importLabel": "Or import a recipe",
+    "importHint": "Paste the link (Marmiton, etc.). I read the recipe from that page.",
+    "import": "Import",
+    "badUrl": "Paste a link starting with https://",
+    "for": "{count, plural, one {Serves #} other {Serves #}}",
+    "minutes": "{count} min",
+    "from": "from {site}",
+    "source": {
+      "ai": "written for your kitchen",
+      "mine": "your version",
+      "imported": "imported"
+    },
+    "allergenWarning": "Careful: it contains {allergens}.",
+    "equipment": "What you need",
+    "ingredients": "Ingredients",
+    "edit": "Edit",
+    "ingredientsEdit": "Ingredients — one per line: \"200 g — flour\"",
+    "stepsEdit": "Steps — one per line",
+    "save": "Save",
+    "cancel": "Cancel",
+    "adaptedFrom": "based on {site}"
+  },
+  "toasts": {
+    "generated": "Recipe ready",
+    "imported": "Recipe imported",
+    "saved": "Recipe saved",
+    "limit": "You've reached today's recipe limit. More tomorrow.",
+    "noRecipe": "I couldn't find a recipe on that page.",
+    "unreachable": "I couldn't open that link.",
+    "failed": "That didn't work. Try again.",
+    "photo": "Photo saved",
+    "photoFailed": "Couldn't upload the photo."
   }
 }

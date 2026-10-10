@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Demande-moi",
+    "description": "Quatre questions, trois idées de dîner."
+  },
+  "hero": {
+    "title": "On mange quoi <em>ce soir ?</em>",
+    "note": "quatre questions et je te propose trois idées"
+  },
+  "thread": "Ce que tu m'as dit",
+  "change": "Modifier : {answer}",
+  "location": {
+    "question": "Tu es où aujourd'hui ?",
+    "home": "À la maison",
+    "travel": "En voyage",
+    "homeNote": "ta cuisine de toujours",
+    "travelNote": "petite cuisine, le strict nécessaire",
+    "short": "Où"
+  },
+  "temp": {
+    "question": "Froid ou chaud ?",
+    "hot": "Chaud",
+    "cold": "Froid",
+    "any": "Peu importe",
+    "hotNote": "quelque chose de réconfortant",
+    "coldNote": "frais et léger",
+    "anyNote": "surprends-moi",
+    "short": "Froid ou chaud"
+  },
+  "leftovers": {
+    "question": "Il te faut des restes pour demain midi ?",
+    "yes": "Oui, en faire plus",
+    "no": "Non",
+    "yesNote": "et demain, gamelle",
+    "noNote": "juste ce soir",
+    "short": "Restes"
+  },
+  "diners": {
+    "question": "Qui mange ce soir ?",
+    "people": "À table",
+    "guests": "Invités",
+    "guestsLess": "Un invité de moins",
+    "guestsMore": "Un invité de plus",
+    "plusGuests": "{count, plural, one {+ # invité} other {+ # invités}}",
+    "guestRestrictions": "Les invités ne peuvent pas manger",
+    "tonightOnly": "ce soir seulement",
+    "go": "Voir les idées",
+    "nobody": "Coche au moins quelqu'un.",
+    "short": "Qui",
+    "needsConnection": "Les idées ont besoin d'une connexion."
+  },
+  "results": {
+    "title": "Trois idées pour ce soir",
+    "thinking": "je cherche quelque chose de bon…",
+    "none": "Rien ne respecte toutes les règles. Réessaie.",
+    "failed": "Je n'ai pas pu réfléchir pour l'instant.",
+    "again": "Trois autres idées",
+    "retry": "Réessayer",
+    "restart": "Recommencer"
+  },
+  "suggestion": {
+    "favourite": "Favori",
+    "newIdea": "Nouvelle idée",
+    "minutes": "{count} min",
+    "eat": "On mange ça",
+    "save": "Ajouter aux favoris",
+    "saved": "Ajouté",
+    "allergenWarning": "Attention : peut contenir {allergens}. Pas pour cette table.",
+    "recipe": "Voir la recette"
+  },
+  "toasts": {
+    "failed": "Je n'ai pas trouvé d'idées. Réessaie.",
+    "rateLimited": "Tu as atteint la limite d'idées pour aujourd'hui. Demain, il y en aura d'autres.",
+    "saved": "Ajouté aux favoris",
+    "saveFailed": "Impossible d'enregistrer. Réessaie.",
+    "accepted": "C'est noté ! Bon appétit."
+  },
+  "counter": "Question {current} sur {total}",
+  "ticket": {
+    "title": "La commande",
+    "pending": "…",
+    "now": "maintenant"
+  }
+}

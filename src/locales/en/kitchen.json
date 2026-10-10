@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "My kitchen",
+    "description": "The appliances and tools I own, so nothing is suggested that I can't cook."
+  },
+  "hero": {
+    "title": "My <em>kitchen</em>",
+    "note": "I only suggest what you can actually cook",
+    "which": "Which kitchen",
+    "home": "At home",
+    "travel": "Travelling"
+  },
+  "scan": {
+    "title": "Scan the kitchen",
+    "intro": "Take up to {max} photos of the worktop, cupboards and drawers. I'll tell you what I see and you confirm.",
+    "cta": "Take or choose photos",
+    "looking": "looking at your kitchen…",
+    "found": "{count, plural, one {I spotted # new thing} other {I spotted # new things}}",
+    "review": "What I spotted",
+    "add": "{count, plural, =0 {Add} one {Add #} other {Add #}}",
+    "discard": "Discard",
+    "nothingNew": "I didn't see anything you don't already have.",
+    "again": "Try other photos",
+    "unreadable": "I couldn't read those photos."
+  },
+  "checklist": {
+    "title": "What I have",
+    "intro": "Tap to mark what you have. Nothing that needs an unmarked item will ever be suggested.",
+    "appliance": "Appliances",
+    "cookware": "Pans, pots and tins",
+    "tool": "Tools",
+    "addLabel": "Something else",
+    "add": "Add",
+    "appliancePlaceholder": "e.g. dehydrator…",
+    "cookwarePlaceholder": "e.g. tagine…",
+    "toolPlaceholder": "e.g. cream whipper…",
+    "required": "Type something",
+    "tooLong": "60 characters at most"
+  },
+  "toasts": {
+    "added": "{count, plural, one {Added to your kitchen} other {# things added to your kitchen}}",
+    "removed": "Removed from your kitchen",
+    "failed": "Couldn't save. Try again.",
+    "scanFailed": "I couldn't look at the photos. Try again.",
+    "rateLimited": "You've reached today's scan limit. Try tomorrow."
+  }
+}

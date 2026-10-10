@@ -1,5 +1,9 @@
-import "@fontsource-variable/inter"
+import "@fontsource/cormorant-garamond/500.css"
+import "@fontsource/cormorant-garamond/500-italic.css"
+import "@fontsource-variable/caveat"
+import "@fontsource-variable/jost"
 import "@/globals.css"
+import "@/i18n/restore-locale"   // must run before the router is created
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { RouterProvider } from "react-router/dom"

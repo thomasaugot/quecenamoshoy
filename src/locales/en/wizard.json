@@ -1,0 +1,84 @@
+{
+  "meta": {
+    "title": "Ask me",
+    "description": "Four questions, three dinner ideas."
+  },
+  "hero": {
+    "title": "What's for dinner <em>tonight?</em>",
+    "note": "four questions and I'll suggest three ideas"
+  },
+  "thread": "What you told me",
+  "change": "Change: {answer}",
+  "location": {
+    "question": "Where are you today?",
+    "home": "At home",
+    "travel": "Travelling",
+    "homeNote": "your usual kitchen",
+    "travelNote": "small kitchen, just the basics",
+    "short": "Where"
+  },
+  "temp": {
+    "question": "Hot or cold?",
+    "hot": "Hot",
+    "cold": "Cold",
+    "any": "Either",
+    "hotNote": "something comforting",
+    "coldNote": "fresh and light",
+    "anyNote": "surprise me",
+    "short": "Hot or cold"
+  },
+  "leftovers": {
+    "question": "Do you need leftovers for tomorrow's lunch?",
+    "yes": "Yes, make extra",
+    "no": "No",
+    "yesNote": "lunchbox for tomorrow",
+    "noNote": "just tonight",
+    "short": "Leftovers"
+  },
+  "diners": {
+    "question": "Who's eating today?",
+    "people": "At the table",
+    "guests": "Guests",
+    "guestsLess": "One guest less",
+    "guestsMore": "One guest more",
+    "plusGuests": "{count, plural, one {+ # guest} other {+ # guests}}",
+    "guestRestrictions": "Guests can't eat",
+    "tonightOnly": "tonight only",
+    "go": "Show ideas",
+    "nobody": "Tick at least someone.",
+    "short": "Who",
+    "needsConnection": "Ideas need a connection."
+  },
+  "results": {
+    "title": "Three ideas for tonight",
+    "thinking": "thinking of something tasty…",
+    "none": "Nothing fit every rule. Try again.",
+    "failed": "I couldn't think right now.",
+    "again": "Three other ideas",
+    "retry": "Try again",
+    "restart": "Start over"
+  },
+  "suggestion": {
+    "favourite": "Favourite",
+    "newIdea": "New idea",
+    "minutes": "{count} min",
+    "eat": "Let's have this",
+    "save": "Save to favourites",
+    "saved": "Saved",
+    "allergenWarning": "Careful: it may contain {allergens}. Not for this table.",
+    "recipe": "See recipe"
+  },
+  "toasts": {
+    "failed": "I couldn't come up with ideas. Try again.",
+    "rateLimited": "You've reached today's limit of ideas. More tomorrow.",
+    "saved": "Saved to favourites",
+    "saveFailed": "Couldn't save. Try again.",
+    "accepted": "Logged! Enjoy your dinner."
+  },
+  "counter": "Question {current} of {total}",
+  "ticket": {
+    "title": "The order",
+    "pending": "…",
+    "now": "now"
+  }
+}

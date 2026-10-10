@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Settings",
+    "description": "Who eats, what they can't eat and where you want to go."
+  },
+  "hero": {
+    "title": "House <em>rules</em>",
+    "note": "so the kitchen knows you"
+  },
+  "people": {
+    "title": "At the table",
+    "intro": "What someone can't eat always wins. What they dislike is avoided. Goals only nudge.",
+    "me": "you",
+    "nameLabel": "Name",
+    "rename": "Rename {name}",
+    "remove": "Remove from the table",
+    "confirmRemove": "Yes, remove {name}",
+    "keep": "No, keep them"
+  },
+  "restrictions": {
+    "allergy": {
+      "title": "Allergies and intolerances",
+      "note": "never",
+      "add": "Another allergy",
+      "placeholder": "e.g. kiwi, pine nuts…"
+    },
+    "diet": {
+      "title": "Diet",
+      "note": "always",
+      "add": "Another diet",
+      "placeholder": "e.g. no sugar…"
+    },
+    "dislike": {
+      "title": "Doesn't like",
+      "note": "rather not",
+      "add": "Something else they dislike",
+      "placeholder": "e.g. cucumber, lamb…"
+    },
+    "submit": "Add",
+    "required": "Type something",
+    "tooLong": "60 characters at most"
+  },
+  "goals": {
+    "title": "Goals",
+    "note": "nudges, never bans",
+    "limit": "at most per week",
+    "min": "at least per week",
+    "decrease": "Once less",
+    "increase": "Once more"
+  },
+  "add": {
+    "title": "Add someone",
+    "titleMe": "Start with you",
+    "nameLabel": "Name",
+    "placeholder": "e.g. Alex",
+    "submit": "Add",
+    "required": "Type a name",
+    "tooLong": "60 characters at most"
+  },
+  "general": {
+    "title": "The house",
+    "avoid": {
+      "label": "Don't repeat what we ate in the last",
+      "unit": "days",
+      "hint": "Suggestions skip what you've just had.",
+      "decrease": "One day less",
+      "increase": "One day more"
+    },
+    "diners": {
+      "label": "Who usually eats",
+      "hint": "Ticked by default when you ask what's for dinner."
+    },
+    "language": "Language",
+    "motion": "Reduce animations",
+    "signOut": "Sign out",
+    "kitchen": {
+      "label": "My kitchen",
+      "link": "What I have in the kitchen"
+    }
+  },
+  "toasts": {
+    "added": "Added to the table",
+    "renamed": "Name changed",
+    "removed": "Removed from the table",
+    "saved": "Saved",
+    "failed": "Couldn't save. Try again."
+  }
+}

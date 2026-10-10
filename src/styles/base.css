@@ -1,9 +1,14 @@
 /* No box-sizing/margin/padding resets — Tailwind Preflight handles them.
    No `scroll-behavior: smooth` on html — it fights Lenis (03-CSS_TOKENS). */
 
-html { background: var(--color-bg); color: var(--color-text); font-family: var(--font-sans); }
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-regular);
+}
 body { min-height: 100svh; }
-::selection { background: var(--color-primary); color: var(--color-on-primary); }
+::selection { background: var(--color-highlight); color: var(--color-on-highlight); }
 button, [role="button"], [type="button"], [type="submit"], [type="reset"] { cursor: pointer; }
 input, textarea, select { font-size: 1rem; } /* iOS zoom prevention */
 dialog::backdrop { background: var(--color-backdrop); }
@@ -18,14 +23,59 @@ dialog::backdrop { background: var(--color-backdrop); }
 .z-nav             { z-index: var(--z-nav); }
 .z-loader          { z-index: var(--z-loader); }
 
-.text-display    { font-size: var(--text-display); font-weight: var(--font-weight-black);    line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
-.text-title      { font-size: var(--text-4xl);     font-weight: var(--font-weight-bold);     line-height: var(--leading-tight); }
-.text-heading    { font-size: var(--text-2xl);     font-weight: var(--font-weight-bold);     line-height: var(--leading-snug); }
-.text-subheading { font-size: var(--text-xl);      font-weight: var(--font-weight-semibold); line-height: var(--leading-snug); }
-.text-body       { font-size: var(--text-base);    font-weight: var(--font-weight-regular);  line-height: var(--leading-normal); color: var(--color-text); }
-.text-body-sm    { font-size: var(--text-sm);      font-weight: var(--font-weight-regular);  line-height: var(--leading-normal); color: var(--color-text-muted); }
-.text-button     { font-size: var(--text-base);    font-weight: var(--font-weight-semibold); line-height: var(--leading-tight); }
-.text-label      { font-size: var(--text-sm);      font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; }
+/* ── Semantic text — ONLY these classes for text styling in components ───────────────── */
+
+/* Cormorant Garamond: titles. An <em> inside turns italic terracotta: "¿Qué cenamos <em>hoy?</em>" */
+.text-display    { font-family: var(--font-display); font-size: var(--text-display); font-weight: var(--font-weight-medium); line-height: var(--leading-none); }
+.text-title      { font-family: var(--font-display); font-size: var(--text-4xl);     font-weight: var(--font-weight-medium); line-height: var(--leading-none); }
+.text-heading    { font-family: var(--font-display); font-size: var(--text-2xl);     font-weight: var(--font-weight-medium); line-height: var(--leading-tight); }
+.text-subheading { font-family: var(--font-display); font-size: var(--text-xl);      font-weight: var(--font-weight-medium); line-height: var(--leading-tight); }
+:is(.text-display, .text-title, .text-heading) em { font-style: italic; color: var(--color-accent); }
+
+/* Caveat: the kitchen speaks by hand */
+.text-voice-lg   { font-family: var(--font-hand); font-size: var(--text-hand-lg); font-weight: var(--font-weight-bold);     line-height: var(--leading-tight); }
+.text-voice      { font-family: var(--font-hand); font-size: var(--text-hand);    font-weight: var(--font-weight-semibold); line-height: var(--leading-snug); color: var(--color-primary); }
+.text-note       { font-family: var(--font-hand); font-size: var(--text-hand-sm); font-weight: var(--font-weight-semibold); line-height: var(--leading-snug); }
+
+/* Jost: everything you read or tap */
+.text-body       { font-family: var(--font-sans); font-size: var(--text-base); font-weight: var(--font-weight-regular); line-height: var(--leading-normal); color: var(--color-text); }
+.text-body-sm    { font-family: var(--font-sans); font-size: var(--text-sm);   font-weight: var(--font-weight-light);   line-height: var(--leading-normal); color: var(--color-text-muted); }
+.text-button     { font-family: var(--font-sans); font-size: var(--text-base); font-weight: var(--font-weight-medium);  line-height: var(--leading-none); }
+.text-label      { font-family: var(--font-sans); font-size: var(--text-sm);   font-weight: var(--font-weight-medium);  line-height: var(--leading-none); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-text-muted); }
+
+/* ── The design's recurring shapes — named, never var() in JSX ─────────────────────────── */
+
+/* A dish photo pinned on the fridge: white border, warm shadow. Tilt with -rotate-* utilities. */
+@utility photo-frame {
+  display: block;
+  object-fit: cover;
+  border: var(--photo-border) solid var(--color-surface);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+@utility photo-frame-sm {
+  display: block;
+  object-fit: cover;
+  border: var(--photo-border-sm) solid var(--color-surface);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-sm);
+}
+
+/* My replies in the conversation: mustard, tail bottom-right */
+@utility bubble-reply {
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+}
+
+/* Fields are a line to write on, not a box */
+@utility field-line { border-bottom: 1.5px solid var(--color-text); }
+
+/* Layout offsets for the fixed navbar / bottom tabs */
+@utility pt-navbar { padding-top: var(--navbar-height); }
+@utility h-navbar { height: var(--navbar-height); }
+@utility pb-bottom-nav { padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }
+@utility h-bottom-nav { height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }
 
 /* PageLoading (14-PERFORMANCE): nothing for 1s, then the mark fades in and swells */
 .page-loading-mark {
@@ -36,8 +86,3 @@ dialog::backdrop { background: var(--color-backdrop); }
 @keyframes page-loading-in { from { opacity: 0; scale: 0.94; } to { opacity: 1; scale: 1; } }
 @keyframes page-loading-swell { 0%, 100% { scale: 1; } 50% { scale: 1.04; } }
 
-/* Layout offsets for the fixed navbar / bottom tabs — named, never var() in JSX */
-@utility pt-navbar { padding-top: var(--navbar-height); }
-@utility h-navbar { height: var(--navbar-height); }
-@utility pb-bottom-nav { padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }
-@utility h-bottom-nav { height: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom)); }

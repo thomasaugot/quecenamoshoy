@@ -30,6 +30,10 @@ const localeBranch = (locale: Locale): RouteObject => ({
             { path: routeTranslations.favourites[locale], handle: { routeKey: "favourites" }, lazy: page(routeModules.favourites, "FavouritesPage") },
             { path: routeTranslations.history[locale], handle: { routeKey: "history" }, lazy: page(routeModules.history, "HistoryPage") },
             { path: routeTranslations.dish[locale], handle: { routeKey: "dish" }, lazy: page(routeModules.dish, "DishPage") },
+            { path: routeTranslations.wizard[locale], handle: { routeKey: "wizard" }, lazy: page(routeModules.wizard, "WizardPage") },
+            { path: routeTranslations.roulette[locale], handle: { routeKey: "roulette" }, lazy: page(routeModules.roulette, "RoulettePage") },
+            { path: routeTranslations.settings[locale], handle: { routeKey: "settings" }, lazy: page(routeModules.settings, "SettingsPage") },
+            { path: routeTranslations.kitchen[locale], handle: { routeKey: "kitchen" }, lazy: page(routeModules.kitchen, "KitchenPage") },
           ],
         },
         { path: "*", lazy: page(routeModules.notFound, "NotFoundPage") },
@@ -39,6 +43,8 @@ const localeBranch = (locale: Locale): RouteObject => ({
 })
 
 // The ONLY place routes are declared (04-CLIENT_SERVER). One branch per locale (09-I18N).
+// hydrateFallbackElement on the ROOT: until the first locale's messages are loaded nothing
+// renders — RootLayout needs those messages (an empty fallback lower down let it render without).
 export const router = createRouter([
-  { element: <RootLayout />, children: locales.map(localeBranch) },
+  { element: <RootLayout />, hydrateFallbackElement: <></>, children: locales.map(localeBranch) },
 ])

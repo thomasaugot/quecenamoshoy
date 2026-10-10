@@ -1,9 +1,65 @@
 {
   "meta": {
     "title": "Plato",
-    "description": "Receta e información del plato."
+    "description": "La receta y todo sobre el plato."
+  },
+  "missing": {
+    "title": "Este plato no existe",
+    "back": "Volver a favoritos"
   },
   "hero": {
-    "title": "Plato"
+    "tags": "Cómo es",
+    "lovedBy": "les encanta a {names}",
+    "nobody": "aún no es favorito de nadie",
+    "lastEaten": "lo cenasteis {when}",
+    "neverEaten": "aún sin apuntar"
+  },
+  "photo": {
+    "cta": "Hacer o elegir una foto",
+    "uploading": "subiendo…",
+    "unreadable": "No he podido leer esa foto."
+  },
+  "recipe": {
+    "title": "La receta",
+    "none": "Aún no hay receta. Te la escribo yo, o pega el enlace de una que te guste.",
+    "generate": "Escribir la receta",
+    "rewrite": "Reescribirla",
+    "writing": "escribiendo…",
+    "servings": "Para cuántos",
+    "fewer": "Uno menos",
+    "more": "Uno más",
+    "people": "pers.",
+    "importLabel": "O importa una receta",
+    "importHint": "Pega el enlace (Marmiton, etc.). Leo la receta de esa página.",
+    "import": "Importar",
+    "badUrl": "Pega un enlace que empiece por https://",
+    "for": "{count, plural, one {Para # persona} other {Para # personas}}",
+    "minutes": "{count} min",
+    "from": "de {site}",
+    "source": {
+      "ai": "escrita para tu cocina",
+      "mine": "tu versión",
+      "imported": "importada"
+    },
+    "allergenWarning": "Ojo: lleva {allergens}.",
+    "equipment": "Lo que necesitas",
+    "ingredients": "Ingredientes",
+    "edit": "Editar",
+    "ingredientsEdit": "Ingredientes — uno por línea: «200 g — harina»",
+    "stepsEdit": "Pasos — uno por línea",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "adaptedFrom": "según {site}"
+  },
+  "toasts": {
+    "generated": "Receta lista",
+    "imported": "Receta importada",
+    "saved": "Receta guardada",
+    "limit": "Has llegado al límite de recetas por hoy. Mañana más.",
+    "noRecipe": "No he encontrado ninguna receta en esa página.",
+    "unreachable": "No he podido abrir ese enlace.",
+    "failed": "No se ha podido. Inténtalo de nuevo.",
+    "photo": "Foto guardada",
+    "photoFailed": "No se ha podido subir la foto."
   }
 }

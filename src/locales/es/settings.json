@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Ajustes",
+    "description": "Quién come, qué no puede comer y hacia dónde queréis ir."
+  },
+  "hero": {
+    "title": "Ajustes de la <em>casa</em>",
+    "note": "para que la cocina os conozca"
+  },
+  "people": {
+    "title": "En la mesa",
+    "intro": "Lo que alguien no puede comer manda siempre. Lo que no le gusta, se evita. Los objetivos solo empujan.",
+    "me": "tú",
+    "nameLabel": "Nombre",
+    "rename": "Cambiar el nombre de {name}",
+    "remove": "Quitar de la mesa",
+    "confirmRemove": "Sí, quitar a {name}",
+    "keep": "No, dejarlo"
+  },
+  "restrictions": {
+    "allergy": {
+      "title": "Alergias e intolerancias",
+      "note": "nunca",
+      "add": "Otra alergia",
+      "placeholder": "Ej. kiwi, piñones…"
+    },
+    "diet": {
+      "title": "Dieta",
+      "note": "siempre",
+      "add": "Otra dieta",
+      "placeholder": "Ej. sin azúcar…"
+    },
+    "dislike": {
+      "title": "No le gusta",
+      "note": "mejor no",
+      "add": "Otra cosa que no le gusta",
+      "placeholder": "Ej. pepino, cordero…"
+    },
+    "submit": "Añadir",
+    "required": "Escribe algo",
+    "tooLong": "Máximo 60 caracteres"
+  },
+  "goals": {
+    "title": "Objetivos",
+    "note": "empujoncitos, nunca prohibiciones",
+    "limit": "máximo por semana",
+    "min": "mínimo por semana",
+    "decrease": "Una vez menos",
+    "increase": "Una vez más"
+  },
+  "add": {
+    "title": "Añadir a alguien",
+    "titleMe": "Empieza por ti",
+    "nameLabel": "Nombre",
+    "placeholder": "Ej. Álex",
+    "submit": "Añadir",
+    "required": "Escribe un nombre",
+    "tooLong": "Máximo 60 caracteres"
+  },
+  "general": {
+    "title": "La casa",
+    "avoid": {
+      "label": "No repetir lo cenado en los últimos",
+      "unit": "días",
+      "hint": "Las sugerencias evitan lo que ya cenasteis.",
+      "decrease": "Un día menos",
+      "increase": "Un día más"
+    },
+    "diners": {
+      "label": "Quién cena normalmente",
+      "hint": "Viene marcado al preguntar qué cenamos."
+    },
+    "language": "Idioma",
+    "motion": "Reducir animaciones",
+    "signOut": "Cerrar sesión",
+    "kitchen": {
+      "label": "Mi cocina",
+      "link": "Lo que tengo en la cocina"
+    }
+  },
+  "toasts": {
+    "added": "Añadido a la mesa",
+    "renamed": "Nombre cambiado",
+    "removed": "Quitado de la mesa",
+    "saved": "Guardado",
+    "failed": "No se ha podido guardar. Inténtalo de nuevo."
+  }
+}

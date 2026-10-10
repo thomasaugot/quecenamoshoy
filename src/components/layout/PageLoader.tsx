@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { useTranslations } from "use-intl"
+import { Cloche } from "@/components/ui/Cloche"
 import { useAppReady, useMarkLoaderGone } from "@/hooks/useAppReady"
 import { useMotionPreference } from "@/hooks/useMotionPreference"
 import { announce } from "@/utils/announce"
@@ -53,9 +54,10 @@ export const PageLoader = () => {
       className="z-loader fixed inset-0 flex items-center justify-center bg-bg"
     >
       <div className="flex w-56 flex-col items-center gap-6">
-        <p data-anim="loader-mark" className="invisible text-heading text-center text-text">
-          {t("app.name")}
-        </p>
+        <div data-anim="loader-mark" className="invisible flex flex-col items-center gap-3">
+          <Cloche inLoader className="h-24" />
+          <p className="text-heading text-center text-text">{t("app.name")}</p>
+        </div>
         <div aria-hidden="true" className="relative h-0.5 w-full overflow-hidden rounded-full bg-border">
           <div data-anim="loader-line" className="absolute inset-0 origin-left bg-primary [transform:scaleX(0)]" />
         </div>

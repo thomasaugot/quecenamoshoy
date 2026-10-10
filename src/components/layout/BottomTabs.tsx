@@ -16,7 +16,7 @@ export const BottomTabs = () => {
 
   return (
     <nav aria-label={t("a11y.mainNav")} className="z-nav fixed inset-x-0 bottom-0 h-bottom-nav border-t border-border bg-surface pb-[env(safe-area-inset-bottom)] md:hidden">
-      <ul className="grid h-full grid-cols-3">
+      <ul className="grid h-full grid-cols-5">
         {NAV_ITEMS.map((item) => (
           <li key={item.routeKey} className="flex">
             <TransitionLink

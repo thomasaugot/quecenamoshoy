@@ -18,6 +18,15 @@ export const signInWithPassword = async (email: string, password: string): Promi
   if (error) throw new Error(`signIn failed: ${error.status ?? "unknown"}`)
 }
 
+// Magic link for the EXISTING account only: shouldCreateUser false, sign-ups stay closed.
+export const sendMagicLink = async (email: string, redirectTo: string): Promise<void> => {
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: { shouldCreateUser: false, emailRedirectTo: redirectTo },
+  })
+  if (error) throw new Error(`magic link failed: ${error.status ?? "unknown"}`)
+}
+
 export const signOut = async (): Promise<void> => {
   const { error } = await supabase.auth.signOut()
   if (error) throw new Error(`signOut failed: ${error.status ?? "unknown"}`)

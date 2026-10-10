@@ -1,0 +1,44 @@
+import type { Json } from "@/types/database"
+import type { Ingredient, Recipe, RecipeDraft } from "@/types/recipe"
+
+const SEPARATOR = " — "
+
+// JSON from the database, never trusted as-is: only well-formed entries survive
+export const parseIngredients = (value: Json): Ingredient[] =>
+  (Array.isArray(value) ? value : []).flatMap((i) => {
+    if (typeof i !== "object" || i === null || Array.isArray(i)) return []
+    const item = typeof i.item === "string" ? i.item : ""
+    const quantity = typeof i.quantity === "string" ? i.quantity : ""
+    return item.trim() ? [{ item, quantity }] : []
+  })
+
+export const parseSteps = (value: Json): string[] =>
+  (Array.isArray(value) ? value : []).flatMap((s) => (typeof s === "string" && s.trim() ? [s] : []))
+
+export const toDraft = (r: Recipe): RecipeDraft => ({
+  servings: r.servings,
+  prepMinutes: r.prepMinutes,
+  ingredientsText: r.ingredients.map((i) => (i.quantity ? `${i.quantity}${SEPARATOR}${i.item}` : i.item)).join("\n"),
+  stepsText: r.steps.join("\n"),
+})
+
+// "200 g — harina" → { quantity: "200 g", item: "harina" }; a line without " — " is all item
+export const ingredientsFromText = (text: string): Ingredient[] =>
+  text.split("\n").map((l) => l.trim()).filter(Boolean).map((line) => {
+    const at = line.indexOf(SEPARATOR.trim())
+    return at > 0
+      ? { quantity: line.slice(0, at).trim(), item: line.slice(at + 1).trim() }
+      : { quantity: "", item: line }
+  })
+
+export const stepsFromText = (text: string): string[] =>
+  text.split("\n").map((l) => l.trim().replace(/^\d+[.)]\s*/, "")).filter(Boolean)
+
+// Only https links are imported (the Edge Function refuses anything else too)
+export const isRecipeUrl = (text: string) => {
+  try { return new URL(text.trim()).protocol === "https:" } catch { return false }
+}
+
+export const hostOf = (url: string) => {
+  try { return new URL(url).hostname.replace(/^www\./, "") } catch { return url }
+}

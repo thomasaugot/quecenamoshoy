@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "title": "Réglages",
+    "description": "Qui mange, ce qu'il ne peut pas manger et où vous voulez aller."
+  },
+  "hero": {
+    "title": "Les règles de la <em>maison</em>",
+    "note": "pour que la cuisine vous connaisse"
+  },
+  "people": {
+    "title": "À table",
+    "intro": "Ce que quelqu'un ne peut pas manger passe toujours en premier. Ce qu'il n'aime pas est évité. Les objectifs ne font que pousser.",
+    "me": "toi",
+    "nameLabel": "Prénom",
+    "rename": "Renommer {name}",
+    "remove": "Retirer de la table",
+    "confirmRemove": "Oui, retirer {name}",
+    "keep": "Non, garder"
+  },
+  "restrictions": {
+    "allergy": {
+      "title": "Allergies et intolérances",
+      "note": "jamais",
+      "add": "Une autre allergie",
+      "placeholder": "Ex. kiwi, pignons…"
+    },
+    "diet": {
+      "title": "Régime",
+      "note": "toujours",
+      "add": "Un autre régime",
+      "placeholder": "Ex. sans sucre…"
+    },
+    "dislike": {
+      "title": "N'aime pas",
+      "note": "plutôt pas",
+      "add": "Autre chose qu'il n'aime pas",
+      "placeholder": "Ex. concombre, agneau…"
+    },
+    "submit": "Ajouter",
+    "required": "Écris quelque chose",
+    "tooLong": "60 caractères maximum"
+  },
+  "goals": {
+    "title": "Objectifs",
+    "note": "des coups de pouce, jamais des interdits",
+    "limit": "maximum par semaine",
+    "min": "minimum par semaine",
+    "decrease": "Une fois de moins",
+    "increase": "Une fois de plus"
+  },
+  "add": {
+    "title": "Ajouter quelqu'un",
+    "titleMe": "Commence par toi",
+    "nameLabel": "Prénom",
+    "placeholder": "Ex. Alex",
+    "submit": "Ajouter",
+    "required": "Écris un prénom",
+    "tooLong": "60 caractères maximum"
+  },
+  "general": {
+    "title": "La maison",
+    "avoid": {
+      "label": "Ne pas répéter ce qu'on a mangé ces derniers",
+      "unit": "jours",
+      "hint": "Les suggestions évitent ce que vous venez de manger.",
+      "decrease": "Un jour de moins",
+      "increase": "Un jour de plus"
+    },
+    "diners": {
+      "label": "Qui mange d'habitude",
+      "hint": "Coché par défaut quand tu demandes quoi manger."
+    },
+    "language": "Langue",
+    "motion": "Réduire les animations",
+    "signOut": "Se déconnecter",
+    "kitchen": {
+      "label": "Ma cuisine",
+      "link": "Ce que j'ai dans la cuisine"
+    }
+  },
+  "toasts": {
+    "added": "Ajouté à la table",
+    "renamed": "Prénom modifié",
+    "removed": "Retiré de la table",
+    "saved": "Enregistré",
+    "failed": "Impossible d'enregistrer. Réessaie."
+  }
+}

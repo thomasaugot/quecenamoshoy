@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Mi cocina",
+    "description": "Los aparatos y utensilios que tengo, para no proponer nada que no pueda cocinar."
+  },
+  "hero": {
+    "title": "Mi <em>cocina</em>",
+    "note": "solo te propongo lo que puedes cocinar",
+    "which": "Qué cocina",
+    "home": "En casa",
+    "travel": "De viaje"
+  },
+  "scan": {
+    "title": "Escanear la cocina",
+    "intro": "Haz hasta {max} fotos de la encimera, los armarios y los cajones. Te digo lo que veo y tú confirmas.",
+    "cta": "Hacer o elegir fotos",
+    "looking": "mirando tu cocina…",
+    "found": "{count, plural, one {He visto # cosa nueva} other {He visto # cosas nuevas}}",
+    "review": "Lo que he visto",
+    "add": "{count, plural, =0 {Añadir} one {Añadir #} other {Añadir #}}",
+    "discard": "Descartar",
+    "nothingNew": "No he visto nada que no tengas ya.",
+    "again": "Probar con otras fotos",
+    "unreadable": "No he podido leer esas fotos."
+  },
+  "checklist": {
+    "title": "Lo que tengo",
+    "intro": "Toca para marcar lo que tienes. Nunca te propondré algo que necesite lo que no está marcado.",
+    "appliance": "Aparatos",
+    "cookware": "Sartenes, ollas y moldes",
+    "tool": "Utensilios",
+    "addLabel": "Otra cosa",
+    "add": "Añadir",
+    "appliancePlaceholder": "Ej. deshidratadora…",
+    "cookwarePlaceholder": "Ej. tajín…",
+    "toolPlaceholder": "Ej. sifón…",
+    "required": "Escribe algo",
+    "tooLong": "Máximo 60 caracteres"
+  },
+  "toasts": {
+    "added": "{count, plural, one {Añadido a tu cocina} other {# cosas añadidas a tu cocina}}",
+    "removed": "Quitado de tu cocina",
+    "failed": "No se ha podido guardar. Inténtalo de nuevo.",
+    "scanFailed": "No he podido mirar las fotos. Inténtalo de nuevo.",
+    "rateLimited": "Has llegado al límite de escaneos por hoy. Prueba mañana."
+  }
+}

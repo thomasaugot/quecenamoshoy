@@ -1,9 +1,57 @@
 {
   "meta": {
     "title": "Historique",
-    "description": "Ce que tu as mangé."
+    "description": "Ce qu'on a mangé, quand et avec qui."
   },
   "hero": {
-    "title": "Historique"
+    "title": "Ce qu'on a <em>mangé</em>",
+    "note": "chaque soir, avec qui et comment c'était",
+    "log": "Noter un dîner"
+  },
+  "list": {
+    "title": "Dîners",
+    "empty": "Aucun dîner noté pour l'instant.",
+    "more": "Voir les dîners plus anciens"
+  },
+  "meal": {
+    "edit": "Modifier {name}",
+    "travel": "en voyage",
+    "rating": "{rating} sur 5",
+    "guests": "{count, plural, one {+ # invité} other {+ # invités}}"
+  },
+  "editor": {
+    "newTitle": "Noter un dîner",
+    "editTitle": "Modifier le dîner",
+    "dish": "Ce qu'on a mangé",
+    "dishPlaceholder": "cherche un plat…",
+    "dishMatches": "Plats",
+    "newDish": "Nouveau : {name}",
+    "dishRequired": "Choisis un plat ou écris-en un nouveau",
+    "when": "Quand",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "diners": "Qui a mangé",
+    "guests": "Invités",
+    "guestsLess": "Un invité de moins",
+    "guestsMore": "Un invité de plus",
+    "where": "Où",
+    "home": "À la maison",
+    "travel": "En voyage",
+    "rating": "C'était comment",
+    "stars": "{count, plural, one {# étoile} other {# étoiles}}",
+    "note": "Note",
+    "notePlaceholder": "trop épicé, à refaire…",
+    "leftovers": "Des restes pour un autre jour",
+    "log": "Noter",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer le dîner",
+    "confirmDelete": "Oui, le supprimer"
+  },
+  "toasts": {
+    "logged": "Dîner noté",
+    "updated": "Dîner enregistré",
+    "deleted": "Dîner supprimé",
+    "failed": "Impossible d'enregistrer. Réessaie."
   }
 }

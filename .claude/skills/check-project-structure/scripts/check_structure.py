@@ -214,7 +214,7 @@ if tdir.is_dir():
 # ---------- public/ hygiene ----------
 pub = ROOT / "public"
 if pub.is_dir():
-    allowed = {"favicon.ico", "assets", "manifest.json", "manifest.webmanifest", "robots.txt",
+    allowed = {"favicon.ico", "favicon.svg", "assets", "manifest.json", "manifest.webmanifest", "robots.txt",
                "sw.js", "_headers", "_redirects"}
     for p in pub.iterdir():
         if p.name not in allowed and not p.name.startswith(("icon", "swe-worker")):
