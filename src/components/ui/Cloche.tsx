@@ -13,7 +13,7 @@ export const Cloche = ({ className = "", inLoader = false, plateOnly = false }: 
   const uid = useId().replace(/[^\w-]/g, "")
   const body = `${uid}-body`, glow = `${uid}-glow`, shade = `${uid}-shade`, base = `${uid}-base`
   const ring = `${uid}-ring`, knob = `${uid}-knob`, collar = `${uid}-collar`
-  const rim = `${uid}-rim`, well = `${uid}-well`, behindLid = `${uid}-behind-lid`
+  const rim = `${uid}-rim`, well = `${uid}-well`, behindLid = `${uid}-behind-lid`, overPlate = `${uid}-over-plate`
   useEntrance(rootRef, initClocheReveal, { waitForLoader: !inLoader })
 
   // the dome and its knob
@@ -99,6 +99,13 @@ export const Cloche = ({ className = "", inLoader = false, plateOnly = false }: 
               <ellipse data-anim="cloche-rim" cx="60" cy="73" rx="38" ry="5.5" className="invisible mask-show" />
             </g>
           </mask>
+          {/* While the lid is up, its back half never shows over the plate's well: there, through
+              the gaps in the food, you see the plate it rests on, not the lid behind. Static (not
+              moved with the lid), and only while the opening shows — at rest the lid is whole. */}
+          <mask id={overPlate} maskUnits="userSpaceOnUse" x="-40" y="-60" width="200" height="180">
+            <rect x="-40" y="-60" width="200" height="180" className="mask-show" />
+            <ellipse data-anim="cloche-rim" cx="60" cy="74" rx="38" ry="6.5" className="invisible mask-hide" />
+          </mask>
         </defs>
         {/* The plate is seen from slightly above (an ellipse): back rim and well, then the front
             lip, then the lid and the dish. */}
@@ -117,9 +124,11 @@ export const Cloche = ({ className = "", inLoader = false, plateOnly = false }: 
           <>
             {/* The lid moves as layers: its shell and dark inside behind the dish, the dish masked
                 by the shell, and the front of its base ring in front. */}
-            <g data-part="cloche-lid">
-              {dome}
-              <ellipse data-anim="cloche-rim" cx="60" cy="73" rx="38" ry="5.5" className="invisible fill-accent-strong" />
+            <g mask={`url(#${overPlate})`}>
+              <g data-part="cloche-lid">
+                {dome}
+                <ellipse data-anim="cloche-rim" cx="60" cy="73" rx="38" ry="5.5" className="invisible fill-accent-strong" />
+              </g>
             </g>
             <g mask={`url(#${behindLid})`}>
               {/* carbonara first, then burger, salad, sushi */}

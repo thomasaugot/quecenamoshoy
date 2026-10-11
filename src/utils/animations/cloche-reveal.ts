@@ -43,13 +43,17 @@ export const initClocheReveal = (root: HTMLElement, reducedByUser: boolean): (()
       // a short unstick, then the lift
       .to(lid, { y: -2, duration: 0.12, ease: "power1.out" })
       .to(lid, { ...LIFT, duration: 0.7, ease: "power3.out" })
-      .to(rim, { autoAlpha: 1, duration: 0.25, ease: "power1.out" }, "<0.1")
+      // the opening appears once the lid has cleared the food (never over it), same as on the way down
+      .to(rim, { autoAlpha: 1, duration: 0.12, ease: "none" }, "<0.2")
       // held in the air: it breathes a little
       .to(lid, { y: LIFT.y + 2.5, rotation: LIFT.rotation + 2, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 1 })
       // set back down
       .to(lid, { y: 0, rotation: 0, duration: 0.5, ease: "power2.in" }, "+=0.2")
-      .to(rim, { autoAlpha: 0, duration: 0.15, ease: "power1.in" }, ">-0.2")
-      .to(lid, { y: -1.2, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out" })
+      .addLabel("landed")
+      // The opening closes while the lid is still above the food: once the lid is level with the
+      // dish its front wall hides it, so the food must never show through the lid's front.
+      .to(rim, { autoAlpha: 0, duration: 0.1, ease: "none" }, "landed-=0.32")
+      .to(lid, { y: -1.2, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out" }, "landed")
   })
   return () => mm.revert()
 }

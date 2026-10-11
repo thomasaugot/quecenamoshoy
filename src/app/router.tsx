@@ -4,6 +4,7 @@ import { RequireAuth } from "@/components/layout/RequireAuth"
 import { RootLayout } from "@/components/layout/RootLayout"
 import { RouteError } from "@/components/layout/RouteError"
 import { HomePage } from "@/components/pages/home/HomePage"
+import { ZzCloche } from "@/components/pages/zz/ZzCloche"
 import { routeModules } from "@/app/route-modules"
 import { defaultLocale, locales, routeTranslations, type Locale } from "@/config/i18n.config"
 import { loadMessages } from "@/i18n/messages"
@@ -38,6 +39,7 @@ const localeBranch = (locale: Locale): RouteObject => ({
             { path: routeTranslations.recap[locale], handle: { routeKey: "recap" }, lazy: page(routeModules.recap, "RecapPage") },
           ],
         },
+        ...(import.meta.env.DEV && locale === defaultLocale ? [{ path: "zzcloche", element: <ZzCloche /> }] : []),
         { path: "*", lazy: page(routeModules.notFound, "NotFoundPage") },
       ],
     },
