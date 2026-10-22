@@ -1,10 +1,10 @@
 import { useId, useState, type FormEvent } from "react"
 import { useLocale, useTranslations } from "use-intl"
 import { Button } from "@/components/ui/Button"
-import { Checkbox } from "@/components/ui/Checkbox"
 import { Chip } from "@/components/ui/Chip"
 import { IconTrash } from "@/components/ui/Icons"
 import { Input } from "@/components/ui/Input"
+import { PersonAvatar } from "@/components/ui/PersonAvatar"
 import { TagField } from "@/components/ui/TagField"
 import { DISH_DESCRIPTION_MAX, DISH_NAME_MAX, DISH_TAGS_MAX_COUNT, TEMPS } from "@/constants/dish"
 import { useCatalogueLabel } from "@/hooks/useCatalogueLabel"
@@ -14,8 +14,7 @@ import { useCreateDish, useDeleteDish, useDishes, useEnrichDishes, useUpdateDish
 import { usePeople } from "@/hooks/usePeople"
 import type { DishInput } from "@/types/dish"
 import { addTag, customTag, removeTag, selectedTags, suggestTags, tagOptions } from "@/utils/dish-tags"
-import { dishNameError, needsSorting } from "@/utils/dishes"
-import { toggleId } from "@/utils/people"
+import { dishNameError, needsSorting, setTaste } from "@/utils/dishes"
 
 // How many matches the "what's in it" field offers at once
 const TAG_SUGGESTIONS = 6
@@ -111,12 +110,23 @@ export const FavouritesDishForm = ({ dishId, initial, onDone }: {
       </fieldset>
 
       {people.length > 0 && (
-        <fieldset className="flex flex-col gap-1">
-          <legend className="text-label mb-2">{t("lovedBy")}</legend>
-          {people.map((p) => (
-            <Checkbox key={p.id} name={`loved-${p.id}`} checked={form.lovedBy.includes(p.id)}
-              onChange={() => set({ lovedBy: toggleId(form.lovedBy, p.id) })}>{p.name}</Checkbox>
-          ))}
+        <fieldset className="flex flex-col gap-3">
+          <legend className="text-label mb-1">{t("tastes")}</legend>
+          <p className="text-body-sm -mt-1">{t("tastesHint")}</p>
+          <ul className="flex flex-col gap-3">
+            {people.map((p) => (
+              <li key={p.id} role="group" aria-label={p.name} className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span className="flex min-w-28 items-center gap-2.5">
+                  <PersonAvatar person={p} className="h-8 w-8" />
+                  <span className="text-body">{p.name}</span>
+                </span>
+                <span className="flex flex-wrap gap-2">
+                  <Chip tone="diet" pressed={form.lovedBy.includes(p.id)} onClick={() => setForm((f) => setTaste(f, p.id, "love"))}>{t("love")}</Chip>
+                  <Chip tone="hard" pressed={form.dislikedBy.includes(p.id)} onClick={() => setForm((f) => setTaste(f, p.id, "dislike"))}>{t("dislike")}</Chip>
+                </span>
+              </li>
+            ))}
+          </ul>
         </fieldset>
       )}
 

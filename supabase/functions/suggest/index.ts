@@ -97,13 +97,14 @@ TONIGHT
 TASTE
 - Favourites (id, name, tags, how many diners love it, equipment): ${JSON.stringify(favourites)}
 - Loved past meals (rated 4–5): ${ctx.lovedDishes.join(", ") || "none yet"}
+- A rare chance tonight — dishes only people who are NOT at the table dislike (good to offer one): ${ctx.chanceTonight.join(", ") || "none"}
 - Eaten in the last 14 days: ${ctx.recentMeals.map((m) => `${m.eatenOn} ${m.name}`).join("; ") || "nothing logged"}
 - Last 7 days counters: ${JSON.stringify(counters)}
 
 RULES
 1. Exactly 3 suggestions. Ideally 1–2 favourites (set dishId to the favourite's id) and 1–2 new ideas inspired by these tastes (dishId null).
 2. NEVER suggest: ${avoid.join(", ") || "(nothing to avoid)"} — eaten in the last ${ctx.avoidDays} days.
-3. NEVER suggest these, already shown: ${input.exclude.join(", ") || "(none)"}.
+3. NEVER suggest these, already shown: ${input.exclude.join(", ") || "(none)"}. NEVER these either, someone at the table dislikes them: ${ctx.dislikedHere.map((d) => d.name).join(", ") || "(none)"}.
 4. NEVER a dish needing equipment the kitchen above does not have. List the equipment each dish needs, using these keys when they apply: ${ALL_EQUIPMENT.join(", ")}.
 5. NEVER a dish containing an allergen or breaking the diet of anyone at the table (guests included). Avoid their dislikes.
 6. Respect the temperature unless "either". Prefer dishes several diners love.
@@ -158,6 +159,8 @@ const sanitise = (raw: Suggestion[], input: Input, ctx: Context) => {
   const avoidIds = new Set(avoided.map((m) => m.dishId))
   const avoidNames = new Set(avoided.map((m) => norm(m.name)))
   const excluded = new Set(input.exclude.map(norm))
+  const dislikedIds = new Set(ctx.dislikedHere.map((d) => d.id))
+  const dislikedNames = new Set(ctx.dislikedHere.map((d) => norm(d.name)))
   const owned = new Set(ctx.equipment.map((e) => e.key))
   const seen = new Set<string>()
 
@@ -167,6 +170,7 @@ const sanitise = (raw: Suggestion[], input: Input, ctx: Context) => {
     const name = norm(s.name)
     if ((dishId && avoidIds.has(dishId)) || avoidNames.has(name)) return { ok: false, reason: "avoid_window" }
     if (excluded.has(name)) return { ok: false, reason: "already_shown" }
+    if ((s.dishId && dislikedIds.has(s.dishId)) || dislikedNames.has(name)) return { ok: false, reason: "disliked" }
     const equipment = Array.isArray(s.equipment) ? s.equipment.map(String) : []
     if (ctx.kitchenKnown && equipment.some((e) => ALL_EQUIPMENT.includes(e) && !owned.has(e))) return { ok: false, reason: "equipment" }
     if (seen.has(name)) return { ok: false, reason: "duplicate" }

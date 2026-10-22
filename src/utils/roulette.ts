@@ -3,7 +3,7 @@ import { EQUIPMENT } from "@/constants/equipment"
 import { GOALS } from "@/constants/goals"
 import {
   GOAL_BEHIND_BOOST, GOAL_OVER_DAMP, LOVED_BY_BONUS, PREFERENCE_BOOST, PREFERENCE_CHIPS, PREFERENCE_DAMP,
-  PREFERENCE_STOPWORDS, UNKNOWN_PROTEIN_DAMP, WHEEL_MAX, WHEEL_MIN, type PreferenceChip,
+  PREFERENCE_STOPWORDS, RARE_CHANCE_BOOST, UNKNOWN_PROTEIN_DAMP, WHEEL_MAX, WHEEL_MIN, type PreferenceChip,
 } from "@/constants/roulette"
 import type { Dish } from "@/types/dish"
 import type { KitchenItem } from "@/types/kitchen"
@@ -86,6 +86,7 @@ export const eligibleDishes = (ctx: RouletteContext): Dish[] => {
 
   return pool.filter((d) =>
     !eatenLately.has(d.id) &&
+    !d.dislikedBy.some((id) => dinerIds.includes(id)) &&
     findAllergens([d.name, d.description ?? ""], allergies).length === 0 &&
     !d.proteins.some((x) => excludedProteins.has(x)) &&
     !(owned && d.equipment.some((e) => CATALOGUE_EQUIPMENT.has(e) && !owned.has(e))))
@@ -103,6 +104,8 @@ export const weighDish = (d: Dish, ctx: RouletteContext): WheelSlot => {
   if (wants) weight *= PREFERENCE_BOOST
   if (avoids) weight *= PREFERENCE_DAMP
   if (hasDiet && d.proteins.length === 0) weight *= UNKNOWN_PROTEIN_DAMP
+  // someone who dislikes it is away tonight (eligibleDishes keeps out those at the table)
+  if (d.dislikedBy.length > 0) weight *= RARE_CHANCE_BOOST
   const asMeal: CountedMeal = { dishId: d.id, eatenOn: ctx.todayIso, proteins: d.proteins, traits: d.traits, diners: dinerIds }
   for (const person of ctx.diners) {
     for (const g of goalProgress(person, ctx.recentMeals)) {

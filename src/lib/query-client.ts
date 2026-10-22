@@ -24,7 +24,7 @@ export const persister = createAsyncStoragePersister({
 export const persistOptions = {
   persister,
   maxAge: OFFLINE_MAX_AGE,
-  buster: "1",   // bump when a persisted query's data shape changes
+  buster: "2",   // bump when a persisted query's data shape changes (2: dishes gained proteins[], tags, dislikedBy)
   dehydrateOptions: {
     shouldDehydrateQuery: (q: Query) => q.meta?.persist === true && q.state.status === "success",
   },

@@ -12,7 +12,8 @@
     "lovedBy": "loved by {names}",
     "nobody": "nobody's favourite yet",
     "lastEaten": "you had it {when}",
-    "neverEaten": "not logged yet"
+    "neverEaten": "not logged yet",
+    "dislikedBy": "not for {names}"
   },
   "photo": {
     "cta": "Take or choose a photo",

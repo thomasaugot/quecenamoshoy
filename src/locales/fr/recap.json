@@ -21,5 +21,38 @@
     "average": "Moyenne du mois : {rating} / 5",
     "plateTitle": "Ce qu'il y avait dans l'assiette",
     "unknown": "Non classé"
+  },
+  "health": {
+    "title": "La <em>santé</em> du mois",
+    "intro": "Repères généraux pour un adulte, comptés sur les dîners notés ici. Pas un avis médical.",
+    "notEnough": "Note au moins {count} dîners ce mois-ci pour voir les chiffres.",
+    "perWeek": "/ semaine",
+    "guide": {
+      "max": "repère : {target} max",
+      "min": "repère : au moins {target}",
+      "share": "repère : au moins {target}"
+    },
+    "ok": "Bien",
+    "improve": "À améliorer",
+    "unsorted": "{count, plural, one {# dîner n'a pas pu être lu : classe son plat dans Favoris.} other {# dîners n'ont pas pu être lus : classe leurs plats dans Favoris.}}",
+    "figures": {
+      "redMeat": "Viande rouge",
+      "fish": "Poisson",
+      "legumes": "Légumineuses",
+      "veggie": "Légumes à l'honneur",
+      "fried": "Friture",
+      "out": "Repas dehors",
+      "variety": "Variété"
+    },
+    "tips": {
+      "title": "Les conseils de l'IA",
+      "ask": "Demander des conseils",
+      "again": "Redemander",
+      "writing": "Je regarde votre mois…",
+      "pitch": "L'IA lit ces chiffres et propose trois changements, avec des plats que vous cuisinez déjà.",
+      "try": "À essayer :",
+      "limit": "Assez de conseils pour aujourd'hui. Demain, promis.",
+      "failed": "Pas de conseils pour le moment. Réessaie."
+    }
   }
 }

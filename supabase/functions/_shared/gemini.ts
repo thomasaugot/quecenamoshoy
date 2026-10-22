@@ -13,17 +13,19 @@ export const TEXT_MODEL = "gemini-3.8-flash"
 //   scan-kitchen  ≈ 8k in + 1024 out ≈ $0.010  ×  4/day ≈ $0.04/day max
 //   enrich-dishes ≈ 3k in + 8192 out ≈ $0.033  ×  3/day ≈ $0.10/day max (one-off: sorts my dishes)
 //   recipe        ≈ 2k in + 3072 out ≈ $0.013  × 10/day ≈ $0.13/day max (saved: once per dish)
+//   health-tips   ≈ 3k in + 1024 out ≈ $0.006  ×  4/day ≈ $0.03/day max (a monthly read)
 // Normal use (a few suggestions a night) ≈ well under $1 a month.
 export const LIMITS = {
   suggest: { perHour: 6, perDay: 20 },
   scanKitchen: { perHour: 2, perDay: 4 },
   enrichDishes: { perHour: 2, perDay: 3 },
   recipe: { perHour: 5, perDay: 10 },
+  healthTips: { perHour: 2, perDay: 4 },
   // not AI (free), but it fetches pages from the internet: capped all the same
   importRecipe: { perHour: 10, perDay: 30 },
 } as const satisfies Record<string, AiLimits>
 
-export const MAX_OUTPUT_TOKENS = { suggest: 2048, scanKitchen: 1024, enrichDishes: 8192, recipe: 3072 } as const
+export const MAX_OUTPUT_TOKENS = { suggest: 2048, scanKitchen: 1024, enrichDishes: 8192, recipe: 3072, healthTips: 1024 } as const
 export const THINKING = { thinkingLevel: ThinkingLevel.LOW }
 
 let client: GoogleGenAI | null = null

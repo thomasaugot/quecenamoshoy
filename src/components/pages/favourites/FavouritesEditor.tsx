@@ -17,8 +17,8 @@ export const FavouritesEditor = () => {
   const me = people.find((p) => p.isMe)
 
   const initial: DishInput = dish
-    ? { name: dish.name, description: dish.description, proteins: dish.proteins, traits: dish.traits, tags: dish.tags, temp: dish.temp, lovedBy: dish.lovedBy }
-    : { name: "", description: null, proteins: [], traits: [], tags: [], temp: null, lovedBy: me ? [me.id] : [] }
+    ? { name: dish.name, description: dish.description, proteins: dish.proteins, traits: dish.traits, tags: dish.tags, temp: dish.temp, lovedBy: dish.lovedBy, dislikedBy: dish.dislikedBy }
+    : { name: "", description: null, proteins: [], traits: [], tags: [], temp: null, lovedBy: me ? [me.id] : [], dislikedBy: [] }
 
   return (
     <Modal isOpen={editing !== null} onClose={closeEditor} title={dish ? t("editTitle") : t("newTitle")}>

@@ -54,7 +54,11 @@
       "protein": "ingrédient",
       "trait": "style",
       "custom": "à toi"
-    }
+    },
+    "tastes": "Qui aime, qui n'aime pas",
+    "tastesHint": "Un plat que quelqu'un n'aime pas ne sort pas quand il est à table. Seul ce soir ? Il revient.",
+    "love": "Adore",
+    "dislike": "N'aime pas"
   },
   "toasts": {
     "created": "Plat ajouté",

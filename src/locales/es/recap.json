@@ -21,5 +21,38 @@
     "average": "Media del mes: {rating} / 5",
     "plateTitle": "Qué hubo en el plato",
     "unknown": "Sin clasificar"
+  },
+  "health": {
+    "title": "La <em>salud</em> del mes",
+    "intro": "Referencias generales para un adulto, contadas sobre las cenas anotadas aquí. No es un consejo médico.",
+    "notEnough": "Anota al menos {count} cenas este mes para ver las cifras.",
+    "perWeek": "/ semana",
+    "guide": {
+      "max": "referencia: {target} máx.",
+      "min": "referencia: al menos {target}",
+      "share": "referencia: al menos {target}"
+    },
+    "ok": "Bien",
+    "improve": "A mejorar",
+    "unsorted": "{count, plural, one {# cena no se ha podido leer: clasifica su plato en Favoritos.} other {# cenas no se han podido leer: clasifica sus platos en Favoritos.}}",
+    "figures": {
+      "redMeat": "Carne roja",
+      "fish": "Pescado",
+      "legumes": "Legumbres",
+      "veggie": "Verdura protagonista",
+      "fried": "Fritos",
+      "out": "Cenas fuera",
+      "variety": "Variedad"
+    },
+    "tips": {
+      "title": "Los consejos de la IA",
+      "ask": "Pedir consejos",
+      "again": "Volver a pedir",
+      "writing": "Miro su mes…",
+      "pitch": "La IA lee estas cifras y les propone tres cambios, con platos que ya cocinan.",
+      "try": "Para probar:",
+      "limit": "Suficientes consejos por hoy. Mañana más.",
+      "failed": "Ahora mismo no hay consejos. Vuelve a intentarlo."
+    }
   }
 }

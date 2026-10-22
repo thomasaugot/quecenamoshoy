@@ -10,6 +10,7 @@ export type Dish = {
   temp: DishTemp | null
   imageUrl: string | null    // short-lived signed URL (private bucket)
   lovedBy: string[]          // person ids
+  dislikedBy: string[]       // person ids: left out of the roulette and suggestions when at the table
   equipment: string[]        // catalogue keys it needs (brief §3.6)
   notes: string | null       // my standing note on the dish, read before cooking
 }
@@ -22,7 +23,10 @@ export type DishInput = {
   tags: string[]
   temp: DishTemp | null
   lovedBy: string[]
+  dislikedBy: string[]
 }
+
+export type Taste = "love" | "dislike"
 
 // Within a group any choice matches; across groups every group must match
 export type DishFilter = {

@@ -2,7 +2,7 @@ import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tansta
 import { useTranslations } from "use-intl"
 import { DISH_NOTES_SHOWN } from "@/constants/meal"
 import { queryKeys } from "@/constants/query-keys"
-import { clearLeftovers, createMeal, deleteMeal, eatLeftovers, getLeftoverMeal, getUnratedMeal, listCountedMeals, listDishNotes, listLastEaten, listMeals, listRecapMeals, MEALS_PAGE_SIZE, rateMeal, updateMeal } from "@/services/meals"
+import { createMeal, deleteMeal, getUnratedMeal, listCountedMeals, listDishNotes, listLastEaten, listMeals, listRecapMeals, MEALS_PAGE_SIZE, rateMeal, updateMeal } from "@/services/meals"
 import { showToast } from "@/stores/toast-store"
 import { logger } from "@/utils/logger"
 
@@ -28,7 +28,7 @@ export const useDishNotes = (dishId: string) =>
 export const useCountedMeals = (sinceIso: string) =>
   useQuery({ queryKey: queryKeys.meals.since(sinceIso), queryFn: () => listCountedMeals(sinceIso), staleTime: 5 * 60_000 })
 
-type ToastKey = "logged" | "updated" | "deleted" | "rated" | "leftoversGone"
+type ToastKey = "logged" | "updated" | "deleted" | "rated"
 
 const useMealWrite = <V,>(write: (vars: V) => Promise<void>, toast: ToastKey) => {
   const t = useTranslations("history.toasts")
@@ -56,11 +56,6 @@ export const useUnratedMeal = (fromIso: string, toIso: string) =>
   useQuery({ queryKey: queryKeys.meals.unrated(fromIso), queryFn: () => getUnratedMeal(fromIso, toIso), staleTime: 10 * 60_000 })
 
 export const useRateMeal = () => useMealWrite(rateMeal, "rated")
-
-export const useLeftoverMeal = (fromIso: string, toIso: string) =>
-  useQuery({ queryKey: queryKeys.meals.leftovers(fromIso), queryFn: () => getLeftoverMeal(fromIso, toIso), staleTime: 10 * 60_000 })
-export const useEatLeftovers = () => useMealWrite(eatLeftovers, "logged")
-export const useClearLeftovers = () => useMealWrite(clearLeftovers, "leftoversGone")
 
 export const useRecapMeals = (month: string, from: string, to: string) =>
   useQuery({ queryKey: queryKeys.meals.month(month), queryFn: () => listRecapMeals(from, to), staleTime: 10 * 60_000, meta: { persist: true } })

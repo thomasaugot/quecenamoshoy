@@ -156,6 +156,15 @@ export type Database = {
           { foreignKeyName: "dish_favourites_dish_id_fkey"; columns: ["dish_id"]; isOneToOne: false; referencedRelation: "dishes"; referencedColumns: ["id"] },
         ]
       }
+      dish_dislikes: {
+        Row: { person_id: string; dish_id: string }
+        Insert: { person_id: string; dish_id: string }
+        Update: Partial<Database["public"]["Tables"]["dish_dislikes"]["Insert"]>
+        Relationships: [
+          { foreignKeyName: "dish_dislikes_person_id_fkey"; columns: ["person_id"]; isOneToOne: false; referencedRelation: "people"; referencedColumns: ["id"] },
+          { foreignKeyName: "dish_dislikes_dish_id_fkey"; columns: ["dish_id"]; isOneToOne: false; referencedRelation: "dishes"; referencedColumns: ["id"] },
+        ]
+      }
       meal_diners: {
         Row: { meal_id: string; person_id: string }
         Insert: { meal_id: string; person_id: string }

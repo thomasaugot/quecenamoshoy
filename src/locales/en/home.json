@@ -36,10 +36,5 @@
     "save": "Save",
     "stars": "{count, plural, one {# star} other {# stars}}",
     "label": "Rating"
-  },
-  "leftovers": {
-    "question": "There are leftovers of {dish} from {day}",
-    "eat": "We'll eat them tonight",
-    "gone": "All gone"
   }
 }

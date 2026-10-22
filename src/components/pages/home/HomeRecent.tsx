@@ -1,4 +1,5 @@
 import { useTranslations } from "use-intl"
+import { RECENT_SHOWN } from "@/constants/home"
 import { MealPolaroid } from "@/components/ui/MealPolaroid"
 import { PolaroidSkeletons } from "@/components/ui/PolaroidSkeletons"
 import { useRecentMeals } from "@/hooks/useHomeData"
@@ -18,7 +19,7 @@ export const HomeRecent = () => {
       )}
       {recent.isSuccess && recent.data.length > 0 && (
         <ul className="-mx-6 scrollbar-none flex gap-5 overflow-x-auto px-6 pt-1 pb-3 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0">
-          {recent.data.map((meal, i) => (
+          {recent.data.slice(0, RECENT_SHOWN).map((meal, i) => (
             <li key={meal.id} className="flex min-w-0 shrink-0 lg:shrink"><MealPolaroid meal={meal} index={i} /></li>
           ))}
         </ul>

@@ -119,9 +119,6 @@ export const HistoryMealForm = ({ mealId, dishName, photoUrl, initial, onDone }:
           className="keyboard-focus-ring text-body w-full resize-none bg-transparent py-2 placeholder:text-text-muted" />
       </div>
 
-      <Checkbox name="leftovers" checked={form.withLeftovers} onChange={(withLeftovers) => set({ withLeftovers })}>
-        {t("leftovers")}
-      </Checkbox>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex gap-2">

@@ -54,7 +54,11 @@
       "protein": "ingredient",
       "trait": "style",
       "custom": "yours"
-    }
+    },
+    "tastes": "Who loves it, who doesn't",
+    "tastesHint": "A dish someone dislikes stays out while they're at the table. Alone tonight? It's back.",
+    "love": "Loves it",
+    "dislike": "Doesn't like it"
   },
   "toasts": {
     "created": "Dish added",

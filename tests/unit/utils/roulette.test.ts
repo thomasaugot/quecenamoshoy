@@ -4,7 +4,7 @@ import type { Person } from "@/types/person"
 import { buildWheel, eligibleDishes, pickWeighted, weighDish, wordMatches, type RouletteContext } from "@/utils/roulette"
 
 const dish = (id: string, patch: Partial<Dish> = {}): Dish => ({
-  id, name: id, description: null, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], notes: null, ...patch,
+  id, name: id, description: null, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy: ["me"], dislikedBy: [], equipment: [], notes: null, ...patch,
 })
 const me: Person = { id: "me", name: "Tom", isMe: true, avatarUrl: null, restrictions: [], goals: [] }
 const ctx = (patch: Partial<RouletteContext> = {}): RouletteContext => ({
@@ -23,6 +23,16 @@ describe("eligibleDishes — the same hard rules as the suggestions", () => {
     const c = ctx({ diners: [me, alex], guestRestrictions: ["nuts"],
       dishes: [dish("steak", { proteins: ["red_meat"] }), dish("pesto", { description: "con piñones" }), dish("tortilla", { proteins: ["eggs"] }), dish("paella mixta", { proteins: ["poultry", "seafood"] })] })
     expect(ids(eligibleDishes(c))).toEqual(["tortilla"])
+  })
+  it("leaves out a dish someone at the table dislikes, and brings it back when they're away", () => {
+    const aythami: Person = { ...me, id: "aythami" }
+    const coliflor = dish("coliflor", { dislikedBy: ["aythami"] })
+    const pasta = dish("pasta")
+    const dishes = [coliflor, pasta]
+    expect(ids(eligibleDishes(ctx({ diners: [me, aythami], dishes })))).toEqual(["pasta"])
+    const alone = ctx({ diners: [me], dishes })
+    expect(ids(eligibleDishes(alone))).toEqual(["coliflor", "pasta"])
+    expect(weighDish(coliflor, alone).weight).toBeGreaterThan(weighDish(pasta, alone).weight)
   })
   it("drops dishes needing equipment I don't have, once the kitchen is filled in", () => {
     const dishes = [dish("lasagna", { equipment: ["oven"] }), dish("salad")]

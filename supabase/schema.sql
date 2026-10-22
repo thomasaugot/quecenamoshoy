@@ -390,3 +390,23 @@ notify pgrst, 'reload schema';
 alter table public.dishes drop column if exists protein;
 
 notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-22 — who DOESN'T like a dish (the mirror of dish_favourites) ─────────
+-- The roulette and the suggestions leave a dish out when someone at the table dislikes it;
+-- with that person away, it comes back (and is nudged forward: a rare chance).
+create table if not exists public.dish_dislikes (
+  person_id uuid not null references public.people on delete cascade,
+  dish_id   uuid not null references public.dishes on delete cascade,
+  primary key (person_id, dish_id)
+);
+create index if not exists dish_dislikes_dish_idx on public.dish_dislikes (dish_id);
+
+alter table public.dish_dislikes enable row level security;
+drop policy if exists "dish_dislikes: owner all" on public.dish_dislikes;
+create policy "dish_dislikes: owner all" on public.dish_dislikes for all to authenticated
+  using (public.owns_person(person_id))
+  with check (public.owns_person(person_id)
+    and exists (select 1 from public.dishes d where d.id = dish_id and d.user_id = (select auth.uid())));
+
+notify pgrst, 'reload schema';

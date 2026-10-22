@@ -15,7 +15,7 @@ export const queryKeys = {
     lastEaten: ["meals", "last-eaten"] as const,
     ofDish: (dishId: string) => ["meals", "dish", dishId] as const,
     unrated: (fromIso: string) => ["meals", "unrated", fromIso] as const,
-    leftovers: (fromIso: string) => ["meals", "leftovers", fromIso] as const,
     month: (month: string) => ["meals", "month", month] as const,
   },
+  health: (month: string) => ["health", month] as const,
 }

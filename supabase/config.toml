@@ -433,6 +433,10 @@ import_map = "./functions/deno.json"
 verify_jwt = true
 import_map = "./functions/deno.json"
 
+[functions.health-tips]
+verify_jwt = true
+import_map = "./functions/deno.json"
+
 [functions.import-recipe]
 verify_jwt = true
 import_map = "./functions/deno.json"

@@ -1,11 +1,15 @@
 import { useRef } from "react"
+import { RecapHealth } from "@/components/pages/recap/RecapHealth"
 import { RecapHero } from "@/components/pages/recap/RecapHero"
 import { RecapNotes } from "@/components/pages/recap/RecapNotes"
 import { RecapPodium } from "@/components/pages/recap/RecapPodium"
 import { useEntrance } from "@/hooks/useEntrance"
+import { useNow } from "@/hooks/useNow"
 import type { RecapMeal } from "@/types/meal"
 import { initPinDrop } from "@/utils/animations/pin-drop"
-import { monthRecap } from "@/utils/recap"
+import { isoDaysAgo } from "@/utils/dates"
+import { healthReport, weeksBetween } from "@/utils/health"
+import { monthBounds, monthRecap } from "@/utils/recap"
 
 // The month on one page: how much we cooked as a big handwritten number, the three most
 // eaten dishes pinned like a podium, and side notes — firsts, the best dinner, what was on
@@ -14,6 +18,9 @@ export const RecapBody = ({ month, meals }: { month: string; meals: RecapMeal[] 
   const rootRef = useRef<HTMLDivElement>(null)
   useEntrance(rootRef, initPinDrop)
   const recap = monthRecap(meals)
+  const now = useNow()
+  const { from, to } = monthBounds(month)
+  const health = healthReport(meals, weeksBetween(from, to, isoDaysAgo(0, now)))
   return (
     <div ref={rootRef} className="mx-auto w-full max-w-md px-6 pt-6 pb-10 md:max-w-3xl lg:max-w-310 lg:px-8 lg:pt-11 lg:pb-16">
       <RecapHero month={month} recap={recap} />
@@ -21,6 +28,7 @@ export const RecapBody = ({ month, meals }: { month: string; meals: RecapMeal[] 
         <RecapPodium recap={recap} />
         <RecapNotes recap={recap} />
       </div>
+      {meals.length > 0 && <div className="mt-14 lg:mt-20"><RecapHealth month={month} report={health} /></div>}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import type { RecapMeal } from "@/types/meal"
 import { isMonth, monthBounds, monthRecap, shiftMonth } from "@/utils/recap"
 
 const meal = (dishId: string, eatenOn: string, patch: Partial<RecapMeal> = {}): RecapMeal => ({
-  dishId, dishName: dishId, imageUrl: null, eatenOn, rating: null, protein: null, isNew: false, ...patch,
+  dishId, dishName: dishId, imageUrl: null, eatenOn, rating: null, protein: null, proteins: [], traits: [], eatenOut: null, isNew: false, ...patch,
 })
 
 describe("months", () => {

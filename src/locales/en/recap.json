@@ -21,5 +21,38 @@
     "average": "Month's average: {rating} / 5",
     "plateTitle": "What was on the plate",
     "unknown": "Not sorted"
+  },
+  "health": {
+    "title": "The month's <em>health</em>",
+    "intro": "General guidance for an adult, counted on the dinners logged here. Not medical advice.",
+    "notEnough": "Log at least {count} dinners this month to see the figures.",
+    "perWeek": "/ week",
+    "guide": {
+      "max": "guide: {target} max",
+      "min": "guide: at least {target}",
+      "share": "guide: at least {target}"
+    },
+    "ok": "Fine",
+    "improve": "To improve",
+    "unsorted": "{count, plural, one {# dinner couldn't be read: sort its dish in Favourites.} other {# dinners couldn't be read: sort their dishes in Favourites.}}",
+    "figures": {
+      "redMeat": "Red meat",
+      "fish": "Fish",
+      "legumes": "Legumes",
+      "veggie": "Veg-led",
+      "fried": "Fried",
+      "out": "Eating out",
+      "variety": "Variety"
+    },
+    "tips": {
+      "title": "The AI's advice",
+      "ask": "Ask for advice",
+      "again": "Ask again",
+      "writing": "Looking at your month…",
+      "pitch": "The AI reads these figures and suggests three changes, with dishes you already cook.",
+      "try": "Try:",
+      "limit": "Enough advice for today. More tomorrow.",
+      "failed": "No advice right now. Try again."
+    }
   }
 }

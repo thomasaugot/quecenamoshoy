@@ -10,7 +10,7 @@ const FOREIGN_KEY_VIOLATION = "23503"
 export const listDishes = async (): Promise<Dish[]> => {
   const { data, error } = await supabase
     .from("dishes")
-    .select("id, name, description, proteins, traits, tags, temp, equipment, notes, image_path, dish_favourites(person_id)")
+    .select("id, name, description, proteins, traits, tags, temp, equipment, notes, image_path, dish_favourites(person_id), dish_dislikes(person_id)")
     .order("name")
   if (error) throw new Error(`dishes query failed: ${error.code}`)
   const urls = await signedImageUrls(data.flatMap((d) => (d.image_path ? [d.image_path] : [])))
@@ -24,6 +24,7 @@ export const listDishes = async (): Promise<Dish[]> => {
     temp: d.temp,
     imageUrl: d.image_path ? urls.get(d.image_path) ?? null : null,
     lovedBy: d.dish_favourites.map((f) => f.person_id),
+    dislikedBy: d.dish_dislikes.map((f) => f.person_id),
     equipment: d.equipment,
     notes: d.notes,
   }))
@@ -32,30 +33,33 @@ export const listDishes = async (): Promise<Dish[]> => {
 const columns = ({ name, description, proteins, traits, tags, temp }: DishInput) =>
   ({ name, description, proteins, traits, tags, temp })
 
-// Favourites are rewritten as a set: remove who no longer loves it, add who does.
-const writeLovedBy = async (dishId: string, lovedBy: string[]) => {
-  const remove = supabase.from("dish_favourites").delete().eq("dish_id", dishId)
-  const { error: removeError } = lovedBy.length
-    ? await remove.not("person_id", "in", `(${lovedBy.join(",")})`)
+// Who loves it and who doesn't are each rewritten as a set: remove who left, add who joined.
+const writePeople = async (table: "dish_favourites" | "dish_dislikes", dishId: string, ids: string[]) => {
+  const remove = supabase.from(table).delete().eq("dish_id", dishId)
+  const { error: removeError } = ids.length
+    ? await remove.not("person_id", "in", `(${ids.join(",")})`)
     : await remove
-  if (removeError) throw new Error(`favourites write failed: ${removeError.code}`)
-  if (!lovedBy.length) return
-  const { error } = await supabase.from("dish_favourites")
-    .upsert(lovedBy.map((personId) => ({ person_id: personId, dish_id: dishId })), { ignoreDuplicates: true })
-  if (error) throw new Error(`favourites write failed: ${error.code}`)
+  if (removeError) throw new Error(`${table} write failed: ${removeError.code}`)
+  if (!ids.length) return
+  const { error } = await supabase.from(table)
+    .upsert(ids.map((personId) => ({ person_id: personId, dish_id: dishId })), { ignoreDuplicates: true })
+  if (error) throw new Error(`${table} write failed: ${error.code}`)
 }
+
+const writeTastes = (dishId: string, input: DishInput) =>
+  Promise.all([writePeople("dish_favourites", dishId, input.lovedBy), writePeople("dish_dislikes", dishId, input.dislikedBy)])
 
 export const createDish = async (input: DishInput): Promise<string> => {
   const { data, error } = await supabase.from("dishes").insert(columns(input)).select("id").single()
   if (error) throw new Error(`create dish failed: ${error.code}`)
-  await writeLovedBy(data.id, input.lovedBy)
+  await writeTastes(data.id, input)
   return data.id
 }
 
 export const updateDish = async ({ id, input }: { id: string; input: DishInput }): Promise<void> => {
   const { error } = await supabase.from("dishes").update(columns(input)).eq("id", id)
   if (error) throw new Error(`update dish failed: ${error.code}`)
-  await writeLovedBy(id, input.lovedBy)
+  await writeTastes(id, input)
 }
 
 // Empty text clears the note.

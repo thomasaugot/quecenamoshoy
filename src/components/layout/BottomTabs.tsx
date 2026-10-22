@@ -23,7 +23,7 @@ export const BottomTabs = () => {
             <TransitionLink
               href={localizedPath(item.routeKey, locale)}
               aria-current={navCurrent(item.routeKey, current)}
-              className="group keyboard-focus-ring text-body-sm flex grow flex-col items-center justify-center gap-1 transition-colors aria-[current]:font-medium aria-[current]:text-primary!"
+              className="group keyboard-focus-ring text-body-sm flex grow flex-col items-center justify-center gap-1 transition-colors aria-[current]:text-primary!"
             >
               <span className="flex h-8 w-14 items-center justify-center rounded-full transition-colors group-aria-[current]:bg-surface-2">
                 <NavIcon name={item.icon} className="h-6 w-6" />

@@ -1,4 +1,4 @@
-import type { Dish, DishFilter } from "@/types/dish"
+import type { Dish, DishFilter, Taste } from "@/types/dish"
 import { normaliseText } from "@/utils/people"
 
 // Search by name and description, accents and case ignored; then whose loves, what's in it,
@@ -37,3 +37,13 @@ export const needsSorting = (dish: Pick<Dish, "proteins" | "traits" | "tags">): 
 // Dishes the AI sort would still fill in (mirrors needsWork in supabase/functions/enrich-dishes)
 export const unsortedDishes = (dishes: readonly Dish[]) =>
   dishes.filter((d) => d.proteins.length === 0 || d.traits.length === 0 || !d.temp || d.equipment.length === 0 || !d.description)
+
+// One person's taste for a dish: loving it and disliking it exclude each other; tapping the
+// current one again clears it.
+export const setTaste = <T extends Pick<Dish, "lovedBy" | "dislikedBy">>(dish: T, personId: string, taste: Taste): T => {
+  const was = dish.lovedBy.includes(personId) ? "love" : dish.dislikedBy.includes(personId) ? "dislike" : null
+  const lovedBy = dish.lovedBy.filter((id) => id !== personId)
+  const dislikedBy = dish.dislikedBy.filter((id) => id !== personId)
+  if (was === taste) return { ...dish, lovedBy, dislikedBy }
+  return taste === "love" ? { ...dish, lovedBy: [...lovedBy, personId], dislikedBy } : { ...dish, lovedBy, dislikedBy: [...dislikedBy, personId] }
+}

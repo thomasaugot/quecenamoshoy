@@ -18,6 +18,7 @@ export const DishHero = ({ dish }: { dish: Dish }) => {
   const { data: people = [] } = usePeople()
   const { data: lastEaten } = useLastEaten(isoDaysAgo(LAST_EATEN_LOOKBACK_DAYS, now))
   const lovers = people.filter((p) => dish.lovedBy.includes(p.id)).map((p) => p.name)
+  const dislikers = people.filter((p) => dish.dislikedBy.includes(p.id)).map((p) => p.name)
   const last = lastEaten?.[dish.id]
   const tags = [
     ...dish.proteins.map((x) => label("protein", x)),
@@ -53,6 +54,7 @@ export const DishHero = ({ dish }: { dish: Dish }) => {
           {" · "}
           {last ? t("lastEaten", { when: format.relativeTime(dateFromIso(last), now) }) : t("neverEaten")}
         </p>
+        {dislikers.length > 0 && <p className="text-note text-accent-strong">{t("dislikedBy", { names: dislikers.join(" & ") })}</p>}
       </div>
       <div data-anim="rise" className="invisible"><DishPhotoButton dishId={dish.id} /></div>
     </header>

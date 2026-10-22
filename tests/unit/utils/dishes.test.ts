@@ -4,7 +4,7 @@ import { addTag, customTag, removeTag, suggestTags, tagOptions } from "@/utils/d
 import { dishNameError, filterDishes, needsSorting, sortByLove } from "@/utils/dishes"
 
 const dish = (name: string, lovedBy: string[] = [], description: string | null = null): Dish => ({
-  id: name, name, description, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy, equipment: [], notes: null,
+  id: name, name, description, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy, dislikedBy: [], equipment: [], notes: null,
 })
 const names = (d: Dish[]) => d.map((x) => x.name)
 const none: DishFilter = { query: "", personId: null, proteins: [], traits: [], temps: [] }

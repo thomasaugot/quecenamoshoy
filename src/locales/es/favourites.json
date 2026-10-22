@@ -54,7 +54,11 @@
       "protein": "ingrediente",
       "trait": "estilo",
       "custom": "tuyo"
-    }
+    },
+    "tastes": "A quién le gusta y a quién no",
+    "tastesHint": "Un plato que a alguien no le gusta no sale cuando está en la mesa. ¿Solo esta noche? Vuelve.",
+    "love": "Le encanta",
+    "dislike": "No le gusta"
   },
   "toasts": {
     "created": "Plato añadido",

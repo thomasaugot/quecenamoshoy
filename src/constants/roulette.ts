@@ -41,3 +41,4 @@ export const LOVED_BY_BONUS = 1            // + per diner who loves it
 export const GOAL_BEHIND_BOOST = 1.5       // counts toward a goal that is behind
 export const GOAL_OVER_DAMP = 0.5          // counts toward a limit already reached
 export const UNKNOWN_PROTEIN_DAMP = 0.6    // a diet at the table and we don't know what the dish is
+export const RARE_CHANCE_BOOST = 2        // someone who dislikes it is away: a rare chance

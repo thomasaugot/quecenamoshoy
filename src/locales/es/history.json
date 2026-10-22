@@ -47,7 +47,6 @@
     "stars": "{count, plural, one {# estrella} other {# estrellas}}",
     "note": "Nota",
     "notePlaceholder": "demasiado picante, repetir…",
-    "leftovers": "Han sobrado restos (te los recuerdo mañana)",
     "log": "Apuntar",
     "save": "Guardar",
     "cancel": "Cancelar",
@@ -72,7 +71,6 @@
     "updated": "Cena guardada",
     "deleted": "Cena borrada",
     "failed": "No se ha podido guardar. Inténtalo de nuevo.",
-    "rated": "¡Gracias! Apuntado.",
-    "leftoversGone": "Anotado: ya no quedan restos"
+    "rated": "¡Gracias! Apuntado."
   }
 }

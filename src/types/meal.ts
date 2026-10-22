@@ -52,12 +52,6 @@ export type MealInput = {
 export type DishNote = { id: string; eatenOn: string; rating: number | null; note: string | null }
 
 // The last dinner still waiting for its stars (home page)
-// A dinner cooked with extra portions, still waiting to be eaten
-export type LeftoverMeal = {
-  id: string; eatenOn: string; dishId: string; dishName: string; imageUrl: string | null
-  diners: string[]; location: KitchenLocation
-}
-
 export type UnratedMeal = { id: string; eatenOn: string; dishName: string; imageUrl: string | null; eatenOut: MealOut | null }
 
 // A dinner as the monthly recap needs it
@@ -67,7 +61,10 @@ export type RecapMeal = {
   imageUrl: string | null
   eatenOn: string
   rating: number | null
-  protein: string | null
+  protein: string | null    // the main one, for the plate strip
+  proteins: string[]
+  traits: string[]
+  eatenOut: MealOut | null
   isNew: boolean            // first time this dish was ever logged
 }
 

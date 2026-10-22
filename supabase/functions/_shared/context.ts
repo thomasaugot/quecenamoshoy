@@ -17,6 +17,8 @@ export type Context = {
   avoidDays: number
   recentMeals: RecentMeal[]
   lovedDishes: string[]
+  dislikedHere: { id: string; name: string }[]   // someone at the table dislikes it: never tonight
+  chanceTonight: string[]                         // only people away tonight dislike it: a rare chance
 }
 
 // Brief §3.2: a travelling kitchen nobody has filled in yet is assumed minimal
@@ -32,15 +34,16 @@ type DishRow = { id: string; name: string; temp: string | null; tags: string[]; 
 
 export const loadContext = async (client: SupabaseClient, location: Location, dinerIds: string[]): Promise<Context> => {
   const ids = dinerIds.length ? dinerIds : [NO_MATCH]
-  const [people, favourites, kitchen, settings, recent, rated] = await Promise.all([
+  const [people, favourites, kitchen, settings, recent, rated, dislikes] = await Promise.all([
     client.from("people").select("id, name, person_restrictions(kind, key, label), person_goals(key, per_week)").in("id", ids),
     client.from("dish_favourites").select("person_id, dishes(id, name, temp, tags, traits, proteins, equipment)").in("person_id", ids),
     client.from("kitchen_items").select("key, label").eq("location", location),
     client.from("settings").select("avoid_days").maybeSingle(),
     client.from("meals").select("eaten_on, rating, dish_id, dishes(name, proteins, traits)").gte("eaten_on", daysAgoIso(14)).order("eaten_on", { ascending: false }),
     client.from("meals").select("dishes(name)").gte("rating", 4).order("eaten_on", { ascending: false }).limit(15),
+    client.from("dish_dislikes").select("person_id, dishes(id, name)"),
   ])
-  for (const r of [people, favourites, kitchen, settings, recent, rated]) {
+  for (const r of [people, favourites, kitchen, settings, recent, rated, dislikes]) {
     if (r.error) throw new Error(`context query failed: ${r.error.code}`)
   }
 
@@ -64,6 +67,16 @@ export const loadContext = async (client: SupabaseClient, location: Location, di
     return d ? [{ eatenOn: m.eaten_on, rating: m.rating, dishId: m.dish_id, name: d.name, proteins: d.proteins, traits: d.traits }] : []
   })
 
+  // Dislikes of everyone (RLS: my people): at the table → out; only the absent → a chance
+  const atTable = new Set(dinerIds)
+  const here = new Map<string, string>()
+  const away = new Map<string, string>()
+  for (const r of dislikes.data ?? []) {
+    const d = one<{ id: string; name: string }>(r.dishes)
+    if (d) (atTable.has(r.person_id) ? here : away).set(d.id, d.name)
+  }
+  for (const id of [...byDish.keys()]) if (here.has(id)) byDish.delete(id)
+
   const owned = kitchen.data ?? []
   return {
     diners,
@@ -74,6 +87,8 @@ export const loadContext = async (client: SupabaseClient, location: Location, di
     kitchenKnown: location === "travel" || owned.length > 0,
     avoidDays: settings.data?.avoid_days ?? 7,
     recentMeals,
+    dislikedHere: [...here].map(([id, name]) => ({ id, name })),
+    chanceTonight: [...away].filter(([id]) => !here.has(id)).map(([, name]) => name),
     lovedDishes: [...new Set((rated.data ?? []).flatMap((m) => { const d = one<{ name: string }>(m.dishes); return d ? [d.name] : [] }))],
   }
 }
