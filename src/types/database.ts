@@ -26,7 +26,6 @@ export type Database = {
           image_path: string | null
           image_credit: string | null
           equipment: string[]
-          protein: DishProtein | null
           proteins: DishProtein[]
           traits: string[]
           notes: string | null
@@ -39,7 +38,6 @@ export type Database = {
           notes?: string | null
           image_credit?: string | null
           equipment?: string[]
-          protein?: DishProtein | null
           proteins?: DishProtein[]
           traits?: string[]
           description?: string | null

@@ -384,3 +384,9 @@ alter table public.dishes add column if not exists proteins public.dish_protein[
 update public.dishes set proteins = array[protein] where protein is not null and cardinality(proteins) = 0;
 
 notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-22 — drop dishes.protein: proteins[] replaced it (app + Edge Functions live) ──
+alter table public.dishes drop column if exists protein;
+
+notify pgrst, 'reload schema';
