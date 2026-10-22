@@ -3,6 +3,7 @@ import { PageMeta } from "@/components/layout/PageMeta"
 import { HomeEntries } from "@/components/pages/home/HomeEntries"
 import { HomeForgotten } from "@/components/pages/home/HomeForgotten"
 import { HomeGreeting } from "@/components/pages/home/HomeGreeting"
+import { HomeLeftovers } from "@/components/pages/home/HomeLeftovers"
 import { HomeLog } from "@/components/pages/home/HomeLog"
 import { HomeRate } from "@/components/pages/home/HomeRate"
 import { HomeRecent } from "@/components/pages/home/HomeRecent"
@@ -26,7 +27,7 @@ export const HomePage = () => {
         className="mx-auto flex w-full max-w-md flex-col gap-10 px-6 pt-6 pb-10 lg:grid lg:max-w-310 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:grid-rows-[auto_auto_auto_1fr] lg:items-start lg:gap-x-14 lg:gap-y-8 lg:px-8 lg:pt-11 lg:pb-16"
       >
         <div className="lg:col-start-1 lg:row-start-1"><HomeGreeting /></div>
-        <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-2"><HomeEntries /><HomeRate /></div>
+        <div className="flex flex-col gap-6 lg:col-start-1 lg:row-start-2"><HomeEntries /><HomeLeftovers /><HomeRate /></div>
         <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1"><HomeRecent /></div>
         <div className="lg:col-start-2 lg:row-span-2 lg:row-start-3"><HomeForgotten /></div>
         <div className="lg:col-start-1 lg:row-start-4"><HomeWeek /></div>

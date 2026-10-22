@@ -6,14 +6,19 @@
   "hero": {
     "title": "Ce qu'on <em>adore</em>",
     "count": "{count, plural, =0 {encore aucun plat} one {# plat} other {# plats}}",
-    "add": "Ajouter un plat",
-    "sort": "{count, plural, one {Classer # plat} other {Classer # plats}}"
+    "add": "Nouvelle recette",
+    "sort": "{count, plural, one {Classer # plat} other {Classer # plats}}",
+    "sortWhy": "{count, plural, one {Il manque des infos à un plat. L'IA les complète (ingrédients, style, ustensiles) pour qu'il compte dans la roulette, les régimes et les filtres.} other {Il manque des infos à # plats. L'IA les complète (ingrédients, style, ustensiles) pour qu'ils comptent dans la roulette, les régimes et les filtres.}}"
   },
   "toolbar": {
     "search": "Chercher",
     "placeholder": "quiche, paella…",
     "whose": "Favoris de",
-    "all": "Tout le monde"
+    "all": "Tout le monde",
+    "filter": "Filtrer",
+    "clear": "Effacer les filtres",
+    "temp": "Chaud ou froid",
+    "filters": "Filtres"
   },
   "grid": {
     "label": "Plats",
@@ -38,7 +43,18 @@
     "delete": "Supprimer le plat",
     "confirmDelete": "Oui, le supprimer",
     "required": "Écris le nom du plat",
-    "tooLong": "120 caractères maximum"
+    "tooLong": "120 caractères maximum",
+    "whatsIn": "Ce qu'il y a dedans et comment il est",
+    "tagsPlaceholder": "chorizo, pois chiches, au four…",
+    "tagsHint": "Écris ce que tu veux et appuie sur Entrée. Ce que je ne reconnais pas, l'IA le classe pour les régimes et les objectifs.",
+    "addTag": "Ajouter « {tag} »",
+    "removeTag": "Retirer {tag}",
+    "temp": "Chaud ou froid",
+    "tagKind": {
+      "protein": "ingrédient",
+      "trait": "style",
+      "custom": "à toi"
+    }
   },
   "toasts": {
     "created": "Plat ajouté",

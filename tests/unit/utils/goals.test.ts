@@ -5,18 +5,18 @@ import { goalProgress } from "@/utils/goals"
 
 const me: Person = { id: "me", name: "Tom", isMe: true, avatarUrl: null, restrictions: [], goals: [] }
 const meal = (eatenOn: string, patch: Partial<CountedMeal> = {}): CountedMeal =>
-  ({ dishId: "d", eatenOn, protein: null, traits: [], diners: [], ...patch })
+  ({ dishId: "d", eatenOn, proteins: [], traits: [], diners: [], ...patch })
 
 describe("goalProgress", () => {
   it("counts red meat against a limit", () => {
     const person = { ...me, goals: [{ key: "limit_red_meat", perWeek: 2 }] }
-    const meals = [meal("2026-10-05", { protein: "red_meat" }), meal("2026-10-06", { protein: "red_meat" }), meal("2026-10-07", { protein: "red_meat" })]
+    const meals = [meal("2026-10-05", { proteins: ["red_meat"] }), meal("2026-10-06", { proteins: ["red_meat"] }), meal("2026-10-07", { proteins: ["red_meat"] })]
     expect(goalProgress(person, meals)).toEqual([{ key: "limit_red_meat", kind: "limit", count: 3, target: 2, met: false }])
   })
 
   it("counts a min goal by protein or trait", () => {
     const person = { ...me, goals: [{ key: "more_vegetables", perWeek: 2 }] }
-    const meals = [meal("2026-10-05", { protein: "vegan" }), meal("2026-10-06", { traits: ["salad"] })]
+    const meals = [meal("2026-10-05", { proteins: ["vegan"] }), meal("2026-10-06", { traits: ["salad"] })]
     expect(goalProgress(person, meals)[0]).toMatchObject({ count: 2, met: true })
   })
 
@@ -29,7 +29,7 @@ describe("goalProgress", () => {
 
   it("only counts dinners the person ate; nobody recorded = me", () => {
     const alex: Person = { ...me, id: "alex", isMe: false, goals: [{ key: "try_vegan", perWeek: 1 }] }
-    const meals = [meal("2026-10-05", { protein: "vegan" }), meal("2026-10-06", { protein: "vegan", diners: ["me"] })]
+    const meals = [meal("2026-10-05", { proteins: ["vegan"] }), meal("2026-10-06", { proteins: ["vegan"], diners: ["me"] })]
     expect(goalProgress(alex, meals)[0]?.count).toBe(0)
     expect(goalProgress({ ...me, goals: alex.goals }, meals)[0]?.count).toBe(2)
   })

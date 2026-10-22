@@ -47,7 +47,7 @@
     "stars": "{count, plural, one {# étoile} other {# étoiles}}",
     "note": "Note",
     "notePlaceholder": "trop épicé, à refaire…",
-    "leftovers": "Des restes pour un autre jour",
+    "leftovers": "Il reste des restes (je te le rappelle demain)",
     "log": "Noter",
     "save": "Enregistrer",
     "cancel": "Annuler",
@@ -72,6 +72,7 @@
     "updated": "Dîner enregistré",
     "deleted": "Dîner supprimé",
     "failed": "Impossible d'enregistrer. Réessaie.",
-    "rated": "Merci ! C'est noté."
+    "rated": "Merci ! C'est noté.",
+    "leftoversGone": "C'est noté : plus de restes"
   }
 }

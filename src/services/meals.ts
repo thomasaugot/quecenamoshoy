@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase"
 import { signedImageUrls, uploadMealPhoto } from "@/services/storage"
-import type { CountedMeal, DishNote, Meal, MealInput, RecapMeal, RecentMeal, UnratedMeal } from "@/types/meal"
+import type { CountedMeal, DishNote, LeftoverMeal, Meal, MealInput, RecapMeal, RecentMeal, UnratedMeal } from "@/types/meal"
 import { portions } from "@/utils/meals"
 
 export const MEALS_PAGE_SIZE = 30
@@ -67,13 +67,13 @@ export const listMeals = async (page: number): Promise<Meal[]> => {
 export const listCountedMeals = async (sinceIso: string): Promise<CountedMeal[]> => {
   const { data, error } = await supabase
     .from("meals")
-    .select("eaten_on, dish_id, dishes ( protein, traits ), meal_diners ( person_id )")
+    .select("eaten_on, dish_id, dishes ( proteins, traits ), meal_diners ( person_id )")
     .gte("eaten_on", sinceIso)
   if (error) throw new Error(`counted meals query failed: ${error.code}`)
   return data.map((r) => ({
     dishId: r.dish_id,
     eatenOn: r.eaten_on,
-    protein: r.dishes?.protein ?? null,
+    proteins: r.dishes?.proteins ?? [],
     traits: r.dishes?.traits ?? [],
     diners: r.meal_diners.map((d) => d.person_id),
   }))
@@ -177,6 +177,38 @@ export const getUnratedMeal = async (fromIso: string, toIso: string): Promise<Un
   }
 }
 
+// The latest dinner in [fromIso, toIso] cooked with leftovers still in the fridge
+export const getLeftoverMeal = async (fromIso: string, toIso: string): Promise<LeftoverMeal | null> => {
+  const { data, error } = await supabase.from("meals")
+    .select("id, eaten_on, dish_id, image_path, location, dishes ( name, image_path ), meal_diners ( person_id )")
+    .eq("with_leftovers", true).not("dish_id", "is", null).gte("eaten_on", fromIso).lte("eaten_on", toIso)
+    .order("eaten_on", { ascending: false }).order("created_at", { ascending: false }).limit(1).maybeSingle()
+  if (error) throw new Error(`leftover meal query failed: ${error.code}`)
+  if (!data?.dish_id) return null
+  const path = photoPath(data)
+  const urls = await signedImageUrls(path ? [path] : [])
+  return {
+    id: data.id, eatenOn: data.eaten_on, dishId: data.dish_id, dishName: data.dishes?.name ?? "",
+    imageUrl: path ? urls.get(path) ?? null : null,
+    diners: data.meal_diners.map((d) => d.person_id), location: data.location,
+  }
+}
+
+// The fridge is empty: the dinner no longer has leftovers waiting
+export const clearLeftovers = async (id: string): Promise<void> => {
+  const { error } = await supabase.from("meals").update({ with_leftovers: false }).eq("id", id)
+  if (error) throw new Error(`clear leftovers failed: ${error.code}`)
+}
+
+// Tonight we eat them: today's dinner is that dish, and the fridge is empty again
+export const eatLeftovers = async ({ meal, todayIso }: { meal: LeftoverMeal; todayIso: string }): Promise<void> => {
+  await createMeal({
+    dishId: meal.dishId, newDishName: null, eatenOn: todayIso, diners: meal.diners, guests: 0, location: meal.location,
+    rating: null, note: null, withLeftovers: false, eatenOut: null, place: null, dishLabel: null,
+  })
+  await clearLeftovers(meal.id)
+}
+
 export const rateMeal = async ({ id, rating, note }: { id: string; rating: number; note: string | null }): Promise<void> => {
   const { error } = await supabase.from("meals").update({ rating, ...(note ? { note } : {}) }).eq("id", id)
   if (error) throw new Error(`rate meal failed: ${error.code}`)
@@ -185,7 +217,7 @@ export const rateMeal = async ({ id, rating, note }: { id: string; rating: numbe
 // Every dinner of a month [fromIso, toIso], each flagged when it was the dish's first time ever
 export const listRecapMeals = async (fromIso: string, toIso: string): Promise<RecapMeal[]> => {
   const { data, error } = await supabase.from("meals")
-    .select("dish_id, eaten_on, rating, dishes ( name, image_path, protein )")
+    .select("dish_id, eaten_on, rating, dishes ( name, image_path, proteins )")
     .gte("eaten_on", fromIso).lte("eaten_on", toIso).order("eaten_on")
   if (error) throw new Error(`recap query failed: ${error.code}`)
   const dishIds = [...new Set(data.flatMap((m) => (m.dish_id ? [m.dish_id] : [])))]
@@ -206,7 +238,7 @@ export const listRecapMeals = async (fromIso: string, toIso: string): Promise<Re
       imageUrl: m.dishes?.image_path ? urls.get(m.dishes.image_path) ?? null : null,
       eatenOn: m.eaten_on,
       rating: m.rating,
-      protein: m.dishes?.protein ?? null,
+      protein: m.dishes?.proteins[0] ?? null,   // the main one: first picked
       isNew,
     }
   })

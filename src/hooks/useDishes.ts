@@ -13,8 +13,8 @@ export const useDishes = () =>
 
 type ToastKey = "created" | "updated" | "deleted" | "saved"
 
-const useDishWrite = <V,>(
-  write: (vars: V) => Promise<void>,
+const useDishWrite = <V, R = void>(
+  write: (vars: V) => Promise<R>,
   toast: ToastKey,
   optimistic?: (dishes: Dish[], vars: V) => Dish[],
 ) => {

@@ -6,14 +6,19 @@
   "hero": {
     "title": "Lo que nos <em>encanta</em>",
     "count": "{count, plural, =0 {aún ningún plato} one {# plato} other {# platos}}",
-    "add": "Añadir plato",
-    "sort": "{count, plural, one {Clasificar # plato} other {Clasificar # platos}}"
+    "add": "Nueva receta",
+    "sort": "{count, plural, one {Clasificar # plato} other {Clasificar # platos}}",
+    "sortWhy": "{count, plural, one {A un plato le falta información. La IA lo completa (ingredientes, estilo, utensilios) para que cuente en la ruleta, las dietas y los filtros.} other {A # platos les falta información. La IA los completa (ingredientes, estilo, utensilios) para que cuenten en la ruleta, las dietas y los filtros.}}"
   },
   "toolbar": {
     "search": "Buscar",
     "placeholder": "quiche, paella…",
     "whose": "Favoritos de",
-    "all": "Todos"
+    "all": "Todos",
+    "filter": "Filtrar",
+    "clear": "Quitar filtros",
+    "temp": "Frío o caliente",
+    "filters": "Filtros"
   },
   "grid": {
     "label": "Platos",
@@ -38,7 +43,18 @@
     "delete": "Borrar plato",
     "confirmDelete": "Sí, borrarlo",
     "required": "Escribe el nombre del plato",
-    "tooLong": "Máximo 120 caracteres"
+    "tooLong": "Máximo 120 caracteres",
+    "whatsIn": "Qué lleva y cómo es",
+    "tagsPlaceholder": "chorizo, garbanzos, al horno…",
+    "tagsHint": "Escribe lo que quieras y pulsa Intro. Lo que no reconozca, la IA lo clasifica para dietas y objetivos.",
+    "addTag": "Añadir «{tag}»",
+    "removeTag": "Quitar {tag}",
+    "temp": "Frío o caliente",
+    "tagKind": {
+      "protein": "ingrediente",
+      "trait": "estilo",
+      "custom": "tuyo"
+    }
   },
   "toasts": {
     "created": "Plato añadido",

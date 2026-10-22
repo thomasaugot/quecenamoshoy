@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from "use-intl"
 import { Button } from "@/components/ui/Button"
-import { IconPlus } from "@/components/ui/Icons"
+import { IconPlus, IconSparkle } from "@/components/ui/Icons"
 import { unsortedDishes } from "@/utils/dishes"
 import { useDishes, useEnrichDishes } from "@/hooks/useDishes"
 import { useFavouritesStore } from "@/stores/favourites-store"
@@ -20,14 +20,21 @@ export const FavouritesHero = () => {
         <h1 className="text-title">{t.rich("title", { em: (chunks) => <em>{chunks}</em> })}</h1>
         <p className="text-voice mt-2">{t("count", { count: dishes.length })}</p>
       </div>
-      <div data-anim="rise" className="invisible flex flex-wrap gap-2">
+      <div data-anim="rise" className="invisible flex flex-col gap-3 md:items-end">
+        <div className="flex flex-wrap gap-2">
+          {unsorted > 0 && (
+            <Button variant="outlined" loading={enrich.isPending} onClick={() => enrich.mutate(locale)}
+              aria-describedby="favourites-sort-why" icon={<IconSparkle className="h-5 w-5 shrink-0 text-primary" />}>
+              {t("sort", { count: unsorted })}
+            </Button>
+          )}
+          <Button variant="outlined" onClick={() => setImporting(true)}>{tImport("importLink")}</Button>
+          <Button onClick={() => openEditor("new")} icon={<IconPlus className="h-5 w-5 shrink-0" />}>{t("add")}</Button>
+        </div>
+        {/* Said on screen, not in a hover tooltip: a phone has no hover */}
         {unsorted > 0 && (
-          <Button variant="outlined" loading={enrich.isPending} onClick={() => enrich.mutate(locale)}>
-            {t("sort", { count: unsorted })}
-          </Button>
+          <p id="favourites-sort-why" className="text-note max-w-[42ch] text-text-soft md:text-right">{t("sortWhy", { count: unsorted })}</p>
         )}
-        <Button variant="outlined" onClick={() => setImporting(true)}>{tImport("importLink")}</Button>
-        <Button onClick={() => openEditor("new")} icon={<IconPlus className="h-5 w-5 shrink-0" />}>{t("add")}</Button>
       </div>
     </header>
   )

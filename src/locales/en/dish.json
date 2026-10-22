@@ -21,8 +21,9 @@
   },
   "recipe": {
     "title": "The recipe",
-    "none": "No recipe yet. I can write one, or paste the link of one you like.",
+    "none": "No recipe yet. I can write one, you can type your own, or paste the link of one you like.",
     "generate": "Write the recipe",
+    "writeMine": "Write it myself",
     "rewrite": "Rewrite it",
     "writing": "writing…",
     "servings": "How many",

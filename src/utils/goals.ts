@@ -5,7 +5,7 @@ import { isWeekday } from "@/utils/dates"
 
 export const countsToward = (meal: CountedMeal, counts: GoalCounts): boolean =>
   (!counts.weekdaysOnly || isWeekday(meal.eatenOn)) &&
-  (!!(meal.protein && counts.proteins?.includes(meal.protein)) ||
+  (meal.proteins.some((x) => counts.proteins?.includes(x)) ||
     meal.traits.some((t) => counts.traits?.includes(t)))
 
 // A meal logged with nobody at the table (older entries) counts for me.

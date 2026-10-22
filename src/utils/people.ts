@@ -24,7 +24,7 @@ export const findGoal = (person: Person, key: string): Goal | undefined =>
 export const existingDiners = (ids: readonly string[], people: readonly Person[]): string[] =>
   ids.filter((id) => people.some((p) => p.id === id))
 
-export const toggleId = (ids: readonly string[], id: string): string[] =>
+export const toggleId = <T extends string>(ids: readonly T[], id: T): T[] =>
   ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id]
 
 export const initialOf = (name: string) => name.trim().charAt(0).toLocaleUpperCase()

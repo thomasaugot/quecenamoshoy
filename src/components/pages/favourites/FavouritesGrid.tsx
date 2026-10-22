@@ -1,4 +1,5 @@
 import { useTranslations } from "use-intl"
+import { useShallow } from "zustand/react/shallow"
 import { FavouritesCard } from "@/components/pages/favourites/FavouritesCard"
 import { useDishes } from "@/hooks/useDishes"
 import { useFavouritesStore } from "@/stores/favourites-store"
@@ -9,9 +10,8 @@ import { filterDishes, sortByLove } from "@/utils/dishes"
 export const FavouritesGrid = () => {
   const t = useTranslations("favourites.grid")
   const { data: dishes = [] } = useDishes()
-  const query = useFavouritesStore((s) => s.query)
-  const personId = useFavouritesStore((s) => s.personId)
-  const shown = sortByLove(filterDishes(dishes, { query, personId }))
+  const filter = useFavouritesStore(useShallow(({ query, personId, proteins, traits, temps }) => ({ query, personId, proteins, traits, temps })))
+  const shown = sortByLove(filterDishes(dishes, filter))
 
   return (
     <section aria-label={t("label")} data-anim="rise" className="invisible">

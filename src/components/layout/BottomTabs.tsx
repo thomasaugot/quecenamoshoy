@@ -5,6 +5,7 @@ import { NAV_ITEMS } from "@/constants/nav"
 import { useAuth } from "@/hooks/useAuth"
 import { useCurrentRouteKey } from "@/hooks/useLocaleData"
 import { localizedPath } from "@/i18n/paths"
+import { navCurrent } from "@/utils/nav"
 
 // Thumb-reach navigation on phones (brief §3.2). Hidden from md up, where Navbar carries it.
 export const BottomTabs = () => {
@@ -21,10 +22,12 @@ export const BottomTabs = () => {
           <li key={item.routeKey} className="flex">
             <TransitionLink
               href={localizedPath(item.routeKey, locale)}
-              aria-current={current === item.routeKey ? "page" : undefined}
-              className="keyboard-focus-ring text-body-sm flex grow flex-col items-center justify-center gap-1 aria-[current=page]:text-primary"
+              aria-current={navCurrent(item.routeKey, current)}
+              className="group keyboard-focus-ring text-body-sm flex grow flex-col items-center justify-center gap-1 transition-colors aria-[current]:font-medium aria-[current]:text-primary!"
             >
-              <NavIcon name={item.icon} className="h-6 w-6" />
+              <span className="flex h-8 w-14 items-center justify-center rounded-full transition-colors group-aria-[current]:bg-surface-2">
+                <NavIcon name={item.icon} className="h-6 w-6" />
+              </span>
               {t(`nav.${item.labelKey}`)}
             </TransitionLink>
           </li>

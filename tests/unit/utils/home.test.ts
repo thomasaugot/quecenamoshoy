@@ -3,7 +3,7 @@ import type { Dish } from "@/types/dish"
 import { forgottenFavourites } from "@/utils/home"
 
 const dish = (id: string, lovedBy = ["me"]): Dish => ({
-  id, name: id, description: null, protein: null, traits: [], temp: null, imageUrl: null, lovedBy, equipment: [], notes: null,
+  id, name: id, description: null, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy, equipment: [], notes: null,
 })
 
 describe("forgottenFavourites", () => {

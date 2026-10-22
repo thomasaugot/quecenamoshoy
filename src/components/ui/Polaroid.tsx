@@ -31,7 +31,7 @@ export const Polaroid = ({ imageUrl, title, caption, index, href }: {
     </figure>
   )
   return href ? (
-    <TransitionLink href={href} className="keyboard-focus-ring group block rounded-sm [&_img]:transition-transform hover:[&_img]:-translate-y-1 hover:[&_img]:rotate-0">
+    <TransitionLink href={href} className="keyboard-focus-ring group block w-28 shrink-0 rounded-sm lg:w-full [&_img]:transition-transform hover:[&_img]:-translate-y-1 hover:[&_img]:rotate-0">
       {figure}
     </TransitionLink>
   ) : figure

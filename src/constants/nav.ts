@@ -9,4 +9,12 @@ export const NAV_ITEMS = [
   { routeKey: "settings", labelKey: "settings", icon: "settings" },
 ] as const satisfies readonly { routeKey: RouteKey; labelKey: string; icon: string }[]
 
+// Pages without a tab of their own light up the tab they are reached from
+export const NAV_PARENT: Partial<Record<RouteKey, RouteKey>> = {
+  wizard: "home",
+  roulette: "home",
+  dish: "favourites",
+  recap: "history",
+}
+
 export type NavIcon = (typeof NAV_ITEMS)[number]["icon"]

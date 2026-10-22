@@ -1,4 +1,5 @@
 import type { DishProtein, DishTemp } from "@/types/database"
+import type { DishFilter } from "@/types/dish"
 
 // What a dish IS, so eating goals can count it (brief §3.9). Labels: locales → catalogue.
 export const PROTEINS = [
@@ -10,6 +11,12 @@ export const TRAITS = [
 ] as const
 
 export const TEMPS = ["hot", "cold"] as const satisfies readonly DishTemp[]
+
+export const NO_DISH_FILTER: DishFilter = { query: "", personId: null, proteins: [], traits: [], temps: [] }
+
+// My own words on a dish: short, and not a list without end
+export const DISH_TAG_MAX = 40
+export const DISH_TAGS_MAX_COUNT = 20
 
 // Mirrors the CHECKs on public.dishes
 export const DISH_NAME_MAX = 120

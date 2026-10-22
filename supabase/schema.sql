@@ -375,3 +375,12 @@ notify pgrst, 'reload schema';
 alter table public.people add column if not exists avatar_path text check (avatar_path is null or char_length(avatar_path) <= 200);
 
 notify pgrst, 'reload schema';
+
+
+-- ── MIGRATION 2026-10-17 — a dish is made of several things (chicken AND chorizo) ──────────
+-- proteins replaces protein: main one first. Copies the old value; protein stays until the
+-- new app and Edge Functions are live everywhere, then a later block drops it.
+alter table public.dishes add column if not exists proteins public.dish_protein[] not null default '{}';
+update public.dishes set proteins = array[protein] where protein is not null and cardinality(proteins) = 0;
+
+notify pgrst, 'reload schema';

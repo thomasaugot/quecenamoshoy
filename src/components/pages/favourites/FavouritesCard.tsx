@@ -40,7 +40,7 @@ export const FavouritesCard = ({ dish, index }: { dish: Dish; index: number }) =
               {dish.name}
             </TransitionLink>
           </h3>
-          {dish.protein && <p className="text-body-sm">{label("protein", dish.protein)}</p>}
+          {dish.proteins.length > 0 && <p className="text-body-sm">{dish.proteins.map((x) => label("protein", x)).join(" · ")}</p>}
         </div>
         <Button variant="ghost" size="icon" aria-label={t("edit", { name: dish.name })}
           onClick={() => openEditor(dish.id)} icon={<IconEdit className="h-4 w-4 shrink-0" />} className="relative text-text-muted" />

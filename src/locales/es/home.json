@@ -36,5 +36,10 @@
     "save": "Guardar",
     "stars": "{count, plural, one {# estrella} other {# estrellas}}",
     "label": "Puntuación"
+  },
+  "leftovers": {
+    "question": "Quedan restos de {dish} del {day}",
+    "eat": "Nos los comemos esta noche",
+    "gone": "Ya no quedan"
   }
 }

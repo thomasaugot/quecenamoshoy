@@ -1,11 +1,11 @@
 import type { IconBaseProps } from "react-icons"
 import {
   FiAlertCircle, FiArrowLeft, FiChevronDown, FiArrowRight, FiCheck, FiClock, FiEdit2, FiGlobe, FiHeart, FiInfo, FiLogOut, FiMinus, FiPlus,
-  FiPlusSquare, FiSettings, FiShare, FiShoppingBag, FiStar, FiSun, FiTrash2, FiX,
+  FiPlusSquare, FiSettings, FiShare, FiSliders, FiShoppingBag, FiStar, FiSun, FiTrash2, FiX,
 } from "react-icons/fi"
 import {
   PiBowlFoodDuotone, PiBowlFoodFill, PiCookingPot, PiCookingPotFill, PiFireDuotone, PiFishFill, PiHamburgerFill,
-  PiHouseLineDuotone, PiPackageDuotone, PiShuffleDuotone, PiSnowflakeDuotone, PiSuitcaseRollingDuotone,
+  PiHouseLineDuotone, PiSparkle, PiPackageDuotone, PiShuffleDuotone, PiSnowflakeDuotone, PiSuitcaseRollingDuotone,
 } from "react-icons/pi"
 
 type IconProps = IconBaseProps
@@ -23,6 +23,8 @@ export const IconClose = (p: IconProps) => <FiX aria-hidden="true" {...p} />
 export const IconCheck = (p: IconProps) => <FiCheck aria-hidden="true" {...p} />
 export const IconAlert = (p: IconProps) => <FiAlertCircle aria-hidden="true" {...p} />
 export const IconInfo = (p: IconProps) => <FiInfo aria-hidden="true" {...p} />
+export const IconFilter = (p: IconProps) => <FiSliders aria-hidden="true" {...p} />
+export const IconSparkle = (p: IconProps) => <PiSparkle aria-hidden="true" {...p} />
 export const IconSettings = (p: IconProps) => <FiSettings aria-hidden="true" {...p} />
 export const IconMinus = (p: IconProps) => <FiMinus aria-hidden="true" {...p} />
 export const IconPlus = (p: IconProps) => <FiPlus aria-hidden="true" {...p} />

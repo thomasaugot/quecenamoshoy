@@ -47,7 +47,7 @@
     "stars": "{count, plural, one {# star} other {# stars}}",
     "note": "Note",
     "notePlaceholder": "too spicy, make again…",
-    "leftovers": "Leftovers for another day",
+    "leftovers": "There are leftovers (I'll remind you tomorrow)",
     "log": "Log it",
     "save": "Save",
     "cancel": "Cancel",
@@ -72,6 +72,7 @@
     "updated": "Dinner saved",
     "deleted": "Dinner deleted",
     "failed": "Couldn't save. Try again.",
-    "rated": "Thanks! Saved."
+    "rated": "Thanks! Saved.",
+    "leftoversGone": "Noted: no leftovers left"
   }
 }

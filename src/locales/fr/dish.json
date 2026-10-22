@@ -21,8 +21,9 @@
   },
   "recipe": {
     "title": "La recette",
-    "none": "Pas encore de recette. Je peux l'écrire, ou colle le lien d'une recette que tu aimes.",
+    "none": "Pas encore de recette. Je peux l'écrire, tu peux taper la tienne, ou colle le lien d'une recette que tu aimes.",
     "generate": "Écrire la recette",
+    "writeMine": "L'écrire moi-même",
     "rewrite": "La réécrire",
     "writing": "j'écris…",
     "servings": "Pour combien",

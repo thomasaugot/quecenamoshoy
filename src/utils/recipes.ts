@@ -22,6 +22,10 @@ export const toDraft = (r: Recipe): RecipeDraft => ({
   stepsText: r.steps.join("\n"),
 })
 
+// Writing one from scratch: sized for the household
+export const blankDraft = (servings: number): RecipeDraft =>
+  ({ servings, prepMinutes: null, ingredientsText: "", stepsText: "" })
+
 // "200 g — harina" → { quantity: "200 g", item: "harina" }; a line without " — " is all item
 export const ingredientsFromText = (text: string): Ingredient[] =>
   text.split("\n").map((l) => l.trim()).filter(Boolean).map((line) => {

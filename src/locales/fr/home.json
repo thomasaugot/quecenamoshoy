@@ -36,5 +36,10 @@
     "save": "Enregistrer",
     "stars": "{count, plural, one {# étoile} other {# étoiles}}",
     "label": "Note"
+  },
+  "leftovers": {
+    "question": "Il reste de {dish} de {day}",
+    "eat": "On les mange ce soir",
+    "gone": "Il n'y en a plus"
   }
 }

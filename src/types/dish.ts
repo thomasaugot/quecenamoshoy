@@ -4,7 +4,8 @@ export type Dish = {
   id: string
   name: string
   description: string | null
-  protein: DishProtein | null
+  proteins: DishProtein[]    // what it is made of: chicken AND chorizo
+  tags: string[]             // my own words for it ("chorizo", "de la abuela")
   traits: string[]
   temp: DishTemp | null
   imageUrl: string | null    // short-lived signed URL (private bucket)
@@ -16,10 +17,21 @@ export type Dish = {
 export type DishInput = {
   name: string
   description: string | null
-  protein: DishProtein | null
+  proteins: DishProtein[]
   traits: string[]
+  tags: string[]
   temp: DishTemp | null
   lovedBy: string[]
 }
 
-export type DishFilter = { query: string; personId: string | null }
+// Within a group any choice matches; across groups every group must match
+export type DishFilter = {
+  query: string
+  personId: string | null
+  proteins: DishProtein[]
+  traits: string[]
+  temps: DishTemp[]
+}
+
+// One entry of the "what's in it" field: a catalogue word the app understands, or my own
+export type TagOption = { kind: "protein" | "trait" | "custom"; key: string; label: string }

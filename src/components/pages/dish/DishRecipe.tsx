@@ -5,6 +5,7 @@ import { DishRecipeEmpty } from "@/components/pages/dish/DishRecipeEmpty"
 import { DishRecipeView } from "@/components/pages/dish/DishRecipeView"
 import { DishMyNotes } from "@/components/pages/dish/DishMyNotes"
 import { DishNotes } from "@/components/pages/dish/DishNotes"
+import { usePeople } from "@/hooks/usePeople"
 import { useRecipe } from "@/hooks/useRecipe"
 import type { Dish } from "@/types/dish"
 
@@ -13,6 +14,7 @@ import type { Dish } from "@/types/dish"
 export const DishRecipe = ({ dish }: { dish: Dish }) => {
   const t = useTranslations("dish.recipe")
   const { data: recipe } = useRecipe(dish.id)
+  const { data: people = [] } = usePeople()
   const [editing, setEditing] = useState(false)
 
   return (
@@ -20,12 +22,12 @@ export const DishRecipe = ({ dish }: { dish: Dish }) => {
       <DishMyNotes dish={dish} />
       <DishNotes dishId={dish.id} />
       <h2 id="dish-recipe" className="text-heading">{t("title")}</h2>
-      {editing && recipe ? (
-        <DishRecipeEditor dishId={dish.id} recipe={recipe} onDone={() => setEditing(false)} />
+      {editing ? (
+        <DishRecipeEditor dishId={dish.id} recipe={recipe ?? undefined} servings={Math.max(2, people.length)} onDone={() => setEditing(false)} />
       ) : recipe ? (
         <DishRecipeView dish={dish} recipe={recipe} onEdit={() => setEditing(true)} />
       ) : (
-        <DishRecipeEmpty dish={dish} />
+        <DishRecipeEmpty dish={dish} onWrite={() => setEditing(true)} />
       )}
     </section>
   )

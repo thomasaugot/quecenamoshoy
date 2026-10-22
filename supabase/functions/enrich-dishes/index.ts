@@ -8,7 +8,7 @@ import { gemini, LIMITS, MAX_OUTPUT_TOKENS, TEXT_MODEL, THINKING } from "../_sha
 import { takeAiCall } from "../_shared/rate-limit.ts"
 import { LANGUAGES } from "../_shared/languages.ts"
 
-// Sorts my dishes once (brief §3.3 "AI enriches each dish"): what each one IS — protein,
+// Sorts my dishes once (brief §3.3 "AI enriches each dish"): what each one IS — proteins,
 // traits, hot/cold, equipment, a short description — so goals, the roulette and the
 // suggestions can reason about it. Only EMPTY fields are filled: what I set by hand stays.
 // One Gemini call for the whole batch.
@@ -17,12 +17,12 @@ const BATCH = 80
 const ALL_EQUIPMENT = Object.values(EQUIPMENT).flat() as string[]
 
 type DishRow = {
-  id: string; name: string; description: string | null; protein: string | null
+  id: string; name: string; description: string | null; proteins: string[]; tags: string[]
   traits: string[]; temp: string | null; equipment: string[]
 }
-type Enriched = { id: string; protein: string; traits: string[]; temp: string; equipment: string[]; description: string }
+type Enriched = { id: string; proteins: string[]; traits: string[]; temp: string; equipment: string[]; description: string }
 
-const needsWork = (d: DishRow) => !d.protein || d.traits.length === 0 || !d.temp || d.equipment.length === 0 || !d.description
+const needsWork = (d: DishRow) => d.proteins.length === 0 || d.traits.length === 0 || !d.temp || d.equipment.length === 0 || !d.description
 
 const SCHEMA = {
   type: Type.OBJECT,
@@ -33,13 +33,13 @@ const SCHEMA = {
         type: Type.OBJECT,
         properties: {
           id: { type: Type.STRING },
-          protein: { type: Type.STRING, enum: [...PROTEINS] },
+          proteins: { type: Type.ARRAY, items: { type: Type.STRING, enum: [...PROTEINS] } },
           traits: { type: Type.ARRAY, items: { type: Type.STRING, enum: [...TRAITS] } },
           temp: { type: Type.STRING, enum: ["hot", "cold"] },
           equipment: { type: Type.ARRAY, items: { type: Type.STRING, enum: ALL_EQUIPMENT } },
           description: { type: Type.STRING },
         },
-        required: ["id", "protein", "traits", "temp", "equipment", "description"],
+        required: ["id", "proteins", "traits", "temp", "equipment", "description"],
       },
     },
   },
@@ -64,7 +64,7 @@ Deno.serve(async (req) => {
   if (!language) return json(req, { error: "invalid_input" }, 400)
 
   // My dishes (RLS), the ones with something missing
-  const { data, error } = await user.client.from("dishes").select("id, name, description, protein, traits, temp, equipment").order("name")
+  const { data, error } = await user.client.from("dishes").select("id, name, description, proteins, traits, tags, temp, equipment").order("name")
   if (error) return json(req, { error: "query" }, 500)
   const todo = (data as DishRow[]).filter(needsWork).slice(0, BATCH)
   if (todo.length === 0) return json(req, { updated: 0, remaining: 0 })
@@ -74,13 +74,13 @@ Deno.serve(async (req) => {
   try {
     const response = await gemini().models.generateContent({
       model: TEXT_MODEL,
-      contents: `Classify each home-cooked dish below. For each, by its id:
-- protein: the main protein (vegetarian = no meat/fish but may have eggs or dairy; vegan = no animal products).
+      contents: `Classify each home-cooked dish below; "myWords" are what I wrote about it (ingredients, style) — trust them. For each, by its id:
+- proteins: what it is made of, main one first, all that apply (chicken and chorizo paella = poultry, pork, seafood). Use vegetarian (no meat/fish, may have eggs or dairy) or vegan (no animal products) only alone.
 - traits: all that apply, only from the list.
 - temp: served hot or cold.
 - equipment: what is usually needed to cook it at home, only from the list.
 - description: one short appetising line in ${LANGUAGES[language]}, max 90 characters.
-Dishes: ${JSON.stringify(todo.map((d) => ({ id: d.id, name: d.name, description: d.description })))}`,
+Dishes: ${JSON.stringify(todo.map((d) => ({ id: d.id, name: d.name, description: d.description, myWords: d.tags })))}`,
       config: {
         responseMimeType: "application/json",
         responseSchema: SCHEMA,
@@ -95,7 +95,7 @@ Dishes: ${JSON.stringify(todo.map((d) => ({ id: d.id, name: d.name, description:
       const d = byId.get(e.id)
       if (!d) continue   // never touch an id I didn't send
       const patch: Record<string, unknown> = {}
-      if (!d.protein && (PROTEINS as readonly string[]).includes(e.protein)) patch.protein = e.protein
+      if (d.proteins.length === 0) patch.proteins = [...new Set((e.proteins ?? []).filter((x) => (PROTEINS as readonly string[]).includes(x)))]
       if (d.traits.length === 0) patch.traits = [...new Set((e.traits ?? []).filter((t) => (TRAITS as readonly string[]).includes(t)))]
       if (!d.temp && (e.temp === "hot" || e.temp === "cold")) patch.temp = e.temp
       if (d.equipment.length === 0) patch.equipment = [...new Set((e.equipment ?? []).filter((x) => ALL_EQUIPMENT.includes(x)))]

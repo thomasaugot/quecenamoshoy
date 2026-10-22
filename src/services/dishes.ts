@@ -10,7 +10,7 @@ const FOREIGN_KEY_VIOLATION = "23503"
 export const listDishes = async (): Promise<Dish[]> => {
   const { data, error } = await supabase
     .from("dishes")
-    .select("id, name, description, protein, traits, temp, equipment, notes, image_path, dish_favourites(person_id)")
+    .select("id, name, description, proteins, traits, tags, temp, equipment, notes, image_path, dish_favourites(person_id)")
     .order("name")
   if (error) throw new Error(`dishes query failed: ${error.code}`)
   const urls = await signedImageUrls(data.flatMap((d) => (d.image_path ? [d.image_path] : [])))
@@ -18,7 +18,8 @@ export const listDishes = async (): Promise<Dish[]> => {
     id: d.id,
     name: d.name,
     description: d.description,
-    protein: d.protein,
+    proteins: d.proteins,
+    tags: d.tags,
     traits: d.traits,
     temp: d.temp,
     imageUrl: d.image_path ? urls.get(d.image_path) ?? null : null,
@@ -28,8 +29,8 @@ export const listDishes = async (): Promise<Dish[]> => {
   }))
 }
 
-const columns = ({ name, description, protein, traits, temp }: DishInput) =>
-  ({ name, description, protein, traits, temp })
+const columns = ({ name, description, proteins, traits, tags, temp }: DishInput) =>
+  ({ name, description, proteins, traits, tags, temp })
 
 // Favourites are rewritten as a set: remove who no longer loves it, add who does.
 const writeLovedBy = async (dishId: string, lovedBy: string[]) => {
@@ -44,10 +45,11 @@ const writeLovedBy = async (dishId: string, lovedBy: string[]) => {
   if (error) throw new Error(`favourites write failed: ${error.code}`)
 }
 
-export const createDish = async (input: DishInput): Promise<void> => {
+export const createDish = async (input: DishInput): Promise<string> => {
   const { data, error } = await supabase.from("dishes").insert(columns(input)).select("id").single()
   if (error) throw new Error(`create dish failed: ${error.code}`)
   await writeLovedBy(data.id, input.lovedBy)
+  return data.id
 }
 
 export const updateDish = async ({ id, input }: { id: string; input: DishInput }): Promise<void> => {

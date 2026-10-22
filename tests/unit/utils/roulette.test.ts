@@ -4,7 +4,7 @@ import type { Person } from "@/types/person"
 import { buildWheel, eligibleDishes, pickWeighted, weighDish, wordMatches, type RouletteContext } from "@/utils/roulette"
 
 const dish = (id: string, patch: Partial<Dish> = {}): Dish => ({
-  id, name: id, description: null, protein: null, traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], notes: null, ...patch,
+  id, name: id, description: null, proteins: [], tags: [], traits: [], temp: null, imageUrl: null, lovedBy: ["me"], equipment: [], notes: null, ...patch,
 })
 const me: Person = { id: "me", name: "Tom", isMe: true, avatarUrl: null, restrictions: [], goals: [] }
 const ctx = (patch: Partial<RouletteContext> = {}): RouletteContext => ({
@@ -15,13 +15,13 @@ const ids = (d: { id: string }[]) => d.map((x) => x.id)
 
 describe("eligibleDishes — the same hard rules as the suggestions", () => {
   it("drops what we ate in the avoid window", () => {
-    const c = ctx({ dishes: [dish("quiche"), dish("paella")], recentMeals: [{ dishId: "quiche", eatenOn: "2026-10-09", protein: null, traits: [], diners: [] }] })
+    const c = ctx({ dishes: [dish("quiche"), dish("paella")], recentMeals: [{ dishId: "quiche", eatenOn: "2026-10-09", proteins: [], traits: [], diners: [] }] })
     expect(ids(eligibleDishes(c))).toEqual(["paella"])
   })
   it("drops allergens and diets of anyone at the table, guests included", () => {
     const alex: Person = { ...me, id: "alex", restrictions: [{ kind: "diet", key: "vegetarian", label: null }] }
     const c = ctx({ diners: [me, alex], guestRestrictions: ["nuts"],
-      dishes: [dish("steak", { protein: "red_meat" }), dish("pesto", { description: "con piñones" }), dish("tortilla", { protein: "eggs" })] })
+      dishes: [dish("steak", { proteins: ["red_meat"] }), dish("pesto", { description: "con piñones" }), dish("tortilla", { proteins: ["eggs"] }), dish("paella mixta", { proteins: ["poultry", "seafood"] })] })
     expect(ids(eligibleDishes(c))).toEqual(["tortilla"])
   })
   it("drops dishes needing equipment I don't have, once the kitchen is filled in", () => {
@@ -34,7 +34,7 @@ describe("eligibleDishes — the same hard rules as the suggestions", () => {
 describe("weighDish — preferences are weights, never filters", () => {
   it("boosts what I feel like and shrinks what I don't", () => {
     const carbonara = dish("Carbonara", { traits: ["pasta"] })
-    const pollo = dish("Pollo", { protein: "poultry" })
+    const pollo = dish("Pollo", { proteins: ["poultry"] })
     const c = ctx({ preference: { chips: ["pasta", "no_meat"], text: "" } })
     expect(weighDish(carbonara, c).weight).toBeGreaterThan(weighDish(pollo, c).weight)
     expect(weighDish(pollo, c).weight).toBeGreaterThan(0)
@@ -88,7 +88,7 @@ describe("the preference decides — tolerant matching", () => {
     }
   })
   it("takes what I don't want off the wheel", () => {
-    const dishes = [dish("Pollo asado", { protein: "poultry" }), dish("Ensalada", { protein: null })]
+    const dishes = [dish("Pollo asado", { proteins: ["poultry"] }), dish("Ensalada", { proteins: [] })]
     const wheel = buildWheel(ctx({ dishes, preference: { chips: ["no_meat"], text: "" } }), () => 0.4)
     expect(wheel.map((s) => s.dish.name)).toEqual(["Ensalada"])
   })

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useTranslations } from "use-intl"
 import { Chip } from "@/components/ui/Chip"
 import { Input } from "@/components/ui/Input"
+import { NO_DISH_FILTER } from "@/constants/dish"
 import { useDishes } from "@/hooks/useDishes"
 import { filterDishes, hasExactName, sortByLove } from "@/utils/dishes"
 
@@ -19,7 +20,7 @@ export const HistoryDishPicker = ({ dishId, newDishName, currentName, onPick, er
   const t = useTranslations("history.editor")
   const { data: dishes = [] } = useDishes()
   const [query, setQuery] = useState("")
-  const matches = sortByLove(filterDishes(dishes, { query, personId: null })).slice(0, SHOWN)
+  const matches = sortByLove(filterDishes(dishes, { ...NO_DISH_FILTER, query })).slice(0, SHOWN)
   const typed = query.trim()
   const selected = dishes.find((d) => d.id === dishId)
 

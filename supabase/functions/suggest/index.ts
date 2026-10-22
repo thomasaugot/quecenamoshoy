@@ -69,13 +69,13 @@ const buildPrompt = (input: Input, ctx: Context) => {
   }))
   const favourites = ctx.favourites.map((f) => ({
     id: f.id, name: f.name, temp: f.temp, lovedBy: f.lovedBy, equipment: f.equipment,
-    tags: [...f.tags, ...f.traits, ...(f.protein ? [f.protein] : [])],
+    tags: [...f.tags, ...f.traits, ...f.proteins],
   }))
   const avoidSince = daysAgoIso(ctx.avoidDays)
   const avoid = [...new Set(ctx.recentMeals.filter((m) => m.eatenOn >= avoidSince).map((m) => m.name))]
   const counters: Record<string, number> = {}
   for (const m of ctx.recentMeals.filter((m) => m.eatenOn >= daysAgoIso(7))) {
-    for (const tag of [m.protein, ...m.traits]) if (tag) counters[tag] = (counters[tag] ?? 0) + 1
+    for (const tag of [...m.proteins, ...m.traits]) counters[tag] = (counters[tag] ?? 0) + 1
   }
 
   return `You help a couple decide what to cook for dinner tonight. Today is ${new Date().toISOString().slice(0, 10)}.

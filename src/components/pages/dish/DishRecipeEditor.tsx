@@ -5,14 +5,16 @@ import { Stepper } from "@/components/ui/Stepper"
 import { RECIPE_SERVINGS_MAX } from "@/constants/dish"
 import { useSaveRecipe } from "@/hooks/useRecipe"
 import type { Recipe } from "@/types/recipe"
-import { ingredientsFromText, stepsFromText, toDraft } from "@/utils/recipes"
+import { blankDraft, ingredientsFromText, stepsFromText, toDraft } from "@/utils/recipes"
 
 // Edit by hand, as plain text: one ingredient per line ("200 g — harina"), one step per line.
-export const DishRecipeEditor = ({ dishId, recipe, onDone }: { dishId: string; recipe: Recipe; onDone: () => void }) => {
+export const DishRecipeEditor = ({ dishId, recipe, servings, onDone }: {
+  dishId: string; recipe: Recipe | undefined; servings: number; onDone: () => void
+}) => {
   const t = useTranslations("dish.recipe")
   const ingredientsId = useId()
   const stepsId = useId()
-  const [draft, setDraft] = useState(() => toDraft(recipe))
+  const [draft, setDraft] = useState(() => recipe ? toDraft(recipe) : blankDraft(servings))
   const save = useSaveRecipe()
 
   const submit = (event: FormEvent) => {

@@ -25,7 +25,7 @@ export type Meal = RecentMeal & {
 export type CountedMeal = {
   dishId: string | null
   eatenOn: string
-  protein: DishProtein | null
+  proteins: DishProtein[]
   traits: string[]
   diners: string[]
 }
@@ -52,6 +52,12 @@ export type MealInput = {
 export type DishNote = { id: string; eatenOn: string; rating: number | null; note: string | null }
 
 // The last dinner still waiting for its stars (home page)
+// A dinner cooked with extra portions, still waiting to be eaten
+export type LeftoverMeal = {
+  id: string; eatenOn: string; dishId: string; dishName: string; imageUrl: string | null
+  diners: string[]; location: KitchenLocation
+}
+
 export type UnratedMeal = { id: string; eatenOn: string; dishName: string; imageUrl: string | null; eatenOut: MealOut | null }
 
 // A dinner as the monthly recap needs it

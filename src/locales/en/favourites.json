@@ -6,14 +6,19 @@
   "hero": {
     "title": "What we <em>love</em>",
     "count": "{count, plural, =0 {no dishes yet} one {# dish} other {# dishes}}",
-    "add": "Add a dish",
-    "sort": "{count, plural, one {Sort # dish} other {Sort # dishes}}"
+    "add": "New recipe",
+    "sort": "{count, plural, one {Sort # dish} other {Sort # dishes}}",
+    "sortWhy": "{count, plural, one {One dish is missing details. The AI fills them in (ingredients, style, equipment) so it counts in the roulette, diets and filters.} other {# dishes are missing details. The AI fills them in (ingredients, style, equipment) so they count in the roulette, diets and filters.}}"
   },
   "toolbar": {
     "search": "Search",
     "placeholder": "quiche, paella…",
     "whose": "Favourites of",
-    "all": "Everyone"
+    "all": "Everyone",
+    "filter": "Filter",
+    "clear": "Clear filters",
+    "temp": "Hot or cold",
+    "filters": "Filters"
   },
   "grid": {
     "label": "Dishes",
@@ -38,7 +43,18 @@
     "delete": "Delete dish",
     "confirmDelete": "Yes, delete it",
     "required": "Type the dish's name",
-    "tooLong": "120 characters at most"
+    "tooLong": "120 characters at most",
+    "whatsIn": "What's in it and what it's like",
+    "tagsPlaceholder": "chorizo, chickpeas, baked…",
+    "tagsHint": "Type anything and press Enter. What I don't recognise, the AI sorts for diets and goals.",
+    "addTag": "Add “{tag}”",
+    "removeTag": "Remove {tag}",
+    "temp": "Hot or cold",
+    "tagKind": {
+      "protein": "ingredient",
+      "trait": "style",
+      "custom": "yours"
+    }
   },
   "toasts": {
     "created": "Dish added",

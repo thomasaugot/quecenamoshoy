@@ -7,8 +7,8 @@ export type Location = "home" | "travel"
 
 type Restriction = { kind: "allergy" | "dislike" | "diet"; key: string; label: string | null }
 export type Diner = { id: string; name: string; restrictions: Restriction[]; goals: { key: string; perWeek: number }[] }
-export type FavouriteDish = { id: string; name: string; temp: string | null; tags: string[]; traits: string[]; protein: string | null; equipment: string[]; lovedBy: number }
-export type RecentMeal = { eatenOn: string; rating: number | null; dishId: string; name: string; protein: string | null; traits: string[] }
+export type FavouriteDish = { id: string; name: string; temp: string | null; tags: string[]; traits: string[]; proteins: string[]; equipment: string[]; lovedBy: number }
+export type RecentMeal = { eatenOn: string; rating: number | null; dishId: string; name: string; proteins: string[]; traits: string[] }
 export type Context = {
   diners: Diner[]
   favourites: FavouriteDish[]
@@ -28,16 +28,16 @@ export const daysAgoIso = (days: number) => new Date(Date.now() - days * 86_400_
 // Untyped client: an embedded relation can arrive as an object or a one-item array
 const one = <T>(value: T | T[] | null | undefined): T | null => (Array.isArray(value) ? value[0] ?? null : value ?? null)
 
-type DishRow = { id: string; name: string; temp: string | null; tags: string[]; traits: string[]; protein: string | null; equipment: string[] }
+type DishRow = { id: string; name: string; temp: string | null; tags: string[]; traits: string[]; proteins: string[]; equipment: string[] }
 
 export const loadContext = async (client: SupabaseClient, location: Location, dinerIds: string[]): Promise<Context> => {
   const ids = dinerIds.length ? dinerIds : [NO_MATCH]
   const [people, favourites, kitchen, settings, recent, rated] = await Promise.all([
     client.from("people").select("id, name, person_restrictions(kind, key, label), person_goals(key, per_week)").in("id", ids),
-    client.from("dish_favourites").select("person_id, dishes(id, name, temp, tags, traits, protein, equipment)").in("person_id", ids),
+    client.from("dish_favourites").select("person_id, dishes(id, name, temp, tags, traits, proteins, equipment)").in("person_id", ids),
     client.from("kitchen_items").select("key, label").eq("location", location),
     client.from("settings").select("avoid_days").maybeSingle(),
-    client.from("meals").select("eaten_on, rating, dish_id, dishes(name, protein, traits)").gte("eaten_on", daysAgoIso(14)).order("eaten_on", { ascending: false }),
+    client.from("meals").select("eaten_on, rating, dish_id, dishes(name, proteins, traits)").gte("eaten_on", daysAgoIso(14)).order("eaten_on", { ascending: false }),
     client.from("meals").select("dishes(name)").gte("rating", 4).order("eaten_on", { ascending: false }).limit(15),
   ])
   for (const r of [people, favourites, kitchen, settings, recent, rated]) {
@@ -60,8 +60,8 @@ export const loadContext = async (client: SupabaseClient, location: Location, di
   }
 
   const recentMeals: RecentMeal[] = (recent.data ?? []).flatMap((m) => {
-    const d = one<{ name: string; protein: string | null; traits: string[] }>(m.dishes)
-    return d ? [{ eatenOn: m.eaten_on, rating: m.rating, dishId: m.dish_id, name: d.name, protein: d.protein, traits: d.traits }] : []
+    const d = one<{ name: string; proteins: string[]; traits: string[] }>(m.dishes)
+    return d ? [{ eatenOn: m.eaten_on, rating: m.rating, dishId: m.dish_id, name: d.name, proteins: d.proteins, traits: d.traits }] : []
   })
 
   const owned = kitchen.data ?? []

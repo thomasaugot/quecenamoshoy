@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/useAuth"
 import { useCurrentRouteKey } from "@/hooks/useLocaleData"
 import { useSignOut } from "@/hooks/useSignOut"
 import { localizedPath } from "@/i18n/paths"
+import { navCurrent } from "@/utils/nav"
 
 // PLACEHOLDER layout until the design pass: fixed top bar, inline links from md up
 // (BottomTabs carries them on phones). Hide-on-scroll waits for the design (MEMORY.md).
@@ -34,8 +35,8 @@ export const Navbar = () => {
                 <li key={item.routeKey}>
                   <TransitionLink
                     href={localizedPath(item.routeKey, locale)}
-                    aria-current={current === item.routeKey ? "page" : undefined}
-                    className="keyboard-focus-ring text-button flex items-center gap-2 rounded-lg px-3 py-2 text-text-muted aria-[current=page]:bg-surface-2 aria-[current=page]:text-text"
+                    aria-current={navCurrent(item.routeKey, current)}
+                    className="keyboard-focus-ring text-button flex items-center gap-2 rounded-lg px-3 py-2 text-text-muted aria-[current]:bg-surface-2 aria-[current]:text-text"
                   >
                     <NavIcon name={item.icon} className="h-4 w-4" />
                     {t(`nav.${item.labelKey}`)}

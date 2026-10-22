@@ -20,22 +20,26 @@ export const DishHero = ({ dish }: { dish: Dish }) => {
   const lovers = people.filter((p) => dish.lovedBy.includes(p.id)).map((p) => p.name)
   const last = lastEaten?.[dish.id]
   const tags = [
-    ...(dish.protein ? [label("protein", dish.protein)] : []),
+    ...dish.proteins.map((x) => label("protein", x)),
     ...dish.traits.map((tr) => label("trait", tr)),
+    ...dish.tags,
     ...(dish.temp ? [label("temp", dish.temp)] : []),
   ]
 
   return (
     <header className="flex flex-col gap-6">
-      {dish.imageUrl ? (
-        <img data-anim="pin" src={dish.imageUrl} alt="" width={640} height={640} fetchPriority="high" decoding="async"
-          className="invisible photo-frame aspect-square w-full max-w-sm -rotate-2" />
-      ) : (
-        <div data-anim="pin" aria-hidden="true"
-          className="invisible flex aspect-square w-full max-w-sm -rotate-2 items-center justify-center rounded-sm border-8 border-surface bg-paper shadow-lg">
-          <span className="text-display text-accent">{initialOf(dish.name)}</span>
-        </div>
-      )}
+      {/* the wrapper is what animates: a photo uploaded here swaps the img in after the entrance */}
+      <div data-anim="pin" className="invisible w-full max-w-sm">
+        {dish.imageUrl ? (
+          <img src={dish.imageUrl} alt="" width={640} height={640} fetchPriority="high" decoding="async"
+            className="photo-frame aspect-square w-full -rotate-2" />
+        ) : (
+          <div aria-hidden="true"
+            className="flex aspect-square w-full -rotate-2 items-center justify-center rounded-sm border-8 border-surface bg-paper shadow-lg">
+            <span className="text-display text-accent">{initialOf(dish.name)}</span>
+          </div>
+        )}
+      </div>
       <div data-anim="rise" className="invisible flex flex-col gap-3">
         <h1 className="text-title">{dish.name}</h1>
         {dish.description && <p className="text-body text-text-soft">{dish.description}</p>}

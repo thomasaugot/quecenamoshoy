@@ -58,7 +58,7 @@ export const wordMatches = (dishWord: string, wanted: string) =>
 const dishWords = (d: Dish) => words(`${d.name} ${d.description ?? ""}`)
 
 const matchesChip = (d: Dish, chip: PreferenceChip) =>
-  !!(d.protein && chip.proteins?.includes(d.protein)) ||
+  d.proteins.some((x) => chip.proteins?.includes(x)) ||
   d.traits.some((t) => chip.traits?.includes(t)) ||
   !!chip.words?.some((w) => dishWords(d).some((dw) => wordMatches(dw, w)))
 
@@ -87,7 +87,7 @@ export const eligibleDishes = (ctx: RouletteContext): Dish[] => {
   return pool.filter((d) =>
     !eatenLately.has(d.id) &&
     findAllergens([d.name, d.description ?? ""], allergies).length === 0 &&
-    !(d.protein && excludedProteins.has(d.protein)) &&
+    !d.proteins.some((x) => excludedProteins.has(x)) &&
     !(owned && d.equipment.some((e) => CATALOGUE_EQUIPMENT.has(e) && !owned.has(e))))
 }
 
@@ -102,8 +102,8 @@ export const weighDish = (d: Dish, ctx: RouletteContext): WheelSlot => {
   let weight = 1 + LOVED_BY_BONUS * d.lovedBy.filter((id) => dinerIds.includes(id)).length
   if (wants) weight *= PREFERENCE_BOOST
   if (avoids) weight *= PREFERENCE_DAMP
-  if (hasDiet && !d.protein) weight *= UNKNOWN_PROTEIN_DAMP
-  const asMeal: CountedMeal = { dishId: d.id, eatenOn: ctx.todayIso, protein: d.protein, traits: d.traits, diners: dinerIds }
+  if (hasDiet && d.proteins.length === 0) weight *= UNKNOWN_PROTEIN_DAMP
+  const asMeal: CountedMeal = { dishId: d.id, eatenOn: ctx.todayIso, proteins: d.proteins, traits: d.traits, diners: dinerIds }
   for (const person of ctx.diners) {
     for (const g of goalProgress(person, ctx.recentMeals)) {
       const def = GOALS.find((x) => x.key === g.key)

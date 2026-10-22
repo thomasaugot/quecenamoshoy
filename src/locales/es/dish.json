@@ -21,8 +21,9 @@
   },
   "recipe": {
     "title": "La receta",
-    "none": "Aún no hay receta. Te la escribo yo, o pega el enlace de una que te guste.",
+    "none": "Aún no hay receta. Te la escribo yo, la escribes tú a mano, o pega el enlace de una que te guste.",
     "generate": "Escribir la receta",
+    "writeMine": "Escribirla a mano",
     "rewrite": "Reescribirla",
     "writing": "escribiendo…",
     "servings": "Para cuántos",
